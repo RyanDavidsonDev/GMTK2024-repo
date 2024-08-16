@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://jk6em5rt3j8o"]
+
+[ext_resource type="Script" path="res://tiago-dev/scripts/state_machine.gd" id="1_4fqvg"]
+[ext_resource type="Script" path="res://tiago-dev/scripts/enemy_idle.gd" id="2_2eu4i"]
+[ext_resource type="Script" path="res://tiago-dev/scripts/enemy_wander.gd" id="3_6g1i6"]
+[ext_resource type="Script" path="res://tiago-dev/scripts/enemy_chase.gd" id="4_ofjmg"]
+
+[node name="Enemy" type="Area2D"]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_4fqvg")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("2_2eu4i")
+
+[node name="Wander" type="Node" parent="StateMachine"]
+script = ExtResource("3_6g1i6")
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("4_ofjmg")
