@@ -11,7 +11,6 @@ config_version=5
 [application]
 
 config/name="GMTK2024-Project"
-run/main_scene="res://tiago-dev/tiago-enemy-dev.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
