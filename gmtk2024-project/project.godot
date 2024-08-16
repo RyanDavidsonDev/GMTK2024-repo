@@ -15,6 +15,10 @@ run/main_scene="res://RyanFolder/Scenes/RyanScene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SoundFx="*res://scenes/sound_fx.tscn"
+
 [global_group]
 
 player=""
