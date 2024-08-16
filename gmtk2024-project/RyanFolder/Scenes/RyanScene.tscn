@@ -9,5 +9,3 @@
 position = Vector2(368, 180)
 
 [node name="BulletManager" parent="." instance=ExtResource("2_rulhb")]
-
-[connection signal="shoot" from="Player" to="BulletManager" method="_on_player_shoot"]

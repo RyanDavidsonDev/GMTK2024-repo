@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 signal shoot
 
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
