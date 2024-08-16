@@ -17,7 +17,7 @@ func _ready():
 	
 func enter():
 	super.enter()
-	wander_direction = Vector2.UP.rotated(deg_to_rad(randf_range(0, 360)))
+	wander_direction = enemy.last_direction.rotated(deg_to_rad(randf_range(-45, 45)))
 	wander_timer.wait_time = randf_range(min_wander_time, max_wander_time)
 
 func physics_update(delta: float):

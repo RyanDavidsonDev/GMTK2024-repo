@@ -8,14 +8,14 @@ func _ready():
 	if enemy == null:
 		print("invalid state - no owner of type enemy")
 
-	target = get_tree().get_first_node_in_group("enemy_target")
+	target = get_tree().get_first_node_in_group("player")
 	
 func enter():
-	print("state entered ", name)
+	#print("state entered ", name)
 	pass
 	
 func exit():
-	print("state exited ", name)
+	#print("state exited ", name)
 	pass
 
 func update(_delta: float) -> void:
