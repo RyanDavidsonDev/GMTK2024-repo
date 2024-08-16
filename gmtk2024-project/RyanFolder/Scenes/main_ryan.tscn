@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2n7udg8xgmad"]
+
+[ext_resource type="PackedScene" uid="uid://xgr1i7wcarxt" path="res://RyanFolder/Scenes/player.tscn" id="1_uqcgs"]
+[ext_resource type="PackedScene" uid="uid://ckug1pit8iglx" path="res://RyanFolder/Scenes/Pellet_manager.tscn" id="2_63cev"]
+
+[node name="MainRyan" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_uqcgs")]
+
+[node name="BulletManager" parent="." instance=ExtResource("2_63cev")]

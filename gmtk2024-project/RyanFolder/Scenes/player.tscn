@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://xgr1i7wcarxt"]
+
+[ext_resource type="Script" path="res://RyanFolder/Scripts/Player.gd" id="1_tqj0c"]
+[ext_resource type="Texture2D" uid="uid://d1o7bpan07m46" path="res://RyanFolder/Assets/PlaceholderPlayer.bmp" id="2_rj7hd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tcdpd"]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_tqj0c")
+
+[node name="CollisionBody" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tcdpd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rj7hd")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 3
