@@ -1,24 +1,40 @@
 extends CharacterBody2D
 
+signal shoot
+
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @export var move_speed: float = 200
 @export var size: float  = 200
-
+var move_dir:Vector2 = Vector2.ZERO
+var mouse_dir:Vector2 #used for physics calculations
+var look_dir:float #used for setting sprite direction
 var dead : bool = false
 
-func _process(dealta):
-	if Input.is_action_just_pressed("exit"):
-		print("quit game") # basic infrastructure from the tutorial I was using, not worrying about it now
+func _process(delta):
+	#if Input.is_action_just_pressed("exit"):
+	#	print("quit game") # basic infrastructure from the tutorial I was using, not worrying about it now
 	
+	look_dir = global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
+	mouse_dir = get_global_mouse_position() - position
+	look_dir = mouse_dir.angle() + PI/2.0
+	global_rotation = look_dir
 	
-	global_rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0 + deg_to_rad(45)
 	if Input.is_action_just_pressed("shoot"):
-		shoot()
+			
+		#var pellet = Pellet.new(look_dir, global_transform)
+		#add_child(pellet)
+		#pellet.global_position = global_position
+		print("firing " + str(look_dir))
+		
+		print("ship direction" + str(look_dir))
+		print("ship location" + str(transform))
+		print("")
+		shoot.emit(position, mouse_dir)
 		
 func  _physics_process(delta):
 	if dead:
 		return
-	var move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = move_dir * move_speed
 	move_and_slide()
 	
@@ -27,5 +43,4 @@ func kill():
 		return
 	print("you died")
 		
-func shoot():
-	print("firing")
+	
