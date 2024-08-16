@@ -10,8 +10,9 @@ func _ready():
 	add_child(idle_timer)
 
 func enter():
+	super.enter()
 	enemy.velocity = Vector2.ZERO
-	idle_timer.wait_time = randi_range(3, 10)
+	idle_timer.wait_time = randi_range(0.2, 0.5)
 	idle_timer.start()
 
 func on_timeout():
@@ -21,4 +22,5 @@ func physics_update(delta: float) -> void:
 	try_chase()
 	
 func exit():
+	super.exit()
 	idle_timer.stop()

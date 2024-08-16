@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://jk6em5rt3j8o"]
+
+[ext_resource type="Script" path="res://scripts/state_machines/state_machine.gd" id="1_4fqvg"]
+[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_v447q"]
+[ext_resource type="Script" path="res://scripts/state_machines/enemy_idle.gd" id="2_2eu4i"]
+[ext_resource type="Script" path="res://scripts/state_machines/enemy_wander.gd" id="3_6g1i6"]
+[ext_resource type="Script" path="res://scripts/state_machines/enemy_chase.gd" id="4_ofjmg"]
+[ext_resource type="Texture2D" uid="uid://hl8jrxqemebn" path="res://tiago-dev/assets/enemy.png" id="5_4teuu"]
+[ext_resource type="Script" path="res://tiago-dev/scripts/enemy_animator.gd" id="7_fu5t4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hxmrb"]
+radius = 14.5602
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_v447q")
+detection_radius = 30.0
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_4fqvg")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("2_2eu4i")
+
+[node name="Wander" type="Node" parent="StateMachine"]
+script = ExtResource("3_6g1i6")
+min_wander_time = 0.2
+max_wander_time = 0.8
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("4_ofjmg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.909409, 0, 0.130284, 1)
+texture = ExtResource("5_4teuu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hxmrb")
+
+[node name="EnemyAnimator" type="Node" parent="." node_paths=PackedStringArray("sprite", "state_machine")]
+script = ExtResource("7_fu5t4")
+sprite = NodePath("../Sprite2D")
+state_machine = NodePath("../StateMachine")
+chase_color = Color(0.670588, 0, 0.776471, 1)
+not_chase_color = Color(0.914884, 0.50168, 1, 1)

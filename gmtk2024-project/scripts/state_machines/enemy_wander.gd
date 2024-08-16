@@ -16,6 +16,7 @@ func _ready():
 	add_child(wander_timer)
 	
 func enter():
+	super.enter()
 	wander_direction = Vector2.UP.rotated(deg_to_rad(randf_range(0, 360)))
 	wander_timer.wait_time = randf_range(min_wander_time, max_wander_time)
 
@@ -29,4 +30,5 @@ func on_timeout():
 	transitioned.emit(self, "idle")
 
 func exit():
+	super.exit()
 	wander_timer.stop()

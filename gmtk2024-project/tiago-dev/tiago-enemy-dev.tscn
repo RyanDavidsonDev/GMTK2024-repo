@@ -1,3 +1,72 @@
-[gd_scene format=3 uid="uid://1r01jotsj74l"]
+[gd_scene load_steps=4 format=3 uid="uid://1r01jotsj74l"]
+
+[ext_resource type="PackedScene" uid="uid://jk6em5rt3j8o" path="res://scenes/enemy.tscn" id="1_jtx0h"]
+[ext_resource type="Script" path="res://tiago-dev/scripts/follow_mouse.gd" id="1_ps1ln"]
+[ext_resource type="Texture2D" uid="uid://hl8jrxqemebn" path="res://tiago-dev/assets/enemy.png" id="2_aayhr"]
 
 [node name="TiagoProto" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(225, 0)
+zoom = Vector2(0.75, 0.75)
+
+[node name="Player" type="Node2D" parent="." groups=["enemy_target"]]
+position = Vector2(231, 1)
+script = ExtResource("1_ps1ln")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+modulate = Color(0.248873, 0.663849, 1, 1)
+texture = ExtResource("2_aayhr")
+
+[node name="Enemy" parent="." instance=ExtResource("1_jtx0h")]
+detection_radius = 128.0
+chase_radius = 160.0
+follow_radius = 16.0
+
+[node name="Enemy2" parent="." instance=ExtResource("1_jtx0h")]
+position = Vector2(58, -96)
+detection_radius = 128.0
+chase_radius = 160.0
+follow_radius = 16.0
+
+[node name="Enemy3" parent="." instance=ExtResource("1_jtx0h")]
+position = Vector2(192, -127)
+detection_radius = 128.0
+chase_radius = 160.0
+follow_radius = 16.0
+
+[node name="Enemy4" parent="." instance=ExtResource("1_jtx0h")]
+position = Vector2(397, -119)
+detection_radius = 128.0
+chase_radius = 160.0
+follow_radius = 16.0
+
+[node name="Enemy5" parent="." instance=ExtResource("1_jtx0h")]
+position = Vector2(397, 126)
+detection_radius = 128.0
+chase_radius = 160.0
+follow_radius = 16.0
+
+[node name="Enemy6" parent="." instance=ExtResource("1_jtx0h")]
+position = Vector2(286, 176)
+detection_radius = 128.0
+chase_radius = 160.0
+follow_radius = 16.0
+
+[node name="Enemy7" parent="." instance=ExtResource("1_jtx0h")]
+position = Vector2(123, 150)
+detection_radius = 128.0
+chase_radius = 160.0
+follow_radius = 16.0
+
+[node name="Enemy8" parent="." instance=ExtResource("1_jtx0h")]
+position = Vector2(65, 75)
+detection_radius = 128.0
+chase_radius = 160.0
+follow_radius = 16.0
+
+[node name="Enemy9" parent="." instance=ExtResource("1_jtx0h")]
+position = Vector2(388, 24)
+detection_radius = 128.0
+chase_radius = 160.0
+follow_radius = 16.0
