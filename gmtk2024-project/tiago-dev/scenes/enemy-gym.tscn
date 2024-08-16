@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://1r01jotsj74l"]
+[gd_scene load_steps=6 format=3 uid="uid://1r01jotsj74l"]
 
 [ext_resource type="PackedScene" uid="uid://jk6em5rt3j8o" path="res://scenes/enemy.tscn" id="1_jtx0h"]
 [ext_resource type="Script" path="res://tiago-dev/scripts/follow_mouse.gd" id="1_ps1ln"]
 [ext_resource type="Texture2D" uid="uid://hl8jrxqemebn" path="res://tiago-dev/assets/enemy.png" id="2_aayhr"]
+[ext_resource type="Script" path="res://scripts/combat/hurtbox.gd" id="3_ncnee"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gybjq"]
+radius = 27.4591
 
 [node name="TiagoProto" type="Node2D"]
 
@@ -10,13 +14,22 @@
 position = Vector2(225, 0)
 zoom = Vector2(0.75, 0.75)
 
-[node name="Player" type="Node2D" parent="." groups=["enemy_target"]]
+[node name="Player" type="Node2D" parent="." groups=["player"]]
 position = Vector2(231, 1)
+rotation = -0.195397
 script = ExtResource("1_ps1ln")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 modulate = Color(0.248873, 0.663849, 1, 1)
 texture = ExtResource("2_aayhr")
+
+[node name="HurtBox" type="Area2D" parent="Player"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("3_ncnee")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HurtBox"]
+shape = SubResource("CircleShape2D_gybjq")
 
 [node name="Enemy" parent="." instance=ExtResource("1_jtx0h")]
 detection_radius = 128.0
@@ -70,3 +83,5 @@ position = Vector2(388, 24)
 detection_radius = 128.0
 chase_radius = 160.0
 follow_radius = 16.0
+
+[connection signal="area_entered" from="Player/HurtBox" to="Player/HurtBox" method="_on_area_entered"]
