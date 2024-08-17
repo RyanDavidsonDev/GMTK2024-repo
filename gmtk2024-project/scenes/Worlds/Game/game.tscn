@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://dloy6a5tp6635"]
+
+[ext_resource type="PackedScene" uid="uid://xgr1i7wcarxt" path="res://scenes/Player/player.tscn" id="1_h8djo"]
+[ext_resource type="PackedScene" uid="uid://ckug1pit8iglx" path="res://scenes/Bullet/Bullet manager/bullet_manager.tscn" id="2_tasew"]
+[ext_resource type="PackedScene" uid="uid://h3sptbpih1mg" path="res://scenes/Bullet/bullet.tscn" id="3_8prt7"]
+[ext_resource type="PackedScene" uid="uid://dpgclxc6hvcmm" path="res://scenes/Enemy/enemy_spawner.tscn" id="4_0qdq0"]
+[ext_resource type="PackedScene" uid="uid://75ohkordb8gv" path="res://scenes/Pellet/Pellet spawner/pellet_spawner.tscn" id="5_r0rh2"]
+[ext_resource type="PackedScene" uid="uid://dqo7o5kcfc1qb" path="res://scenes/Other/Pool/pool.tscn" id="6_am4a8"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Pool" parent="." instance=ExtResource("6_am4a8")]
+
+[node name="Player" parent="." instance=ExtResource("1_h8djo")]
+position = Vector2(368, 180)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("4_0qdq0")]
+max_amount = 5
+
+[node name="BulletManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_tasew")]
+bullet_scene = ExtResource("3_8prt7")
+player = NodePath("../Player")
+max_amount = 100
+
+[node name="PelletSpawner" parent="." instance=ExtResource("5_r0rh2")]
+spawn_min_distance = 282
+spawn_delay = 0.6
+max_amount = 5

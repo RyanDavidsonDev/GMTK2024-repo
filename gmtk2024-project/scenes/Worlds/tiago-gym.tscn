@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bxgw3npc33nne"]
 
-[ext_resource type="PackedScene" uid="uid://xgr1i7wcarxt" path="res://scenes/player.tscn" id="1_l7r8m"]
-[ext_resource type="PackedScene" uid="uid://cxsyf6by2j8ht" path="res://scenes/bullet_manager.tscn" id="2_7xmam"]
-[ext_resource type="PackedScene" uid="uid://jk6em5rt3j8o" path="res://scenes/enemy.tscn" id="3_8we7p"]
-[ext_resource type="PackedScene" uid="uid://dpgclxc6hvcmm" path="res://scenes/enemy_spawner.tscn" id="4_ngvs5"]
-[ext_resource type="PackedScene" uid="uid://75ohkordb8gv" path="res://scenes/pellet_spawner.tscn" id="5_rqbtt"]
+[ext_resource type="PackedScene" uid="uid://xgr1i7wcarxt" path="res://scenes/Player/player.tscn" id="1_l7r8m"]
+[ext_resource type="PackedScene" path="res://scenes/bullet_manager.tscn" id="2_7xmam"]
+[ext_resource type="PackedScene" uid="uid://jk6em5rt3j8o" path="res://scenes/Enemy/enemy.tscn" id="3_8we7p"]
+[ext_resource type="PackedScene" uid="uid://dpgclxc6hvcmm" path="res://scenes/Enemy/enemy_spawner.tscn" id="4_ngvs5"]
+[ext_resource type="PackedScene" uid="uid://75ohkordb8gv" path="res://scenes/Pellet/Pellet spawner/pellet_spawner.tscn" id="5_rqbtt"]
 
 [node name="TiagoGym" type="Node2D"]
 
