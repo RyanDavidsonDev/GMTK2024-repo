@@ -22,6 +22,7 @@ func _ready():
 	active = true
 	hitbox.damaged.connect(_receive_damage)
 	health.health_changed.connect(_on_health_changed)
+	
 func _receive_damage(attack : Attack):
 	health.damage(attack.damage)
 

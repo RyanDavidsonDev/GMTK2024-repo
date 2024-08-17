@@ -26,7 +26,7 @@ func setVars(pos: Vector2, dir:Vector2):
 	global_rotation = dir.angle() + PI/2
 
 func _physics_process(delta):
-	
+	print("speed: " + str(speed))
 	position += speed *direction * delta
 	pass
 	#print("location" + str(transform))
