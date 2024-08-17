@@ -21,3 +21,7 @@ func _physics_process(delta):
 	position += speed *direction * delta
 	pass
 	#print("location" + str(transform))
+
+
+func _on_area_entered(area: Area2D) -> void:
+	queue_free()

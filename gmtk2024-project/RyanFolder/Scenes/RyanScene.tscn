@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://drboqtyo3pf7h"]
+[gd_scene load_steps=4 format=3 uid="uid://drboqtyo3pf7h"]
 
 [ext_resource type="PackedScene" uid="uid://xgr1i7wcarxt" path="res://RyanFolder/Scenes/player.tscn" id="1_5g00q"]
 [ext_resource type="PackedScene" uid="uid://ckug1pit8iglx" path="res://RyanFolder/Scenes/Pellet_manager.tscn" id="2_rulhb"]
+[ext_resource type="PackedScene" uid="uid://jk6em5rt3j8o" path="res://scenes/enemy.tscn" id="3_0gx5o"]
 
 [node name="RyanScene" type="Node2D"]
 
@@ -9,3 +10,15 @@
 position = Vector2(368, 180)
 
 [node name="BulletManager" parent="." instance=ExtResource("2_rulhb")]
+
+[node name="Enemy" parent="." instance=ExtResource("3_0gx5o")]
+position = Vector2(730, 271)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_0gx5o")]
+position = Vector2(730, 271)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_0gx5o")]
+position = Vector2(730, 271)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_0gx5o")]
+position = Vector2(501, 385)
