@@ -15,10 +15,6 @@ run/main_scene="res://scenes/Worlds/Game/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-SoundFx="*res://scenes/Other/Sound fix/sound_fx.tscn"
-
 [global_group]
 
 player=""

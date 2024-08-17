@@ -11,7 +11,16 @@ extends CharacterBody2D
 @export var hitbox : Hitbox
 @export var health : Health
 
+
+
+var active: bool
+
+var pool: Pool
+
 func _ready():
+	pool = get_tree().get_first_node_in_group("pool")
+	
+	active = true
 	hitbox.damaged.connect(_receive_damage)
 	health.health_changed.connect(_on_health_changed)
 	
@@ -27,3 +36,17 @@ func _on_health_changed(previous_health: float, current_health: float) -> void:
 		# instead of deleting, we can disable and reuse
 		# (i.e. pooling on an enemy manager)
 		queue_free()
+
+
+func _on_draw() -> void:
+	pool.remove_from_non_active(self, "pellets")
+	hitbox.monitorable = true
+	hitbox.monitoring = true
+	active = true
+
+
+func _on_hidden() -> void:
+	pool.add_to_non_active(self, "pellets")
+	hitbox.monitorable = false
+	hitbox.monitoring = false
+	active = false

@@ -68,4 +68,6 @@ script = ExtResource("4_ofjmg")
 [node name="HurtBox" type="Node" parent="."]
 script = ExtResource("10_4pde3")
 
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="hidden" from="." to="." method="_on_hidden"]
 [connection signal="area_entered" from="HitBox" to="HurtBox" method="_on_area_entered"]

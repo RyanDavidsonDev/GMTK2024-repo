@@ -18,7 +18,7 @@ func _on_area_entered(area: Area2D) -> void:
 		area.damage(attack)
 "
 
-[node name="Pellet" type="Area2D"]
+[node name="Bullet" type="Area2D"]
 collision_layer = 8
 collision_mask = 6
 script = ExtResource("1_0h4w3")
@@ -32,5 +32,11 @@ texture = ExtResource("2_k6dm3")
 [node name="HurtBox" type="Node" parent="."]
 script = SubResource("GDScript_xlyar")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_entered" from="." to="HurtBox" method="_on_area_entered"]
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="hidden" from="." to="." method="_on_hidden"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

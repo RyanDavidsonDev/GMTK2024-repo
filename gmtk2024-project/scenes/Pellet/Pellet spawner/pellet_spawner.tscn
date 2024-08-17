@@ -6,5 +6,4 @@
 [node name="PelletSpawner" type="Node"]
 script = ExtResource("1_axcii")
 spawn_entities = Array[PackedScene]([ExtResource("2_bvgma")])
-spawn_min_distance = 358
-spawn_delay = 2.4
+pool_type = "pellets"
