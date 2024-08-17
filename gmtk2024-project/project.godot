@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="GMTK2024-Project"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/Worlds/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SoundFx="*res://scenes/sound_fx.tscn"
+SoundFx="*res://scenes/Other/Sound fix/sound_fx.tscn"
 
 [global_group]
 

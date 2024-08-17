@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://1r01jotsj74l"]
 
-[ext_resource type="Script" path="res://scripts/follow_mouse.gd" id="1_xx32a"]
-[ext_resource type="Texture2D" uid="uid://hl8jrxqemebn" path="res://assets/enemy.png" id="2_kdml3"]
-[ext_resource type="PackedScene" uid="uid://jk6em5rt3j8o" path="res://scenes/enemy.tscn" id="3_lg5c1"]
+[ext_resource type="Script" path="res://scripts/follow_mouse.gd" id="1_ggfqp"]
+[ext_resource type="Texture2D" uid="uid://hl8jrxqemebn" path="res://assets/enemy.png" id="2_8c5ls"]
+[ext_resource type="PackedScene" uid="uid://jk6em5rt3j8o" path="res://scenes/Enemy/enemy.tscn" id="3_mo4hl"]
 
 [sub_resource type="GDScript" id="GDScript_xlyar"]
 script/source = "extends Node
@@ -28,11 +28,11 @@ zoom = Vector2(0.75, 0.75)
 [node name="Player" type="Node2D" parent="." groups=["player"]]
 position = Vector2(231, 1)
 rotation = -0.195397
-script = ExtResource("1_xx32a")
+script = ExtResource("1_ggfqp")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 modulate = Color(0.248873, 0.663849, 1, 1)
-texture = ExtResource("2_kdml3")
+texture = ExtResource("2_8c5ls")
 
 [node name="HurtBox" type="Area2D" parent="Player"]
 collision_layer = 8
@@ -42,46 +42,46 @@ script = SubResource("GDScript_xlyar")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HurtBox"]
 shape = SubResource("CircleShape2D_gybjq")
 
-[node name="Enemy" parent="." instance=ExtResource("3_lg5c1")]
+[node name="Enemy" parent="." instance=ExtResource("3_mo4hl")]
 detection_radius = 128.0
 chase_radius = 160.0
 
-[node name="Enemy2" parent="." instance=ExtResource("3_lg5c1")]
+[node name="Enemy2" parent="." instance=ExtResource("3_mo4hl")]
 position = Vector2(58, -96)
 detection_radius = 128.0
 chase_radius = 160.0
 
-[node name="Enemy3" parent="." instance=ExtResource("3_lg5c1")]
+[node name="Enemy3" parent="." instance=ExtResource("3_mo4hl")]
 position = Vector2(192, -127)
 detection_radius = 128.0
 chase_radius = 160.0
 
-[node name="Enemy4" parent="." instance=ExtResource("3_lg5c1")]
+[node name="Enemy4" parent="." instance=ExtResource("3_mo4hl")]
 position = Vector2(397, -119)
 detection_radius = 128.0
 chase_radius = 160.0
 
-[node name="Enemy5" parent="." instance=ExtResource("3_lg5c1")]
+[node name="Enemy5" parent="." instance=ExtResource("3_mo4hl")]
 position = Vector2(397, 126)
 detection_radius = 128.0
 chase_radius = 160.0
 
-[node name="Enemy6" parent="." instance=ExtResource("3_lg5c1")]
+[node name="Enemy6" parent="." instance=ExtResource("3_mo4hl")]
 position = Vector2(286, 176)
 detection_radius = 128.0
 chase_radius = 160.0
 
-[node name="Enemy7" parent="." instance=ExtResource("3_lg5c1")]
+[node name="Enemy7" parent="." instance=ExtResource("3_mo4hl")]
 position = Vector2(123, 150)
 detection_radius = 128.0
 chase_radius = 160.0
 
-[node name="Enemy8" parent="." instance=ExtResource("3_lg5c1")]
+[node name="Enemy8" parent="." instance=ExtResource("3_mo4hl")]
 position = Vector2(65, 75)
 detection_radius = 128.0
 chase_radius = 160.0
 
-[node name="Enemy9" parent="." instance=ExtResource("3_lg5c1")]
+[node name="Enemy9" parent="." instance=ExtResource("3_mo4hl")]
 position = Vector2(388, 24)
 detection_radius = 128.0
 chase_radius = 160.0
