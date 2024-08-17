@@ -41,7 +41,7 @@ func get_oldest_active_node(type: String):
 		activeNodes = get_tree().get_nodes_in_group(type+"_a")
 		print("arr" + str(activeNodes))
 		if activeNodes:
-			return activeNodes[activeNodes.size() - 1]
+			return activeNodes.pop_front()
 		else :
 			print("ERROR: active nodes is empty but we're trying to access it")
 	else :

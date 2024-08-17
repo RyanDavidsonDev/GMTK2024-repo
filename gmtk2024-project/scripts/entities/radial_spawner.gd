@@ -1,5 +1,7 @@
 extends Node
 
+class_name radial_spawner
+
 @export_group("Spawn Settings", "spawn_")
 @export var spawn_entities : Array[PackedScene]
 @export_range(256, 1024, 0.1) var spawn_min_distance: int = 5 
@@ -8,6 +10,7 @@ extends Node
 @export var max_amount: int = 100
 @export var pool_type: String 
 
+var actives : Array[Node]
 
 var player : Player
 var pool: Pool
@@ -32,6 +35,8 @@ func _ready():
 			var entity: Node2D = item.instantiate()
 			pool.add_child(entity)
 			entity.hide()
+			if entity is Pellet:
+				entity.set_spawner(self)
 			#spawn()
 	
 	
@@ -51,13 +56,14 @@ func spawn():
 	
 	var entity: Node2D
 	
-	#if we're full
-	if pool.get_num_active(pool_type) < max_amount:
+	#if we're not full
+	if actives.size()  < max_amount:
 		print("1")
 		entity = pool.get_non_active_node_by_type(pool_type)
 	else:
 		print("2")
-		entity = pool.get_oldest_active_node(pool_type)
+		entity = actives.pop_front()
+		#entity = pool.get_oldest_active_node(pool_type)
 		if entity:
 			entity.hide()
 		
@@ -67,6 +73,7 @@ func spawn():
 	if(entity):
 		entity.global_position = spawn_position
 		entity.show()
+		actives.push_back(entity)
 		print(entity)
 	else :
 		print("error: entity not valid")
@@ -79,3 +86,9 @@ func _timer_timeout():
 	if randi_range(0, 1) == 0:
 		variance *= -1
 	timer.wait_time = max(0, spawn_delay + variance)
+	
+
+func remove_from_actives(entity:Node):
+	var index: int = actives.find(entity)
+	if( index != -1): 
+		actives.pop_at(index)

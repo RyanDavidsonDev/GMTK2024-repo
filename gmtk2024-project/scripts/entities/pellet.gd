@@ -1,8 +1,14 @@
 extends Area2D
 
+class_name Pellet
+
+var spawner: radial_spawner
+
 var active: bool
 
 var pool: Pool
+
+
 
 func _ready() -> void:
 	pool = get_tree().get_first_node_in_group("pool")
@@ -29,4 +35,12 @@ func _on_hidden() -> void:
 	pool.add_to_non_active(self, "pellets")
 	monitorable = false
 	monitoring = false
+	if spawner:
+		spawner.remove_from_actives(self)
+	else :
+		print("error: pellet doesn't have a reference to spawner")
 	active = false
+
+func set_spawner(spawner: radial_spawner):
+	self.spawner = spawner
+	
