@@ -50,20 +50,25 @@ func spawn():
 	spawn_position.x += random_distance * cos(deg_to_rad(random_direction))
 	spawn_position.y += random_distance * sin(deg_to_rad(random_direction))
 	
+	var entity: Node2D
+	
 	#if we're full
 	if pool.get_num_active(pool_type) < max_amount:
-		var entity: Node2D = pool.get_non_active_node_by_type(pool_type)
-	else:
-		var entity: Node2D = pool.get_oldest_node()
+		print("2")
 		
+		entity = pool.get_non_active_node_by_type(pool_type)
+	else:
+		print("2")
+		entity = pool.get_oldest_active_node(pool_type_active)
+
 	
 	#var entity_index = randi_range(0, spawn_entities.size()-1)
-	
-	
-	
-	entity.global_position = spawn_position
-	entity.show()
-	print(entity)
+	if(entity):
+		entity.global_position = spawn_position
+		entity.show()
+		print(entity)
+	else :
+		print("error: entity not valid")
 
 func _timer_timeout():
 	if pool.get_non_active_node_by_type(pool_type):

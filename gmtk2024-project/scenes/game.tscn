@@ -16,7 +16,6 @@ position = Vector2(368, 180)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_25gr3")]
 spawn_min_distance = 256
-spawn_delay = null
 max_amount = 15
 
 [node name="BulletManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_q5lfh")]
