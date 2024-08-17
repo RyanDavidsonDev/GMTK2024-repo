@@ -39,6 +39,7 @@ func _on_draw() -> void:
 	monitoring = true
 	active = true
 	timer.start()
+	self.process_mode = PROCESS_MODE_PAUSABLE
 
 func _on_hidden() -> void:
 	pool.add_to_non_active(self, "bullets")
@@ -46,6 +47,7 @@ func _on_hidden() -> void:
 	monitorable = false
 	monitoring = false
 	active = false
+	self.process_mode = PROCESS_MODE_DISABLED
 
 
 func _on_timer_timeout() -> void:

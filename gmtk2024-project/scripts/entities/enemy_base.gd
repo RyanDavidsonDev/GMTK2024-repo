@@ -35,13 +35,12 @@ func _on_health_changed(previous_health: float, current_health: float) -> void:
 		health.reset()
 		hide()
 
-
 func _on_draw() -> void:
 	pool.remove_from_non_active(self, "enemies")
 	hitbox.monitorable = true
 	hitbox.monitoring = true
 	active = true
-
+	self.process_mode = PROCESS_MODE_PAUSABLE
 
 func _on_hidden() -> void:
 	position = Vector2(10000, 10000)
@@ -49,3 +48,4 @@ func _on_hidden() -> void:
 	hitbox.monitorable = false
 	hitbox.monitoring = false
 	active = false
+	self.process_mode = PROCESS_MODE_DISABLED
