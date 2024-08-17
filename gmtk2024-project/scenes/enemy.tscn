@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://jk6em5rt3j8o"]
 
 [ext_resource type="Script" path="res://scripts/state_machines/state_machine.gd" id="1_4fqvg"]
-[ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_v447q"]
+[ext_resource type="Script" path="res://scripts/enemy_base.gd" id="1_wq3kv"]
 [ext_resource type="Script" path="res://scripts/state_machines/enemy_idle.gd" id="2_2eu4i"]
 [ext_resource type="Script" path="res://scripts/state_machines/enemy_wander.gd" id="3_6g1i6"]
 [ext_resource type="Script" path="res://scripts/state_machines/enemy_chase.gd" id="4_ofjmg"]
@@ -20,10 +20,7 @@ radius = 20.025
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "health")]
 collision_layer = 2
 collision_mask = 9
-script = ExtResource("1_v447q")
-detection_radius = 500.0
-chase_radius = 800.0
-follow_radius = 16.0
+script = ExtResource("1_wq3kv")
 hitbox = NodePath("HitBox")
 health = NodePath("Health")
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://75ohkordb8gv"]
 
-[ext_resource type="Script" path="res://tiago-dev/radial_spawner.gd" id="1_axcii"]
-[ext_resource type="PackedScene" uid="uid://gl8wdslx6i85" path="res://scenes/pellet.tscn" id="2_bvgma"]
+[ext_resource type="Script" path="res://scripts/radial_spawner.gd" id="1_axcii"]
+[ext_resource type="PackedScene" uid="uid://bfv65spye5cqq" path="res://scenes/pellet.tscn" id="2_bvgma"]
 
 [node name="PelletSpawner" type="Node"]
 script = ExtResource("1_axcii")

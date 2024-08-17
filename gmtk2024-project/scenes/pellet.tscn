@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_8jbby"]
 radius = 5.0
 
-[node name="Area2D" type="Area2D"]
+[node name="Pellet" type="Area2D"]
 collision_layer = 16
 script = ExtResource("1_p808u")
 
