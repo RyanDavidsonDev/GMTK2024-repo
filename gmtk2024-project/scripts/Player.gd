@@ -29,7 +29,10 @@ var curr_scale: float = 1
 @export var max_health_cap :float
 
 @export_subgroup("speed range")
+
 var curr_speed: float = 300
+@export var default_speed:float = 200
+
 @export var speed_floor :float
 @export var speed_cap :float
 
@@ -41,6 +44,7 @@ var dead : bool = false
 func _ready():
 	update_scales()
 	hitbox.damaged.connect(ReceiveDamage)
+	move_speed = default_speed
 
 func _process(delta):
 	#if Input.is_action_just_pressed("exit"):
@@ -106,3 +110,4 @@ func update_scales():
 	collider_box.scale = Vector2(curr_scale, curr_scale);
 	health.max_health = lerp(max_health_floor, max_health_floor, t)
 	#move_speed = lerp(speed_cap, speed_floor, t)
+	print("speed " + str(move_speed))
