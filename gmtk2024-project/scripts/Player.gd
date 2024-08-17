@@ -45,7 +45,9 @@ var dead : bool = false
 func _ready():
 	update_scales()
 	hitbox.damaged.connect(ReceiveDamage)
+	health.health_changed.connect(_on_health_changed)
 	move_speed = default_speed
+	GameEvents.on_player_health_changed.emit()
 
 func _process(delta):
 	#if Input.is_action_just_pressed("exit"):
@@ -75,7 +77,11 @@ func  _physics_process(delta):
 	move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = move_dir * move_speed
 	move_and_slide()
-	
+
+func _on_health_changed():
+	print("player health changed")
+	GameEvents.on_player_health_changed.emit()
+
 func kill():
 	if dead:
 		return
@@ -85,6 +91,7 @@ func kill():
 func ReceiveDamage(attack: Attack):
 	health.damage(attack.damage)
 	print("current health: " + str(health.current_health))
+	GameEvents.on_player_health_changed.emit()
 	if health.current_health <= 0.0:
 		kill()
 
@@ -95,11 +102,11 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 func collect_coin():
 	change_size(size_inc)
 	
-
 func change_size(amount:float):
 	current_size = clamp(current_size + amount, size_floor, size_cap)
 	
 	update_scales()
+	GameEvents.on_player_health_changed.emit()
 	print("your new size is " + str(current_size) + " your current scale is " + str(curr_scale))
 	#todo:
 	# health
@@ -111,6 +118,6 @@ func update_scales():
 	sprite_2d.scale = Vector2(curr_scale, curr_scale);
 	hitbox.scale = Vector2(curr_scale, curr_scale);
 	collider_box.scale = Vector2(curr_scale, curr_scale);
-	health.max_health = lerp(max_health_floor, max_health_floor, t)
+	health.max_health = lerp(max_health_cap, max_health_floor, t)
 	move_speed = lerp(speed_cap, speed_floor, t)
 	print("speed " + str(move_speed))
