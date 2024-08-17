@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxgw3npc33nne"]
+
+[ext_resource type="PackedScene" uid="uid://xgr1i7wcarxt" path="res://scenes/player.tscn" id="1_l7r8m"]
+[ext_resource type="PackedScene" uid="uid://cxsyf6by2j8ht" path="res://scenes/bullet_manager.tscn" id="2_7xmam"]
+[ext_resource type="PackedScene" uid="uid://jk6em5rt3j8o" path="res://scenes/enemy.tscn" id="3_8we7p"]
+[ext_resource type="PackedScene" uid="uid://dpgclxc6hvcmm" path="res://scenes/enemy_spawner.tscn" id="4_ngvs5"]
+[ext_resource type="PackedScene" uid="uid://75ohkordb8gv" path="res://scenes/pellet_spawner.tscn" id="5_rqbtt"]
+
+[node name="TiagoGym" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_l7r8m")]
+position = Vector2(368, 180)
+collision_layer = 2
+current_size = 100.0
+
+[node name="BulletManager" parent="." instance=ExtResource("2_7xmam")]
+
+[node name="Enemy" parent="." instance=ExtResource("3_8we7p")]
+position = Vector2(730, 271)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_8we7p")]
+position = Vector2(730, 271)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_8we7p")]
+position = Vector2(730, 271)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_8we7p")]
+position = Vector2(501, 385)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("4_ngvs5")]
+
+[node name="PelletSpawner" parent="." instance=ExtResource("5_rqbtt")]

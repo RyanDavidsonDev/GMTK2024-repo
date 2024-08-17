@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://75ohkordb8gv"]
+
+[ext_resource type="Script" path="res://scripts/radial_spawner.gd" id="1_axcii"]
+[ext_resource type="PackedScene" uid="uid://bfv65spye5cqq" path="res://scenes/pellet.tscn" id="2_bvgma"]
+
+[node name="PelletSpawner" type="Node"]
+script = ExtResource("1_axcii")
+spawn_entities = Array[PackedScene]([ExtResource("2_bvgma")])
+spawn_min_distance = 358
+spawn_delay = 2.4

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpgclxc6hvcmm"]
+
+[ext_resource type="Script" path="res://scripts/radial_spawner.gd" id="1_3qlh0"]
+[ext_resource type="PackedScene" uid="uid://jk6em5rt3j8o" path="res://scenes/enemy.tscn" id="2_qma7s"]
+
+[node name="EnemySpawner" type="Node"]
+script = ExtResource("1_3qlh0")
+spawn_entities = Array[PackedScene]([ExtResource("2_qma7s")])
+spawn_min_distance = 739
