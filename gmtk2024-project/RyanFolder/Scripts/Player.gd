@@ -7,10 +7,17 @@ signal shoot
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @export var move_speed: float = 200
 @export var size: float  = 200
+@export var hitbox : Hitbox
+
+@export var health :Health 
+
 var move_dir:Vector2 = Vector2.ZERO
 var mouse_dir:Vector2 #used for physics calculations
 var look_dir:float #used for setting sprite direction
 var dead : bool = false
+
+func _ready():
+	hitbox.damaged.connect(ReceiveDamage)
 
 func _process(delta):
 	#if Input.is_action_just_pressed("exit"):
@@ -45,4 +52,12 @@ func kill():
 		return
 	print("you died")
 		
-	
+
+func ReceiveDamage(attack: Attack):
+	health.damage(attack.damage)
+	print("current health: " + str(health.current_health))
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	print("get hit")
+	pass # Replace with function body.

@@ -1,18 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://xgr1i7wcarxt"]
+[gd_scene load_steps=7 format=3 uid="uid://xgr1i7wcarxt"]
 
 [ext_resource type="Script" path="res://RyanFolder/Scripts/Player.gd" id="1_tqj0c"]
 [ext_resource type="Texture2D" uid="uid://d1o7bpan07m46" path="res://RyanFolder/Assets/PlaceholderPlayer.bmp" id="2_rj7hd"]
+[ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="3_1vlg2"]
+[ext_resource type="Script" path="res://scripts/combat/health.gd" id="4_qsoap"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tcdpd"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_dcwly"]
+radius = 34.0147
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_q171v"]
+radius = 17.72
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "health") groups=["player"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_tqj0c")
 move_speed = 400.0
-
-[node name="CollisionBody" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_tcdpd")
+hitbox = NodePath("Hitbox")
+health = NodePath("Health")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_rj7hd")
@@ -20,4 +25,18 @@ texture = ExtResource("2_rj7hd")
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 3
 
-[node name="Node" type="Node" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("3_1vlg2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_dcwly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_q171v")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4_qsoap")
+max_health = 100
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

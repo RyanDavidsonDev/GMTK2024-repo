@@ -2,10 +2,21 @@
 
 [ext_resource type="Script" path="res://RyanFolder/Scripts/pellet.gd" id="1_iy6yu"]
 [ext_resource type="Texture2D" uid="uid://bvhnhfj025f11" path="res://RyanFolder/Assets/placeholderPellet.png" id="2_k7h1r"]
-[ext_resource type="Script" path="res://scripts/combat/hurtbox.gd" id="3_5k8eb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y58xq"]
 size = Vector2(8, 14)
+
+[sub_resource type="GDScript" id="GDScript_xlyar"]
+script/source = "extends Node
+
+@export var damage : float = 10.0
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is Hitbox:
+		var attack = Attack.new()
+		attack.damage = damage
+		area.damage(attack)
+"
 
 [node name="Pellet" type="Area2D"]
 collision_layer = 8
@@ -19,7 +30,7 @@ shape = SubResource("RectangleShape2D_y58xq")
 texture = ExtResource("2_k7h1r")
 
 [node name="HurtBox" type="Node" parent="."]
-script = ExtResource("3_5k8eb")
+script = SubResource("GDScript_xlyar")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_entered" from="." to="HurtBox" method="_on_area_entered"]

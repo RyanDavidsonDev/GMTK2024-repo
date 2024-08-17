@@ -16,7 +16,7 @@ func _ready():
 	health.health_changed.connect(_on_health_changed)
 	
 func _receive_damage(attack : Attack):
-	health.change(attack.damage)
+	health.damage(attack.damage)
 
 func _on_health_changed(previous_health: float, current_health: float) -> void:
 	#print("prev: ", previous_health, "cur: ", current_health)

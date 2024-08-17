@@ -9,7 +9,7 @@ var current_health := 0.0
 func _ready():
 	reset()
 
-func change(value : float) -> void:
+func damage(value : float) -> void:
 	var previous_health = current_health + 0.0 
 	current_health = current_health - value
 	

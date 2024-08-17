@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://jk6em5rt3j8o"]
+[gd_scene load_steps=13 format=3 uid="uid://jk6em5rt3j8o"]
 
 [ext_resource type="Script" path="res://scripts/state_machines/state_machine.gd" id="1_4fqvg"]
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_v447q"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://tiago-dev/scripts/enemy_animator.gd" id="7_fu5t4"]
 [ext_resource type="Script" path="res://scripts/combat/health.gd" id="8_hrorx"]
 [ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="9_yhact"]
+[ext_resource type="Script" path="res://scripts/combat/hurtbox.gd" id="10_4pde3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hxmrb"]
 radius = 14.5602
@@ -46,7 +47,7 @@ max_health = 20
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 8
+collision_mask = 9
 script = ExtResource("9_yhact")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -66,3 +67,8 @@ max_wander_time = 0.8
 
 [node name="Chase" type="Node" parent="StateMachine"]
 script = ExtResource("4_ofjmg")
+
+[node name="HurtBox" type="Node" parent="."]
+script = ExtResource("10_4pde3")
+
+[connection signal="area_entered" from="HitBox" to="HurtBox" method="_on_area_entered"]
