@@ -20,5 +20,13 @@ func damage(value : float) -> void:
 		
 	health_changed.emit(previous_health, current_health)
 
+func heal(value: float) ->void:
+	var previous_health = current_health
+	if(value <= 0):
+		print("warning: you're trying to heal with a non-positive value")
+	else :
+		current_health = clamp(current_health+value, 0, max_health)
+		health_changed.emit()
+
 func reset() -> void:
 	current_health = max_health

@@ -7,8 +7,12 @@ var spawner: radial_spawner
 var active: bool
 var certain_type: String
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
 @export_group("health")
 @export var health_chance: float = 3
+@export var heal_amount_min: float = 5
+@export var heal_amount_max: float = 15
 
 #"coin", "health"
 
@@ -20,6 +24,7 @@ func _ready() -> void:
 	
 	if random_value < health_chance:
 		certain_type = "health"
+		sprite_2d.modulate = Color.RED
 	else:
 		certain_type = "coin"
 	
@@ -30,8 +35,8 @@ func _on_body_entered(body: Node2D) -> void:
 		if certain_type == "coin":
 			body.collect_coin()
 		elif certain_type == "health":
-			body.health.reset()
-		
+			var heal_amount = randf_range(heal_amount_min, heal_amount_max)
+			body.health.heal(heal_amount)
 		hide()
 
 
