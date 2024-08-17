@@ -12,7 +12,7 @@ func _ready():
 func enter():
 	super.enter()
 	enemy.velocity = Vector2.ZERO
-	idle_timer.wait_time = randi_range(0.2, 0.5)
+	idle_timer.wait_time = randi_range(2, 5) * 0.1
 	idle_timer.start()
 
 func on_timeout():
