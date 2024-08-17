@@ -53,9 +53,9 @@ func spawn():
 	
 	entity.global_position = spawn_position
 	entity.show()
+	print(entity)
 
 func _timer_timeout():
-	print(1231)
 	if pool.get_non_active_node_by_type(pool_type):
 		spawn()
 	

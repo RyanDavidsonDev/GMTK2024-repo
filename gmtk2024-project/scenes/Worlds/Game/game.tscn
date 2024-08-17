@@ -14,17 +14,15 @@
 [node name="Player" parent="." instance=ExtResource("1_h8djo")]
 position = Vector2(368, 180)
 
+[node name="EnemySpawner" parent="." instance=ExtResource("4_0qdq0")]
+max_amount = 5
+
 [node name="BulletManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_tasew")]
 bullet_scene = ExtResource("3_8prt7")
 player = NodePath("../Player")
 max_amount = 100
 
-[node name="EnemySpawner" parent="." instance=ExtResource("4_0qdq0")]
-spawn_min_distance = 331
-spawn_delay = 1.0
-max_amount = 10
-
 [node name="PelletSpawner" parent="." instance=ExtResource("5_r0rh2")]
 spawn_min_distance = 282
 spawn_delay = 0.6
-max_amount = 50
+max_amount = 5

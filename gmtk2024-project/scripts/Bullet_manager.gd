@@ -20,14 +20,13 @@ func _ready():
 		pool.add_child(bullet)
 		bullet.hide()
 	
-	print(get_tree().get_nodes_in_group("bullets"), get_tree().get_nodes_in_group("pellets"), get_tree().get_nodes_in_group("enemies"))
 	
 	player = get_tree().get_first_node_in_group("player")
 	player.shoot.connect(_on_player_shoot)
 
 func _on_player_shoot(pos: Vector2, dir:Vector2):
 	var bullet: Bullet = pool.get_non_active_node_by_type("bullets")
-	
+	print(get_tree().get_nodes_in_group("pellets"), get_tree().get_nodes_in_group("enemies"))
 	bullet.show()
 	
 	#print("spanwed")

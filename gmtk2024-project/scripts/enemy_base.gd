@@ -12,7 +12,6 @@ extends CharacterBody2D
 @export var health : Health
 
 
-
 var active: bool
 
 var pool: Pool
@@ -23,7 +22,6 @@ func _ready():
 	active = true
 	hitbox.damaged.connect(_receive_damage)
 	health.health_changed.connect(_on_health_changed)
-	
 func _receive_damage(attack : Attack):
 	health.damage(attack.damage)
 
@@ -33,20 +31,20 @@ func _on_health_changed(previous_health: float, current_health: float) -> void:
 	# in case we take multiple hits that take our life to 0
 	# we just delete the object once
 	if current_health <= 0.0 and previous_health != current_health:
-		# instead of deleting, we can disable and reuse
-		# (i.e. pooling on an enemy manager)
-		queue_free()
+		health.reset()
+		hide()
 
 
 func _on_draw() -> void:
-	pool.remove_from_non_active(self, "pellets")
+	pool.remove_from_non_active(self, "enemies")
 	hitbox.monitorable = true
 	hitbox.monitoring = true
 	active = true
 
 
 func _on_hidden() -> void:
-	pool.add_to_non_active(self, "pellets")
+	position = Vector2(10000, 10000)
+	pool.add_to_non_active(self, "enemies")
 	hitbox.monitorable = false
 	hitbox.monitoring = false
 	active = false
