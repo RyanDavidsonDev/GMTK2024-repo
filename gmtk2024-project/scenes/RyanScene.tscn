@@ -33,10 +33,292 @@ position = Vector2(892, 166)
 [node name="Area2D3" parent="." instance=ExtResource("5_jdipi")]
 position = Vector2(559, 168)
 
-[node name="Area2D" parent="." instance=ExtResource("5_jdipi")]
-position = Vector2(164, 313)
-
 [node name="Area2D4" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D4" parent="Area2D4" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D8" parent="Area2D4" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D9" parent="Area2D4" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D10" parent="Area2D4" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D11" parent="Area2D4" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D12" parent="Area2D4" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D13" parent="Area2D4" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D14" parent="Area2D4" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D15" parent="Area2D4" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D16" parent="Area2D4" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D17" parent="Area2D4" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D18" parent="Area2D4" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D4" parent="Area2D4/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D8" parent="Area2D4/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D9" parent="Area2D4/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D10" parent="Area2D4/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D11" parent="Area2D4/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D12" parent="Area2D4/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D13" parent="Area2D4/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D14" parent="Area2D4/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D15" parent="Area2D4/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D16" parent="Area2D4/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D17" parent="Area2D4/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D18" parent="Area2D4/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D4" parent="Area2D4/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D8" parent="Area2D4/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D9" parent="Area2D4/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D10" parent="Area2D4/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D11" parent="Area2D4/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D12" parent="Area2D4/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D13" parent="Area2D4/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D14" parent="Area2D4/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D15" parent="Area2D4/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D16" parent="Area2D4/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D17" parent="Area2D4/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D18" parent="Area2D4/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D4" parent="Area2D4/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D8" parent="Area2D4/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D9" parent="Area2D4/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D10" parent="Area2D4/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D11" parent="Area2D4/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D12" parent="Area2D4/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D13" parent="Area2D4/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D14" parent="Area2D4/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D15" parent="Area2D4/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D16" parent="Area2D4/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D17" parent="Area2D4/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D18" parent="Area2D4/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D4" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D8" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D9" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D10" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D11" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D12" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D13" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D14" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D15" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D16" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D17" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D18" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D4" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D8" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D9" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D10" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D11" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D12" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D13" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D14" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D15" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D16" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D17" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D18" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D4" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D8" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D9" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D10" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D11" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D12" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D13" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D14" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D15" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D16" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D17" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D18" parent="Area2D4/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18/Area2D18" instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D8" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D9" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D10" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D11" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D12" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D13" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D14" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D15" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D16" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D17" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D18" parent="." instance=ExtResource("5_jdipi")]
 position = Vector2(223, 351)
 
 [node name="Area2D5" parent="." instance=ExtResource("5_jdipi")]

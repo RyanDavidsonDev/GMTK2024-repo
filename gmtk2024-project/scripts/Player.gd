@@ -13,16 +13,25 @@ signal shoot
 
 @export_group("resizing")
 @export var size_inc: float = 10
+@export_subgroup("size range")
 @export var current_size: float  = 100
-@export var max_size = 1000
-@export var min_size = 10
+@export var size_floor = 10
+@export var size_cap = 1000
 
+@export_subgroup("scale range")
 var curr_scale: float = 1
-@export var min_scale: float = .1
-@export var max_scale: float = 10
+@export var scale_foor: float = .1
+@export var scale_cap: float = 10
 
-
+@export_subgroup("health range")
 @export var health :Health 
+@export var max_health_floor :float
+@export var max_health_cap :float
+
+@export_subgroup("speed range")
+var curr_speed: float = 300
+@export var speed_floor :float
+@export var speed_cap :float
 
 var move_dir:Vector2 = Vector2.ZERO
 var mouse_dir:Vector2 #used for physics calculations
@@ -30,6 +39,7 @@ var look_dir:float #used for setting sprite direction
 var dead : bool = false
 
 func _ready():
+	update_scales()
 	hitbox.damaged.connect(ReceiveDamage)
 
 func _process(delta):
@@ -74,19 +84,25 @@ func ReceiveDamage(attack: Attack):
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	print("get hit")
-	pass # Replace with function body.
 
 func collect_coin():
 	change_size(size_inc)
 	
 
 func change_size(amount:float):
-	current_size = clamp(current_size + amount, min_size, max_size)
-	curr_scale = lerp(min_scale, max_scale, inverse_lerp(min_size, max_size, current_size))
-	sprite_2d.scale = Vector2(curr_scale, curr_scale);
-	hitbox.scale = Vector2(curr_scale, curr_scale);
-	collider_box.scale = Vector2(curr_scale, curr_scale);
+	current_size = clamp(current_size + amount, size_floor, size_cap)
+	
+	update_scales()
 	print("your new size is " + str(current_size) + " your current scale is " + str(curr_scale))
 	#todo:
 	# health
 	# decrement value
+
+func update_scales():
+	var t:float = inverse_lerp(size_floor, size_cap, current_size)
+	curr_scale = lerp(scale_foor, scale_cap, t)
+	sprite_2d.scale = Vector2(curr_scale, curr_scale);
+	hitbox.scale = Vector2(curr_scale, curr_scale);
+	collider_box.scale = Vector2(curr_scale, curr_scale);
+	health.max_health = lerp(max_health_floor, max_health_floor, t)
+	#move_speed = lerp(speed_cap, speed_floor, t)
