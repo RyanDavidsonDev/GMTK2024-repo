@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bvhnhfj025f11"
-path="res://.godot/imported/placeholderPellet.png-779b8ae45698c9cbabdc33fb25523c06.ctex"
+path="res://.godot/imported/placeholderPellet.png-5d3fd2377b0a13d51353a9f034cc783b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RyanFolder/Assets/placeholderPellet.png"
-dest_files=["res://.godot/imported/placeholderPellet.png-779b8ae45698c9cbabdc33fb25523c06.ctex"]
+source_file="res://assets/placeholderPellet.png"
+dest_files=["res://.godot/imported/placeholderPellet.png-5d3fd2377b0a13d51353a9f034cc783b.ctex"]
 
 [params]
 
