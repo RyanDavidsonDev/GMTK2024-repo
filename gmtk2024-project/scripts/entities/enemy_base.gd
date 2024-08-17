@@ -28,7 +28,6 @@ func _receive_damage(attack : Attack):
 
 func _on_health_changed(previous_health: float, current_health: float) -> void:
 	#print("prev: ", previous_health, "cur: ", current_health)
-	
 	# in case we take multiple hits that take our life to 0
 	# we just delete the object once
 	if current_health <= 0.0 and previous_health != current_health:
@@ -43,7 +42,8 @@ func _on_draw() -> void:
 	active = true
 	self.process_mode = PROCESS_MODE_PAUSABLE
 
-func _on_hidden() -> void:
+func _on_hidden() -> void:	
+
 	position = Vector2(10000, 10000)
 	pool.add_to_non_active(self, "enemies")
 	hitbox.monitorable = false

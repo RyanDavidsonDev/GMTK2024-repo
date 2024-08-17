@@ -26,9 +26,7 @@ func _ready() -> void:
 	active = true
 
 func _on_body_entered(body: Node2D) -> void:
-	print("player collected coin")
 	if body is Player:
-		print("player")
 		if certain_type == "coin":
 			body.collect_coin()
 		elif certain_type == "health":

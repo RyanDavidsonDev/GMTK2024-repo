@@ -34,9 +34,9 @@ func _ready():
 		for i in max_amount:
 			var entity: Node2D = item.instantiate()
 			pool.add_child(entity)
-			entity.hide()
 			if entity is Pellet:
 				entity.set_spawner(self)
+			entity.hide()
 			#spawn()
 	
 	
@@ -58,10 +58,8 @@ func spawn():
 	
 	#if we're not full
 	if actives.size()  < max_amount:
-		print("1")
 		entity = pool.get_non_active_node_by_type(pool_type)
 	else:
-		print("2")
 		entity = actives.pop_front()
 		#entity = pool.get_oldest_active_node(pool_type)
 		if entity:
@@ -74,7 +72,6 @@ func spawn():
 		entity.global_position = spawn_position
 		entity.show()
 		actives.push_back(entity)
-		print(entity)
 	else :
 		print("error: entity not valid")
 

@@ -63,11 +63,7 @@ func _process(delta):
 		#var Bullet = Bullet.new(look_dir, global_transform)
 		#add_child(Bullet)
 		#Bullet.global_position = global_position
-		print("firing " + str(look_dir))
 		
-		print("ship direction" + str(look_dir))
-		print("ship location" + str(transform))
-		print("")
 		shoot.emit(position, mouse_dir)
 		change_size(size_dec)
 		
@@ -79,7 +75,6 @@ func  _physics_process(delta):
 	move_and_slide()
 
 func _on_health_changed():
-	print("player health changed")
 	GameEvents.on_player_health_changed.emit()
 
 func kill():
@@ -90,7 +85,6 @@ func kill():
 
 func ReceiveDamage(attack: Attack):
 	health.damage(attack.damage)
-	print("current health: " + str(health.current_health))
 	GameEvents.on_player_health_changed.emit()
 	if health.current_health <= 0.0:
 		kill()
@@ -107,7 +101,7 @@ func change_size(amount:float):
 	
 	update_scales()
 	GameEvents.on_player_health_changed.emit()
-	print("your new size is " + str(current_size) + " your current scale is " + str(curr_scale))
+	#print("your new size is " + str(current_size) + " your current scale is " + str(curr_scale))
 	#todo:
 	# health
 	# decrement value
@@ -122,5 +116,4 @@ func update_scales():
 	health.max_health = lerp(max_health_cap, max_health_floor, t)
 	health.current_health = lerp(0, health.max_health, healthPercentage)
 	move_speed = lerp(speed_cap, speed_floor, t)
-	print("current health: " + str(health.current_health))
-	print("speed " + str(move_speed))
+	#print("speed " + str(move_speed))

@@ -59,7 +59,6 @@ func _update_health_components():
 	health_bar.max_value = player_health_max
 	health_bar.value = player_health_current
 	
-	print("health values " + str(player_health_max) + " " + str(player_health_current))
 	#print(" ---- current health" + str(player_health_current))
 	health_label.text = str(snapped(player_health_current, .01)) + " / " + str(int(ceil(player_health_max)))
 	#health_label.text = "%.1f / %.1f" % [player_health_current, player_health_max]

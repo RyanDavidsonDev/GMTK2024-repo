@@ -69,7 +69,7 @@ script = ExtResource("4_ofjmg")
 script = ExtResource("10_4pde3")
 
 [node name="Timer" type="Timer" parent="HurtBox"]
-wait_time = 0.5
+wait_time = 0.1
 
 [connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="hidden" from="." to="." method="_on_hidden"]
