@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GMTK2024-Project"
-
+run/main_scene="res://scenes/Worlds/Game/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 SoundFx="*res://scenes/sound_fx.tscn"
 ButtonEvents="*res://scripts/ui/button_events.gd"
-
 run/main_scene="res://scenes/Worlds/Game/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
