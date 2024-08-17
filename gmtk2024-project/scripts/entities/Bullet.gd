@@ -14,13 +14,7 @@ var active: bool
 func _ready() -> void:
 	pool = get_tree().get_first_node_in_group("pool")
 
-#func _init():
-	#print("spawned, direction: " + str(direction))
-	#
-	#
-
 func setVars(pos: Vector2, dir:Vector2):
-	
 	global_position = pos
 	direction = dir.normalized()
 	global_rotation = dir.angle() + PI/2
@@ -32,6 +26,7 @@ func _physics_process(delta):
 
 func _on_area_entered(area: Area2D) -> void:
 	hide()
+	self.process_mode = PROCESS_MODE_DISABLED
 
 func _on_draw() -> void:
 	pool.remove_from_non_active(self, "bullets")

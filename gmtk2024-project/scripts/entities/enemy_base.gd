@@ -34,6 +34,7 @@ func _on_health_changed(previous_health: float, current_health: float) -> void:
 	if current_health <= 0.0 and previous_health != current_health:
 		health.reset()
 		hide()
+		self.process_mode = PROCESS_MODE_DISABLED
 
 func _on_draw() -> void:
 	pool.remove_from_non_active(self, "enemies")
