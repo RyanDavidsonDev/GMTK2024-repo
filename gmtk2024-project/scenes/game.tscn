@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://h3sptbpih1mg" path="res://scenes/Entities/bullet.tscn" id="3_bgrg5"]
 [ext_resource type="PackedScene" uid="uid://75ohkordb8gv" path="res://scenes/Entities/pellet_spawner.tscn" id="4_1wfr2"]
 [ext_resource type="PackedScene" uid="uid://dpgclxc6hvcmm" path="res://scenes/Entities/enemy_spawner.tscn" id="5_25gr3"]
-[ext_resource type="PackedScene" uid="uid://bf7ov2c3a8waj" path="res://scenes/ui/hud.tscn" id="7_yk863"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="7_yk863"]
 
 [node name="Game" type="Node2D"]
 
@@ -14,6 +14,7 @@
 
 [node name="Player" parent="." instance=ExtResource("1_x80ch")]
 position = Vector2(368, 180)
+move_speed = 200.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_25gr3")]
 spawn_min_distance = 256
