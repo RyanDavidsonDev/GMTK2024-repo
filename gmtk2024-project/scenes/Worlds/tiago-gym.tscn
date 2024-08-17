@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" path="res://scenes/bullet_manager.tscn" id="2_7xmam"]
 [ext_resource type="PackedScene" uid="uid://jk6em5rt3j8o" path="res://scenes/Enemy/enemy.tscn" id="3_8we7p"]
 [ext_resource type="PackedScene" uid="uid://dpgclxc6hvcmm" path="res://scenes/Enemy/enemy_spawner.tscn" id="4_ngvs5"]
-[ext_resource type="PackedScene" uid="uid://75ohkordb8gv" path="res://scenes/Pellet/pellet_spawner.tscn" id="5_rqbtt"]
+[ext_resource type="PackedScene" uid="uid://75ohkordb8gv" path="res://scenes/Pellet/Pellet spawner/pellet_spawner.tscn" id="5_rqbtt"]
 
 [node name="TiagoGym" type="Node2D"]
 
