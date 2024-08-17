@@ -14,9 +14,15 @@ radius = 17.72
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["player"]]
 collision_mask = 3
 script = ExtResource("1_tqj0c")
-move_speed = 400.0
-current_size = 16.0
+move_speed = 50.0
+current_size = 32.0
+size_floor = 16
+size_cap = 960
 health = NodePath("Health")
+max_health_floor = 500.0
+max_health_cap = 10.0
+speed_floor = 50.0
+speed_cap = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_rj7hd")
@@ -37,5 +43,7 @@ shape = SubResource("CircleShape2D_q171v")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_qsoap")
 max_health = 100
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
