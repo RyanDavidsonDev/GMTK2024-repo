@@ -2,6 +2,7 @@ extends Node
 
 @onready var main_screen = $MainMenu
 @onready var gameover_screen = $GameOver
+@onready var hud_screen = null # = $HUD
 
 signal start_game
 signal unload_game
@@ -18,8 +19,10 @@ func _button_pressed(btn : ScreenButton) -> void:
 		"PlayGame":
 			print("handling play game...")
 			_change_screen(null)
-			await(get_tree().create_timer(.5).timeout)
+			await(get_tree().create_timer(.65).timeout)
 			start_game.emit()
+			await(get_tree().create_timer(.65).timeout)
+			_show_hud()
 		"QuitGame":
 			get_tree().quit()
 		"RetryGame":
@@ -27,6 +30,8 @@ func _button_pressed(btn : ScreenButton) -> void:
 			_change_screen(null)
 			await(get_tree().create_timer(.65).timeout)
 			start_game.emit()
+			await(get_tree().create_timer(.65).timeout)
+			_show_hud()
 		"MainMenu":
 			unload_game.emit()
 			_change_screen(null)
@@ -49,3 +54,10 @@ func _change_screen(new_screen):
 
 func show_gameover_screen():
 	_change_screen(gameover_screen)
+
+func _show_hud():
+	if hud_screen == null:
+		hud_screen = get_tree().get_first_node_in_group("hud")
+		
+	if hud_screen:
+		_change_screen(hud_screen)
