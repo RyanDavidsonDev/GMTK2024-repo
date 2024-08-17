@@ -8,6 +8,7 @@ class_name radial_spawner
 @export var spawn_min_range_multiplier: float = 1 
 @export_range(0.2, 10, 0.2) var spawn_delay: float = 5 
 
+
 @export var max_amount: int = 100
 @export var pool_type: String 
 
@@ -55,6 +56,23 @@ func spawn():
 	spawn_position.x += random_distance * cos(deg_to_rad(random_direction))
 	spawn_position.y += random_distance * sin(deg_to_rad(random_direction))
 	
+	
+	spawnAtLocation(spawn_position)
+
+func spawnCluster(location:Vector2, size:int, distance: float):
+	for i in size:
+		var random_direction = randi_range(0, 360)
+		var random_distance = randf_range(0,distance)
+		
+		var spawn_position: Vector2
+		spawn_position.x = location.x + random_distance * cos(deg_to_rad(random_direction))
+		spawn_position.y = location.y + random_distance * sin(deg_to_rad(random_direction))
+		
+		spawnAtLocation(spawn_position)
+		print("hi")
+	
+
+func spawnAtLocation(location:Vector2):
 	var entity: Node2D
 	
 	#if we're not full
@@ -70,7 +88,7 @@ func spawn():
 	
 	#var entity_index = randi_range(0, spawn_entities.size()-1)
 	if(entity):
-		entity.global_position = spawn_position
+		entity.global_position = location
 		entity.show()
 		actives.push_back(entity)
 	else :
