@@ -12,7 +12,6 @@ radius = 34.0147
 radius = 17.72
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "health") groups=["player"]]
-collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_tqj0c")
 move_speed = 400.0
