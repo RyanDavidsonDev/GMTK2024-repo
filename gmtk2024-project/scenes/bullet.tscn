@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://h3sptbpih1mg"]
 
-[ext_resource type="Script" path="res://scripts/pellet.gd" id="1_iy6yu"]
-[ext_resource type="Texture2D" uid="uid://bvhnhfj025f11" path="res://assets/placeholderPellet.png" id="2_k7h1r"]
+[ext_resource type="Script" path="res://scripts/pellet.gd" id="1_0h4w3"]
+[ext_resource type="Texture2D" uid="uid://bvhnhfj025f11" path="res://assets/placeholderPellet.png" id="2_k6dm3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y58xq"]
 size = Vector2(8, 14)
@@ -21,13 +21,13 @@ func _on_area_entered(area: Area2D) -> void:
 [node name="Pellet" type="Area2D"]
 collision_layer = 8
 collision_mask = 6
-script = ExtResource("1_iy6yu")
+script = ExtResource("1_0h4w3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_y58xq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_k7h1r")
+texture = ExtResource("2_k6dm3")
 
 [node name="HurtBox" type="Node" parent="."]
 script = SubResource("GDScript_xlyar")

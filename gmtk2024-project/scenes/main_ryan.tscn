@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2n7udg8xgmad"]
 
 [ext_resource type="PackedScene" uid="uid://xgr1i7wcarxt" path="res://scenes/player.tscn" id="1_uqcgs"]
-[ext_resource type="PackedScene" uid="uid://ckug1pit8iglx" path="res://scenes/Pellet_manager.tscn" id="2_63cev"]
+[ext_resource type="PackedScene" uid="uid://ckug1pit8iglx" path="res://scenes/bullet_manager.tscn" id="2_63cev"]
 
 [node name="MainRyan" type="Node"]
 

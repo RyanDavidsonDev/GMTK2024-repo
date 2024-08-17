@@ -30,9 +30,9 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("shoot"):
 			
-		#var pellet = Pellet.new(look_dir, global_transform)
-		#add_child(pellet)
-		#pellet.global_position = global_position
+		#var Bullet = Bullet.new(look_dir, global_transform)
+		#add_child(Bullet)
+		#Bullet.global_position = global_position
 		print("firing " + str(look_dir))
 		
 		print("ship direction" + str(look_dir))
