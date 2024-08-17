@@ -1,6 +1,8 @@
 class_name Enemy
 extends CharacterBody2D
 
+signal DropPellets(location:Vector2)
+
 @export_group("Movement")
 @export var detection_radius : float = 500.0
 @export var chase_radius := 800.0
@@ -11,6 +13,12 @@ extends CharacterBody2D
 @export var hitbox : Hitbox
 @export var health : Health
 
+@export_group("pellet drops")
+@export var num_of_pellets: int = 3
+@export var distance : float = 5
+
+#@onready var pellet_spawner: radial_spawner = %PelletSpawner
+@onready var pellet_spawner: radial_spawner = $PelletSpawner
 
 var active: bool
 
@@ -18,7 +26,7 @@ var pool: Pool
 
 func _ready():
 	pool = get_tree().get_first_node_in_group("pool")
-	
+	DropPellets.emit()
 	active = true
 	hitbox.damaged.connect(_receive_damage)
 	health.health_changed.connect(_on_health_changed)
@@ -33,6 +41,10 @@ func _on_health_changed(previous_health: float, current_health: float) -> void:
 	if current_health <= 0.0 and previous_health != current_health:
 		health.reset()
 		hide()
+		if pellet_spawner:
+			pellet_spawner.spawnCluster(position, 3, 5)
+		else :
+			print("warning, pellet spawner broke")
 		self.process_mode = PROCESS_MODE_DISABLED
 
 func _on_draw() -> void:

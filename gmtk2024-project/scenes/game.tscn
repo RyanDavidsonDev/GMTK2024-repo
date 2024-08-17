@@ -32,3 +32,5 @@ spawn_delay = 0.6
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UILayer" instance=ExtResource("7_yk863")]
+
+[node name="Node" type="Node" parent="."]
