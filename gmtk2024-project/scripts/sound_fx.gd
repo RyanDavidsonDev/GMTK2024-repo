@@ -4,16 +4,16 @@ extends Node
 
 var sounds = {
 	"Click": [
-		load("res://assets/sound/Click.wav")
+		#load("res://assets/sound/Click.wav")
 	],
 	"Shoots": [
-		load("res://assets/sound/Shoot_000.wav"),
+		#load("res://assets/sound/Shoot_000.wav"),
 		#load("res://assets/sound/Shoot_001.wav"),
 		#load("res://assets/sound/Shoot_002.wav"),
 		#load("res://assets/sound/Shoot_003.wav"),
 	],
 	"PlayerDies": [
-		load("res://assets/sound/PlayerDies.wav")
+		#load("res://assets/sound/PlayerDies.wav")
 	],
 }
 
