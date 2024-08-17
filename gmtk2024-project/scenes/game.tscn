@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://drboqtyo3pf7h"]
+[gd_scene load_steps=6 format=3 uid="uid://dloy6a5tp6635"]
 
 [ext_resource type="PackedScene" uid="uid://xgr1i7wcarxt" path="res://scenes/player.tscn" id="1_x80ch"]
 [ext_resource type="PackedScene" uid="uid://ckug1pit8iglx" path="res://scenes/bullet_manager.tscn" id="2_q5lfh"]
@@ -15,8 +15,10 @@ position = Vector2(368, 180)
 bullet_scene = ExtResource("3_bgrg5")
 player = NodePath("../Player")
 
-[node name="PelletSpawner" parent="." instance=ExtResource("4_1wfr2")]
-spawn_min_distance = 334
-
 [node name="EnemySpawner" parent="." instance=ExtResource("5_25gr3")]
-spawn_min_distance = 394
+spawn_min_distance = 331
+spawn_delay = 1.0
+
+[node name="PelletSpawner" parent="." instance=ExtResource("4_1wfr2")]
+spawn_min_distance = 282
+spawn_delay = 0.6
