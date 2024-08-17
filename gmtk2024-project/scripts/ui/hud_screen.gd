@@ -6,15 +6,15 @@ extends BaseScreen
 var player : Player
 var player_health_floor = 0.0
 var player_health_cap = 0.0
-var player_health_max := 0.0
-var player_health_current := 0.0
+var player_health_max : float= 0.0
+var player_health_current : float = 0.0
 
 var viewport_size
 var min_health_bar_window_size = 0.0
 var max_health_bar_window_size = 0.0
 
-var target_player_health_current := 0
-var target_player_health_max := 0
+var target_player_health_current : float = 0
+var target_player_health_max : float = 0
 
 func _ready():
 	super._ready()
@@ -29,16 +29,20 @@ func _ready():
 func _process(delta:float):
 	
 	if target_player_health_current != player_health_current:
-		var direction = sign(target_player_health_current - player_health_current)
-		player_health_current += direction
+		target_player_health_current = player_health_current
+		#var direction = sign(target_player_health_current - player_health_current)
+		#player_health_current += direction
 		_update_health_components()
 	
 	if target_player_health_max != player_health_max:
-		var direction = sign(target_player_health_max - player_health_max)
-		player_health_max += direction
+		target_player_health_max = player_health_max
+		#var direction = sign(target_player_health_max - player_health_max)
+		#player_health_max += direction
+		
 		_update_health_components()
 
 func _update_health_components():
+	
 	var health_bar_size_percentage = inverse_lerp(
 		player_health_floor,
 		player_health_cap,
@@ -47,12 +51,17 @@ func _update_health_components():
 	var health_bar_window_size = lerp(
 		min_health_bar_window_size,
 		max_health_bar_window_size,
-		health_bar_size_percentage)
-	health_bar.size.x = health_bar_window_size
+		1) #hard coding this as I don't think we need the size of the  bar to change
+	
+	
+	health_bar.size.x = 576
 	
 	health_bar.max_value = player_health_max
 	health_bar.value = player_health_current
-	health_label.text = str(int(ceil(player_health_current))) + " / " + str(int(ceil(player_health_max)))
+	
+	print("health values " + str(player_health_max) + " " + str(player_health_current))
+	#print(" ---- current health" + str(player_health_current))
+	health_label.text = str(snapped(player_health_current, .01)) + " / " + str(int(ceil(player_health_max)))
 	#health_label.text = "%.1f / %.1f" % [player_health_current, player_health_max]
 
 func _update_player_health():
@@ -63,8 +72,8 @@ func _update_player_health():
 	player_health_floor = float(player.max_health_floor)
 	player_health_cap = float(player.max_health_cap)
 
-	target_player_health_max = player.health.max_health
-	target_player_health_current = player.health.current_health
+	player_health_max = player.health.max_health
+	player_health_current = player.health.current_health
 
 func _set_player():
 	player = get_tree().get_first_node_in_group("player")

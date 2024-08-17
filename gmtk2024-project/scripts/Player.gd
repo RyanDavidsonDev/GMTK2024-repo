@@ -122,4 +122,5 @@ func update_scales():
 	health.max_health = lerp(max_health_cap, max_health_floor, t)
 	health.current_health = lerp(0, health.max_health, healthPercentage)
 	move_speed = lerp(speed_cap, speed_floor, t)
+	print("current health: " + str(health.current_health))
 	print("speed " + str(move_speed))

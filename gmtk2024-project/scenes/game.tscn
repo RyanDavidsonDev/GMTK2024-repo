@@ -27,7 +27,6 @@ max_amount = 100
 [node name="PelletSpawner" parent="." instance=ExtResource("4_1wfr2")]
 spawn_min_distance = 282
 spawn_delay = 0.6
-max_amount = 5
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
