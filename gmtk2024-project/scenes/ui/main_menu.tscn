@@ -31,9 +31,6 @@ grow_vertical = 2
 [node name="PlayGame" parent="Center" instance=ExtResource("2_s1jtu")]
 layout_mode = 1
 
-[node name="Label" parent="Center/PlayGame" index="0"]
-text = "PLAY"
-
 [node name="QuitGame" parent="Center" instance=ExtResource("2_s1jtu")]
 layout_mode = 1
 offset_left = -198.0
