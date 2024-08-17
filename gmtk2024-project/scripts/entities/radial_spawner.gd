@@ -5,6 +5,7 @@ class_name radial_spawner
 @export_group("Spawn Settings", "spawn_")
 @export var spawn_entities : Array[PackedScene]
 @export_range(256, 1024, 0.1) var spawn_min_distance: int = 5 
+@export var spawn_min_range_multiplier: float = 1 
 @export_range(0.2, 10, 0.2) var spawn_delay: float = 5 
 
 @export var max_amount: int = 100
@@ -46,7 +47,7 @@ func _ready():
 func spawn():
 	var random_direction = randi_range(0, 360)
 	var min = spawn_min_distance
-	var max = min + randi_range(0, int(min)) * 0.45
+	var max = min + randi_range(0, int(min)) * spawn_min_range_multiplier
 	var random_distance = randi_range(min, max)
 	var spawn_position = player.global_position
 	

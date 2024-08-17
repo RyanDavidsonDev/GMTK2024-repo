@@ -9,7 +9,7 @@
 radius = 34.0147
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q171v"]
-radius = 17.72
+radius = 34.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["player"]]
 collision_mask = 3
@@ -37,7 +37,6 @@ script = ExtResource("3_1vlg2")
 shape = SubResource("CircleShape2D_dcwly")
 
 [node name="colliderBox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_q171v")
 
 [node name="Health" type="Node" parent="."]
