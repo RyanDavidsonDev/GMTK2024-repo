@@ -7,7 +7,6 @@ extends Node
 
 @export var max_amount: int = 100
 @export var pool_type: String 
-@export var pool_type_active: String = "pellets_a"
 
 
 var player : Player
@@ -54,12 +53,14 @@ func spawn():
 	
 	#if we're full
 	if pool.get_num_active(pool_type) < max_amount:
-		print("2")
-		
+		print("1")
 		entity = pool.get_non_active_node_by_type(pool_type)
 	else:
 		print("2")
-		entity = pool.get_oldest_active_node(pool_type_active)
+		entity = pool.get_oldest_active_node(pool_type)
+		if entity:
+			entity.hide()
+		
 
 	
 	#var entity_index = randi_range(0, spawn_entities.size()-1)
@@ -71,8 +72,8 @@ func spawn():
 		print("error: entity not valid")
 
 func _timer_timeout():
-	if pool.get_non_active_node_by_type(pool_type):
-		spawn()
+	#if pool.get_non_active_node_by_type(pool_type):
+	spawn()
 	
 	var variance = randi_range(0, int(spawn_delay)) * 0.45
 	if randi_range(0, 1) == 0:
