@@ -26,7 +26,6 @@ func _ready():
 
 func _on_player_shoot(pos: Vector2, dir:Vector2):
 	var bullet: Bullet = pool.get_non_active_node_by_type("bullets")
-	print(get_tree().get_nodes_in_group("pellets"), get_tree().get_nodes_in_group("enemies"))
 	bullet.show()
 	
 	#print("spanwed")

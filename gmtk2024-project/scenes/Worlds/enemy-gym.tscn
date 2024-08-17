@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/follow_mouse.gd" id="1_ggfqp"]
 [ext_resource type="Texture2D" uid="uid://hl8jrxqemebn" path="res://assets/enemy.png" id="2_8c5ls"]
-[ext_resource type="PackedScene" uid="uid://jk6em5rt3j8o" path="res://scenes/Enemy/enemy.tscn" id="3_mo4hl"]
+[ext_resource type="PackedScene" uid="uid://jk6em5rt3j8o" path="res://scenes/Entities/enemy.tscn" id="3_mo4hl"]
 
 [sub_resource type="GDScript" id="GDScript_xlyar"]
 script/source = "extends Node
