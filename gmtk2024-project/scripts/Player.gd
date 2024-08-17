@@ -118,6 +118,8 @@ func update_scales():
 	sprite_2d.scale = Vector2(curr_scale, curr_scale);
 	hitbox.scale = Vector2(curr_scale, curr_scale);
 	collider_box.scale = Vector2(curr_scale, curr_scale);
+	var healthPercentage:float = inverse_lerp(0, health.max_health, health.current_health)
 	health.max_health = lerp(max_health_cap, max_health_floor, t)
+	health.current_health = lerp(0, health.max_health, healthPercentage)
 	move_speed = lerp(speed_cap, speed_floor, t)
 	print("speed " + str(move_speed))
