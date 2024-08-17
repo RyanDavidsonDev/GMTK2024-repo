@@ -11,11 +11,11 @@ radius = 34.0147
 [sub_resource type="CircleShape2D" id="CircleShape2D_q171v"]
 radius = 17.72
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "health") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["player"]]
 collision_mask = 3
 script = ExtResource("1_tqj0c")
 move_speed = 400.0
-hitbox = NodePath("Hitbox")
+current_size = 16.0
 health = NodePath("Health")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -30,7 +30,7 @@ script = ExtResource("3_1vlg2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_dcwly")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="colliderBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_q171v")
 

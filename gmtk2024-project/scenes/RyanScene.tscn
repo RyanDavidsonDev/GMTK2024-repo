@@ -27,11 +27,23 @@ position = Vector2(730, 271)
 [node name="Enemy4" parent="." instance=ExtResource("3_0gx5o")]
 position = Vector2(501, 385)
 
-[node name="Area2D" parent="." instance=ExtResource("5_jdipi")]
-position = Vector2(249, 371)
-
 [node name="Area2D2" parent="." instance=ExtResource("5_jdipi")]
 position = Vector2(892, 166)
 
 [node name="Area2D3" parent="." instance=ExtResource("5_jdipi")]
 position = Vector2(559, 168)
+
+[node name="Area2D" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(164, 313)
+
+[node name="Area2D4" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(223, 351)
+
+[node name="Area2D5" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(328, 390)
+
+[node name="Area2D6" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(142, 400)
+
+[node name="Area2D7" parent="." instance=ExtResource("5_jdipi")]
+position = Vector2(235, 418)

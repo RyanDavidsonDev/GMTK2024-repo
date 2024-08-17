@@ -6,8 +6,21 @@ signal shoot
 
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @export var move_speed: float = 200
-@export var size: float  = 200
-@export var hitbox : Hitbox
+
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var collider_box: CollisionShape2D = $colliderBox
+@onready var hitbox: Hitbox = $Hitbox
+
+@export_group("resizing")
+@export var size_inc: float = 10
+@export var current_size: float  = 100
+@export var max_size = 1000
+@export var min_size = 10
+
+var curr_scale: float = 1
+@export var min_scale: float = .1
+@export var max_scale: float = 10
+
 
 @export var health :Health 
 
@@ -40,6 +53,7 @@ func _process(delta):
 		print("")
 		shoot.emit(position, mouse_dir)
 		
+		
 func  _physics_process(delta):
 	if dead:
 		return
@@ -61,3 +75,18 @@ func ReceiveDamage(attack: Attack):
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	print("get hit")
 	pass # Replace with function body.
+
+func collect_coin():
+	change_size(size_inc)
+	
+
+func change_size(amount:float):
+	current_size = clamp(current_size + amount, min_size, max_size)
+	curr_scale = lerp(min_scale, max_scale, inverse_lerp(min_size, max_size, current_size))
+	sprite_2d.scale = Vector2(curr_scale, curr_scale);
+	hitbox.scale = Vector2(curr_scale, curr_scale);
+	collider_box.scale = Vector2(curr_scale, curr_scale);
+	print("your new size is " + str(current_size) + " your current scale is " + str(curr_scale))
+	#todo:
+	# health
+	# decrement value

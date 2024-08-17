@@ -3,4 +3,7 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	print("player collected coin")
-	pass # Replace with function body.
+	if body is Player:
+		print("player")
+		body.collect_coin()
+		queue_free()
