@@ -9,5 +9,5 @@ func damage(attack: Attack):
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print("player picked up pellet")
+	print("player touched enemy")
 	pass # Replace with function body.
