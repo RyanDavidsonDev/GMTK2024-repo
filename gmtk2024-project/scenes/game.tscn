@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://xgr1i7wcarxt" path="res://scenes/player.tscn" id="1_x80ch"]
 [ext_resource type="PackedScene" uid="uid://ckug1pit8iglx" path="res://scenes/bullet_manager.tscn" id="2_q5lfh"]
-[ext_resource type="PackedScene" path="res://scenes/bullet.tscn" id="3_bgrg5"]
+[ext_resource type="PackedScene" uid="uid://h3sptbpih1mg" path="res://scenes/bullet.tscn" id="3_bgrg5"]
 [ext_resource type="PackedScene" uid="uid://75ohkordb8gv" path="res://scenes/pellet_spawner.tscn" id="4_1wfr2"]
 [ext_resource type="PackedScene" uid="uid://dpgclxc6hvcmm" path="res://scenes/enemy_spawner.tscn" id="5_25gr3"]
 

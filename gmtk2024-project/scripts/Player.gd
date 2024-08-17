@@ -13,6 +13,7 @@ signal shoot
 
 @export_group("resizing")
 @export var size_inc: float = 10
+@export var size_dec: float = -10
 @export_subgroup("size range")
 @export var current_size: float  = 100
 @export var size_floor = 10
@@ -66,7 +67,7 @@ func _process(delta):
 		print("ship location" + str(transform))
 		print("")
 		shoot.emit(position, mouse_dir)
-		
+		change_size(size_dec)
 		
 func  _physics_process(delta):
 	if dead:
@@ -109,5 +110,5 @@ func update_scales():
 	hitbox.scale = Vector2(curr_scale, curr_scale);
 	collider_box.scale = Vector2(curr_scale, curr_scale);
 	health.max_health = lerp(max_health_floor, max_health_floor, t)
-	#move_speed = lerp(speed_cap, speed_floor, t)
+	move_speed = lerp(speed_cap, speed_floor, t)
 	print("speed " + str(move_speed))
