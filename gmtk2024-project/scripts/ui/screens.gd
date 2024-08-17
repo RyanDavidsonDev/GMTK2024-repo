@@ -1,13 +1,15 @@
 extends Node
 
 @onready var main_screen = $MainMenu
+@onready var gameover_screen = $GameOver
 
-signal on_play_game_button_pressed
+signal start_game
+signal unload_game
 
 var current_screen = null
 
 func _ready():
-	change_screen(main_screen)
+	_change_screen(main_screen)
 	ButtonEvents.on_btn_pressed.connect(_button_pressed)
 
 func _button_pressed(btn : ScreenButton) -> void:
@@ -15,16 +17,25 @@ func _button_pressed(btn : ScreenButton) -> void:
 	match btn.name:
 		"PlayGame":
 			print("handling play game...")
-			change_screen(null)
+			_change_screen(null)
 			await(get_tree().create_timer(.5).timeout)
-			on_play_game_button_pressed.emit()
+			start_game.emit()
 		"QuitGame":
 			get_tree().quit()
+		"RetryGame":
+			unload_game.emit()
+			_change_screen(null)
+			await(get_tree().create_timer(.65).timeout)
+			start_game.emit()
+		"MainMenu":
+			unload_game.emit()
+			_change_screen(null)
+			await(get_tree().create_timer(.65).timeout)
+			_change_screen(main_screen)
 		_:
 			print("button '", btn.name, "' press unhandled")
 
-
-func change_screen(new_screen):
+func _change_screen(new_screen):
 	if current_screen != null:
 		var disappear_tween = current_screen.disapper()
 		await(disappear_tween.finished)
@@ -35,3 +46,6 @@ func change_screen(new_screen):
 	if current_screen != null:
 		var appear_tween = current_screen.appear()
 		await(appear_tween.finished)
+
+func show_gameover_screen():
+	_change_screen(gameover_screen)
