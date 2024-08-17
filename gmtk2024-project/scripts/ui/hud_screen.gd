@@ -6,15 +6,15 @@ extends BaseScreen
 var player : Player
 var player_health_floor = 0.0
 var player_health_cap = 0.0
-var player_health_max := 0
-var player_health_current := 0
+var player_health_max := 0.0
+var player_health_current := 0.0
 
 var viewport_size
 var min_health_bar_window_size = 0.0
 var max_health_bar_window_size = 0.0
 
-var target_player_health_current := 0
-var target_player_health_max := 0
+var target_player_health_current := 0.0
+var target_player_health_max := 0.0
 
 func _ready():
 	super._ready()
@@ -53,7 +53,7 @@ func _update_health_components():
 	health_bar.max_value = player_health_max
 	health_bar.value = player_health_current
 	
-	health_label.text = str(int(player_health_current)) + " / " + str(int(player_health_max))
+	health_label.text = "%.1f / %.1f" % [player_health_current, player_health_max]
 
 func _update_player_health():
 	if player == null:
