@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_tqj0c"]
 [ext_resource type="Texture2D" uid="uid://cbi3412wowusg" path="res://assets/Gun-Sheet.png" id="2_nfmoy"]
 [ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="3_1vlg2"]
-[ext_resource type="Script" path="res://scripts/player_gun.gd" id="3_64nga"]
+[ext_resource type="Script" path="res://scripts/combat/player_gun.gd" id="3_64nga"]
 [ext_resource type="Texture2D" uid="uid://civ56ftcy2c1c" path="res://assets/cloud_idle.png" id="3_nvasu"]
 [ext_resource type="Texture2D" uid="uid://bt1wtmmej8o6c" path="res://assets/cloud_walking.png" id="4_8w46k"]
 [ext_resource type="Script" path="res://scripts/combat/hurtbox.gd" id="4_46gks"]
