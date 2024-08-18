@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://ckug1pit8iglx" path="res://scenes/Entities/bullet_manager.tscn" id="2_q5lfh"]
 [ext_resource type="PackedScene" uid="uid://h3sptbpih1mg" path="res://scenes/Entities/bullet.tscn" id="3_bgrg5"]
 [ext_resource type="PackedScene" uid="uid://75ohkordb8gv" path="res://scenes/Entities/pellet_spawner.tscn" id="4_1wfr2"]
+[ext_resource type="Script" path="res://scripts/entities/enemy_spawner.gd" id="4_ntmgt"]
 [ext_resource type="PackedScene" uid="uid://dpgclxc6hvcmm" path="res://scenes/Entities/enemy_spawner.tscn" id="5_25gr3"]
 [ext_resource type="PackedScene" uid="uid://bf7ov2c3a8waj" path="res://scenes/ui/hud.tscn" id="7_yk863"]
-[ext_resource type="PackedScene" uid="uid://bfv65spye5cqq" path="res://scenes/Entities/pellet.tscn" id="8_mss73"]
 [ext_resource type="Script" path="res://scripts/fx_manager.gd" id="9_3s1h6"]
 
 [node name="Game" type="Node2D"]
@@ -19,8 +19,11 @@ position = Vector2(368, 180)
 move_speed = 200.0
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_25gr3")]
-spawn_min_distance = 256
-max_amount = 15
+script = ExtResource("4_ntmgt")
+timer_min = 1.0
+timer_max = 7.0
+spawn_num_min = 5.0
+spawn_num_max = 10.0
 
 [node name="BulletManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_q5lfh")]
 bullet_scene = ExtResource("3_bgrg5")
@@ -38,11 +41,8 @@ spawn_delay = 3.0
 
 [node name="Node" type="Node" parent="."]
 
-[node name="Pellet" parent="." instance=ExtResource("8_mss73")]
-position = Vector2(66, 172)
 health_chance = 3.0
 heal_amount_min = 5.0
 heal_amount_max = 15.0
-
 [node name="FXManager" type="Node" parent="."]
 script = ExtResource("9_3s1h6")
