@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/ui/hud_screen.gd" id="1_nl7sq"]
 [ext_resource type="PackedScene" uid="uid://dam2hv21i1yxa" path="res://scenes/ui/progress_bar.tscn" id="2_jfq0r"]
 
-[node name="HUD" type="Control" node_paths=PackedStringArray("health_bar", "health_label") groups=["hud"]]
+[node name="HUD" type="Control" node_paths=PackedStringArray("health_bar", "health_bar_label") groups=["hud"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nl7sq")
 health_bar = NodePath("HealthBarContainer/HealthBar")
-health_label = NodePath("HealthBarContainer/HealthLabel")
+health_bar_label = NodePath("HealthBarContainer/HealthLabel")
+health_danger_color = Color(1, 0, 0, 1)
+health_normal_color = Color(0, 0.733333, 0.309804, 1)
 
 [node name="HealthBarContainer" type="Control" parent="."]
 layout_mode = 1
