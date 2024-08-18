@@ -30,6 +30,7 @@ func _ready():
 	
 func _receive_damage(attack : Attack):
 	health.damage(attack.damage)
+	SoundFx.play("hit")
 
 func _on_health_changed(previous_health: float, current_health: float) -> void:
 	#print("prev: ", previous_health, "cur: ", current_health)

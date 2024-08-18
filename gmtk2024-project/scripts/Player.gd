@@ -64,6 +64,7 @@ func _process(_delta):
 		#var Bullet = Bullet.new(look_dir, global_transform)
 		#add_child(Bullet)
 		#Bullet.global_position = global_position
+		SoundFx.play("shoot")
 		
 		shoot.emit(firing_point.global_position, mouse_dir)
 		change_size(size_dec)
@@ -86,6 +87,7 @@ func kill():
 
 func ReceiveDamage(attack: Attack):
 	health.damage(attack.damage)
+	SoundFx.play("hit")
 	GameEvents.on_player_health_changed.emit()
 	if health.current_health <= 0.0:
 		kill()
@@ -95,7 +97,12 @@ func _on_hitbox_area_entered(_area: Area2D) -> void:
 
 func collect_coin():
 	change_size(size_inc)
-	
+	SoundFx.play("ammo")
+
+func heal(amount):
+	health.heal(amount)
+	SoundFx.play("heal")
+
 func change_size(amount:float):
 	current_size = clamp(current_size + amount, size_floor, size_cap)
 	

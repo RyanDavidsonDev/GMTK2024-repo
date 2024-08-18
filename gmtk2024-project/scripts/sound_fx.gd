@@ -8,7 +8,7 @@ var sounds = {
 		load("res://assets-soundfx/hit 2.mp3"),
 		load("res://assets-soundfx/hit 3.mp3"),
 	],
-	"ammo-pickup": [
+	"ammo": [
 		load("res://assets-soundfx/pick up ammo.mp3"),
 	],
 	"shoot": [

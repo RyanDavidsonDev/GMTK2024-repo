@@ -38,7 +38,7 @@ func _on_body_entered(body: Node2D) -> void:
 			body.collect_coin()
 		elif certain_type == "health":
 			var heal_amount = randf_range(heal_amount_min, heal_amount_max)
-			body.health.heal(heal_amount)
+			body.heal(heal_amount)
 		hide()
 
 
