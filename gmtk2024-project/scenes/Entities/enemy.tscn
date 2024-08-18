@@ -11,8 +11,7 @@
 [ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="9_yhact"]
 [ext_resource type="Script" path="res://scripts/combat/hurtbox.gd" id="10_4pde3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hxmrb"]
-radius = 14.5602
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hs7ou"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d3ues"]
 atlas = ExtResource("2_ie0rn")
@@ -78,8 +77,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xsjmu"]
-radius = 20.025
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7m7k"]
+size = Vector2(34, 24)
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("hitbox", "health")]
 collision_layer = 2
@@ -89,13 +88,13 @@ hitbox = NodePath("HitBox")
 health = NodePath("Health")
 
 [node name="MovementCollision" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_hxmrb")
+shape = SubResource("RectangleShape2D_hs7ou")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_35ri5")
 animation = &"Chomper_walk"
 autoplay = "Chomper_walk"
-frame_progress = 0.931475
+frame_progress = 0.504685
 
 [node name="EnemyAnimator" type="Node" parent="." node_paths=PackedStringArray("sprite", "state_machine")]
 script = ExtResource("7_fu5t4")
@@ -114,7 +113,7 @@ collision_mask = 9
 script = ExtResource("9_yhact")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("CircleShape2D_xsjmu")
+shape = SubResource("RectangleShape2D_q7m7k")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_4fqvg")
