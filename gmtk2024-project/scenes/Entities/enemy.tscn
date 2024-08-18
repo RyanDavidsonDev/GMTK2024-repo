@@ -1,11 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://jk6em5rt3j8o"]
+[gd_scene load_steps=22 format=3 uid="uid://jk6em5rt3j8o"]
 
 [ext_resource type="Script" path="res://scripts/state_machines/state_machine.gd" id="1_4fqvg"]
 [ext_resource type="Script" path="res://scripts/entities/enemy_base.gd" id="1_wq3kv"]
 [ext_resource type="Script" path="res://scripts/state_machines/enemy_idle.gd" id="2_2eu4i"]
+[ext_resource type="Texture2D" uid="uid://cpx21dvv56x5f" path="res://assets/chomper-sheet.png" id="2_ie0rn"]
 [ext_resource type="Script" path="res://scripts/state_machines/enemy_wander.gd" id="3_6g1i6"]
 [ext_resource type="Script" path="res://scripts/state_machines/enemy_chase.gd" id="4_ofjmg"]
-[ext_resource type="Texture2D" uid="uid://hl8jrxqemebn" path="res://assets/enemy.png" id="5_4teuu"]
 [ext_resource type="Script" path="res://scripts/entities/enemy_animator.gd" id="7_fu5t4"]
 [ext_resource type="Script" path="res://scripts/combat/health.gd" id="8_hrorx"]
 [ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="9_yhact"]
@@ -13,6 +13,70 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hxmrb"]
 radius = 14.5602
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3ues"]
+atlas = ExtResource("2_ie0rn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xlgh6"]
+atlas = ExtResource("2_ie0rn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7vxo"]
+atlas = ExtResource("2_ie0rn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv8kb"]
+atlas = ExtResource("2_ie0rn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqndn"]
+atlas = ExtResource("2_ie0rn")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5m2yx"]
+atlas = ExtResource("2_ie0rn")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm8jf"]
+atlas = ExtResource("2_ie0rn")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgmdh"]
+atlas = ExtResource("2_ie0rn")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35ri5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3ues")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xlgh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7vxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv8kb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqndn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5m2yx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm8jf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgmdh")
+}],
+"loop": true,
+"name": &"Chomper_walk",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xsjmu"]
 radius = 20.025
@@ -27,13 +91,15 @@ health = NodePath("Health")
 [node name="MovementCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_hxmrb")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.909409, 0, 0.130284, 1)
-texture = ExtResource("5_4teuu")
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_35ri5")
+animation = &"Chomper_walk"
+autoplay = "Chomper_walk"
+frame_progress = 0.931475
 
 [node name="EnemyAnimator" type="Node" parent="." node_paths=PackedStringArray("sprite", "state_machine")]
 script = ExtResource("7_fu5t4")
-sprite = NodePath("../Sprite2D")
+sprite = NodePath("")
 state_machine = NodePath("../StateMachine")
 chase_color = Color(0.670588, 0, 0.776471, 1)
 not_chase_color = Color(0.914884, 0.50168, 1, 1)

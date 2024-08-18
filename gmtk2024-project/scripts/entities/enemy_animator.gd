@@ -16,5 +16,5 @@ func _process(_delta: float) -> void:
 		var new_color = not_chase_color
 		if is_chasing:
 			new_color = chase_color
-		sprite.modulate = new_color
+		#sprite.modulate = new_color
 		

@@ -10,6 +10,7 @@ func physics_update(_delta: float):
 	var enemy_chase_radius = enemy.chase_radius
 	#print("chase distance", distance, "is greater than enemy chase radius", enemy_chase_radius, "? ", distance > enemy_chase_radius)
 	enemy.last_direction = direction.normalized()
+	enemy.rotation = enemy.last_direction.angle()
 	if distance > enemy_chase_radius:
 		transitioned.emit(self, "wander")
 		return
