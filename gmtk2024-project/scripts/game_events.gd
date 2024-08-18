@@ -10,4 +10,4 @@ signal on_player_health_changed
 signal on_enemy_explode(location:Vector2)
 
 @warning_ignore("unused_signal")
-signal on_player_level_changed(lvl: int)
+signal on_player_level_changed(new_lvl: int, state: String)

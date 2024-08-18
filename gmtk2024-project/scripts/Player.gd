@@ -48,16 +48,17 @@ var curr_speed: float = 300
 @export var next_level_res_modifier: float = 1.4
 @export var overall_stat_modifier: float = 1.2
 @export var max_level: int = 24
+static var min_level: int = 1
 var resources_to_level_up: int = 80
 var resources_per_shoot: float = 5
 var current_level: int = 2
 var current_resources: float = 0
 
-
 var move_dir:Vector2 = Vector2.ZERO
 var mouse_dir:Vector2 #used for physics calculations
 var look_dir:float #used for setting sprite direction
 var dead : bool = false
+var can_shoot: bool = true
 
 func _ready():
 	update_scales(size_inc)
@@ -75,10 +76,11 @@ func _process(_delta):
 	look_dir = mouse_dir.angle() + PI/2.0
 	global_rotation = look_dir
 	
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and current_resources > resources_per_shoot:
 		shoot.emit(firing_point.global_position, mouse_dir)
 		current_resources -= resources_per_shoot
-		print(current_resources)
+		print("level: " + str(current_level))
+		print("res: " + str(current_resources))
 		update_current_level()
 
 func  _physics_process(_delta):
@@ -108,26 +110,34 @@ func _on_hitbox_area_entered(_area: Area2D) -> void:
 
 func update_current_level():
 	if current_resources >= resources_to_level_up:
-		var previous_resources: float = current_resources
-		
 		current_resources -= resources_to_level_up
 		resources_to_level_up *= next_level_res_modifier
 		current_level += 1
 		
-		GameEvents.on_player_level_changed.emit(current_level)
-		
-		print("Level changed: " + str(current_level))
-	elif current_resources < 0:
+		GameEvents.on_player_level_changed.emit(current_level, "+")
+	elif current_resources <= 0:
 		current_level -= 1
+		current_resources = 0
+		resources_to_level_up /= next_level_res_modifier
+		
+		GameEvents.on_player_level_changed.emit(current_level, "-")
+	
+	#if current_level != min_level and current_resources >= resources_per_shoot:
+		#can_shoot = false
+	#else: can_shoot = true
 
 
 func collect_coin(pellet_resources: float):
 	current_resources += pellet_resources
 	update_current_level()
 
-func _on_player_level_changed(lvl: int):
-	print("New level")
-	update_scales(size_inc)
+func _on_player_level_changed(new_lvl: int, state: String):
+	if state == "+":
+		print("Level up")
+		update_scales(size_inc)
+	elif state == "-":
+		print("Level down")
+		update_scales(size_dec)
 
 
 
