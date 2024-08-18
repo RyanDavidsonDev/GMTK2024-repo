@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://xgr1i7wcarxt"]
+[gd_scene load_steps=31 format=3 uid="uid://xgr1i7wcarxt"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_tqj0c"]
 [ext_resource type="Texture2D" uid="uid://cbi3412wowusg" path="res://assets/Gun-Sheet.png" id="2_nfmoy"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bt1wtmmej8o6c" path="res://assets/cloud_walking.png" id="4_8w46k"]
 [ext_resource type="Script" path="res://scripts/combat/hurtbox.gd" id="4_46gks"]
 [ext_resource type="Script" path="res://scripts/combat/health.gd" id="4_qsoap"]
+[ext_resource type="Script" path="res://scripts/ammo_activator.gd" id="9_w52pn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_60wse"]
 atlas = ExtResource("2_nfmoy")
@@ -142,6 +143,9 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ys06y"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dmon"]
+radius = 191.065
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_gun", "health", "barrel_hurtbox") groups=["player"]]
 collision_mask = 3
 script = ExtResource("1_tqj0c")
@@ -204,6 +208,15 @@ script = ExtResource("4_qsoap")
 max_health = 100
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AmmoActivator" type="Area2D" parent="." node_paths=PackedStringArray("move_to_target")]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("9_w52pn")
+move_to_target = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AmmoActivator"]
+shape = SubResource("CircleShape2D_7dmon")
 
 [connection signal="area_entered" from="Gun/Barrel_HurtBox" to="Gun/Barrel_HurtBox" method="_on_area_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

@@ -156,9 +156,6 @@ animations = [{
 [node name="Pellet" type="Area2D"]
 collision_layer = 16
 script = ExtResource("1_75i71")
-health_chance = null
-heal_amount_min = null
-heal_amount_max = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8jbby")
