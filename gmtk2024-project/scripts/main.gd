@@ -14,13 +14,13 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	if trigger_pause_game:
+		trigger_pause_game = false
 		if game_scene_instance != null:
 			game_scene_instance.process_mode = PROCESS_MODE_DISABLED
 
 func _load_game():
 	_unload_game()
 	game_scene_instance = game_scene.instantiate()
-	game_scene_instance.process_mode = PROCESS_MODE_PAUSABLE
 	add_child(game_scene_instance)
 
 func _unload_game():
