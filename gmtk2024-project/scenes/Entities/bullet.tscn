@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://h3sptbpih1mg"]
 
 [ext_resource type="Script" path="res://scripts/entities/Bullet.gd" id="1_0h4w3"]
-[ext_resource type="Texture2D" uid="uid://bvhnhfj025f11" path="res://assets/PlaceholderBullet.png" id="2_k6dm3"]
+[ext_resource type="Texture2D" uid="uid://cwexxvwhbber" path="res://assets/bullet.png" id="2_hlxh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y58xq"]
 size = Vector2(8, 14)
@@ -27,7 +27,7 @@ script = ExtResource("1_0h4w3")
 shape = SubResource("RectangleShape2D_y58xq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_k6dm3")
+texture = ExtResource("2_hlxh3")
 
 [node name="HurtBox" type="Node" parent="."]
 script = SubResource("GDScript_xlyar")
