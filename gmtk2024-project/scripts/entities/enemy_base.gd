@@ -50,7 +50,7 @@ func _on_draw() -> void:
 	active = true
 	self.process_mode = PROCESS_MODE_PAUSABLE
 
-func _on_hidden() -> void:	
+func _on_hidden() -> void:
 	position = Vector2(10000, 10000)
 	pool.add_to_non_active(self, "enemies")
 	#hitbox.monitorable = false

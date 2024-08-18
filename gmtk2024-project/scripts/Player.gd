@@ -44,7 +44,7 @@ var look_dir:float #used for setting sprite direction
 var dead : bool = false
 
 func _ready():
-	update_scales()
+	update_scales(size_inc)
 	hitbox.damaged.connect(ReceiveDamage)
 	health.health_changed.connect(_on_health_changed)
 	move_speed = default_speed
@@ -66,7 +66,7 @@ func _process(_delta):
 		#Bullet.global_position = global_position
 		
 		shoot.emit(firing_point.global_position, mouse_dir)
-		change_size(size_dec)
+		update_scales(size_dec)
 		
 func  _physics_process(_delta):
 	if dead:
@@ -94,26 +94,38 @@ func _on_hitbox_area_entered(_area: Area2D) -> void:
 	print("get hit")
 
 func collect_coin():
-	change_size(size_inc)
-	
-func change_size(amount:float):
-	current_size = clamp(current_size + amount, size_floor, size_cap)
-	
-	update_scales()
-	GameEvents.on_player_health_changed.emit()
+	update_scales(size_inc)
+
+#func change_size(amount:float):
+	#current_size = clamp(current_size + amount, size_floor, size_cap)
+	#
+	#update_scales()
+	#GameEvents.on_player_health_changed.emit()
 	#print("your new size is " + str(current_size) + " your current scale is " + str(curr_scale))
 	#todo:
 	# health
 	# decrement value
 
-func update_scales():
-	var t:float = inverse_lerp(size_floor, size_cap, current_size)
-	curr_scale = lerp(scale_foor, scale_cap, t)
-	animated_sprite_2d.scale = Vector2(curr_scale, curr_scale);
-	hitbox.scale = Vector2(curr_scale, curr_scale);
-	collider_box.scale = Vector2(curr_scale, curr_scale);
+func update_health_scale(t: float):
 	var healthPercentage:float = inverse_lerp(0, health.max_health, health.current_health)
 	health.max_health = lerp(max_health_cap, max_health_floor, t)
 	health.current_health = lerp(0, health.max_health, healthPercentage)
 	move_speed = lerp(speed_cap, speed_floor, t)
-	#print("speed " + str(move_speed))
+	
+	GameEvents.on_player_health_changed.emit()
+
+func update_animation_scale():
+	animated_sprite_2d.scale = Vector2(curr_scale, curr_scale);
+
+func update_size_scale(t: float):
+	curr_scale = lerp(scale_foor, scale_cap, t)
+	hitbox.scale = Vector2(curr_scale, curr_scale);
+	collider_box.scale = Vector2(curr_scale, curr_scale);
+
+func update_scales(value: float):
+	var t:float = inverse_lerp(size_floor, size_cap, current_size)
+	current_size = clamp(current_size + value, size_floor, size_cap)
+	
+	update_size_scale(t)
+	update_health_scale(t)
+	update_animation_scale()
