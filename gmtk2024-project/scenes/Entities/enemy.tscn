@@ -84,6 +84,7 @@ size = Vector2(34, 24)
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_wq3kv")
+detection_radius = 9999.0
 hitbox = NodePath("HitBox")
 health = NodePath("Health")
 
@@ -96,9 +97,8 @@ animation = &"Chomper_walk"
 autoplay = "Chomper_walk"
 frame_progress = 0.504685
 
-[node name="EnemyAnimator" type="Node" parent="." node_paths=PackedStringArray("sprite", "state_machine")]
+[node name="EnemyAnimator" type="Node" parent="." node_paths=PackedStringArray("state_machine")]
 script = ExtResource("7_fu5t4")
-sprite = NodePath("")
 state_machine = NodePath("../StateMachine")
 chase_color = Color(0.670588, 0, 0.776471, 1)
 not_chase_color = Color(0.914884, 0.50168, 1, 1)
