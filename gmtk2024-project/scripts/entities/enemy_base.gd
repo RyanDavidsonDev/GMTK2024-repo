@@ -17,9 +17,6 @@ signal DropPellets(location:Vector2)
 @export var num_of_pellets: int = 3
 @export var distance : float = 5
 
-#@onready var pellet_spawner: radial_spawner = %PelletSpawner
-@onready var pellet_spawner: radial_spawner = $PelletSpawner
-
 var active: bool
 
 var pool: Pool
@@ -41,11 +38,10 @@ func _on_health_changed(previous_health: float, current_health: float) -> void:
 	if current_health <= 0.0 and previous_health != current_health:
 		health.reset()
 		hide()
-		if pellet_spawner:
-			pellet_spawner.spawnCluster(position, 3, 5)
-		else :
-			print("warning, pellet spawner broke")
-		self.process_mode = PROCESS_MODE_DISABLED
+		GameEvents.on_enemy_explode.emit(position)
+	#else:
+		#print("warning, pellet spawner broke")
+		#self.process_mode = PROCESS_MODE_DISABLED
 
 func _on_draw() -> void:
 	pool.remove_from_non_active(self, "enemies")
@@ -55,10 +51,9 @@ func _on_draw() -> void:
 	self.process_mode = PROCESS_MODE_PAUSABLE
 
 func _on_hidden() -> void:	
-
 	position = Vector2(10000, 10000)
 	pool.add_to_non_active(self, "enemies")
-	hitbox.monitorable = false
-	hitbox.monitoring = false
-	active = false
-	self.process_mode = PROCESS_MODE_DISABLED
+	#hitbox.monitorable = false
+	#hitbox.monitoring = false
+	#active = false
+	#self.process_mode = PROCESS_MODE_DISABLED

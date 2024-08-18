@@ -2,7 +2,7 @@ extends Area2D
 
 class_name Pellet
 
-var spawner: radial_spawner
+var spawner: RadialSpawner
 
 var active: bool
 var certain_type: String
@@ -42,21 +42,22 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_draw() -> void:
 	pool.remove_from_non_active(self, "pellets")
-	monitorable = true
-	monitoring = true
+	set_deferred("monitorable", true)
+	set_deferred("monitoring", true)
 	active = true
 
 
 func _on_hidden() -> void:
 	pool.add_to_non_active(self, "pellets")
-	monitorable = false
-	monitoring = false
+	set_deferred("monitorable", false)
+	set_deferred("monitoring", false)
+	
 	if spawner:
 		spawner.remove_from_actives(self)
 	else :
 		print("error: pellet doesn't have a reference to spawner")
 	active = false
 
-func set_spawner(spawner: radial_spawner):
-	self.spawner = spawner
+func set_spawner(in_spawner: RadialSpawner):
+	spawner = in_spawner
 	
