@@ -36,9 +36,9 @@ func _on_health_changed(previous_health: float, current_health: float) -> void:
 	# in case we take multiple hits that take our life to 0
 	# we just delete the object once
 	if current_health <= 0.0 and previous_health != current_health:
+		GameEvents.on_enemy_explode.emit(position)
 		health.reset()
 		hide()
-		GameEvents.on_enemy_explode.emit(position)
 	#else:
 		#print("warning, pellet spawner broke")
 		#self.process_mode = PROCESS_MODE_DISABLED

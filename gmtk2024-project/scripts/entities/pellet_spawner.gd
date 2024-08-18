@@ -7,6 +7,7 @@ func _ready():
 func _enemy_to_pellet_cluster(location: Vector2):
 	# these values can be driven via class properties
 	# or through some value from the enemy
+	print("Enemy died at location " + str(location))
 	var cluster_quantity := 3
 	var distance := 5
 	
