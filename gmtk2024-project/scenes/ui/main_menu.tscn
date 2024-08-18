@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8y22imeraeq"]
+[gd_scene load_steps=7 format=3 uid="uid://b8y22imeraeq"]
 
 [ext_resource type="Script" path="res://scripts/ui/base_screen.gd" id="1_rl0sa"]
 [ext_resource type="PackedScene" uid="uid://dfflwyvgequl8" path="res://scenes/ui/screen_button.tscn" id="2_s1jtu"]
+[ext_resource type="Texture2D" uid="uid://c3nd8rdbb4p25" path="res://assets/Play_Off_Grphx.png" id="3_naicq"]
+[ext_resource type="Texture2D" uid="uid://cfvsfmudgsbjw" path="res://assets/Play_On_Grphx.png" id="4_4i6bo"]
+[ext_resource type="Texture2D" uid="uid://bax43cf315iqv" path="res://assets/Quit_Off_Grphx.png" id="5_ejhxq"]
+[ext_resource type="Texture2D" uid="uid://on3ueu544lmw" path="res://assets/Quit_On_Grphx.png" id="6_1jo15"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -30,6 +34,12 @@ grow_vertical = 2
 
 [node name="PlayGame" parent="Center" instance=ExtResource("2_s1jtu")]
 layout_mode = 1
+texture_normal = ExtResource("3_naicq")
+texture_pressed = ExtResource("3_naicq")
+texture_hover = ExtResource("4_4i6bo")
+
+[node name="Label" parent="Center/PlayGame" index="0"]
+visible = false
 
 [node name="QuitGame" parent="Center" instance=ExtResource("2_s1jtu")]
 layout_mode = 1
@@ -38,8 +48,12 @@ offset_top = 46.0
 offset_right = 202.0
 offset_bottom = 196.0
 scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_ejhxq")
+texture_pressed = ExtResource("5_ejhxq")
+texture_hover = ExtResource("6_1jo15")
 
 [node name="Label" parent="Center/QuitGame" index="0"]
+visible = false
 text = "QUIT"
 
 [editable path="Center/PlayGame"]

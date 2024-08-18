@@ -80,7 +80,7 @@ func _on_health_changed(_previous_health, _current_health):
 func kill():
 	if dead:
 		return
-	print("you died")
+	dead = true
 	GameEvents.on_player_died.emit()
 
 func ReceiveDamage(attack: Attack):
@@ -88,7 +88,6 @@ func ReceiveDamage(attack: Attack):
 	GameEvents.on_player_health_changed.emit()
 	if health.current_health <= 0.0:
 		kill()
-
 
 func _on_hitbox_area_entered(_area: Area2D) -> void:
 	print("get hit")
