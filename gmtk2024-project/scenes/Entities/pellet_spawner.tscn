@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://75ohkordb8gv"]
 
-[ext_resource type="Script" path="res://scripts/entities/radial_spawner.gd" id="1_axcii"]
+[ext_resource type="Script" path="res://scripts/entities/pellet_spawner.gd" id="1_owsfn"]
 [ext_resource type="PackedScene" uid="uid://bfv65spye5cqq" path="res://scenes/Entities/pellet.tscn" id="2_bvgma"]
 
 [node name="PelletSpawner" type="Node"]
-script = ExtResource("1_axcii")
+script = ExtResource("1_owsfn")
 spawn_entities = Array[PackedScene]([ExtResource("2_bvgma")])
 pool_type = "pellets"

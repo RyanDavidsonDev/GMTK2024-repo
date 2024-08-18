@@ -1,13 +1,11 @@
+class_name RadialSpawner
 extends Node
-
-class_name radial_spawner
 
 @export_group("Spawn Settings", "spawn_")
 @export var spawn_entities : Array[PackedScene]
 @export_range(256, 1024, 0.1) var spawn_min_distance: int = 5 
 @export var spawn_min_range_multiplier: float = 1 
 @export_range(0.2, 10, 0.2) var spawn_delay: float = 5 
-
 
 @export var max_amount: int = 100
 @export var pool_type: String 
@@ -47,20 +45,19 @@ func _ready():
 
 func spawn():
 	var random_direction = randi_range(0, 360)
-	var min = spawn_min_distance
-	var max = min + randi_range(0, int(min)) * spawn_min_range_multiplier
-	var random_distance = randi_range(min, max)
+	var min_dist = spawn_min_distance
+	var max_dist = min_dist + randi_range(0, int(min_dist)) * spawn_min_range_multiplier
+	var random_distance = randi_range(min_dist, max_dist)
 	var spawn_position = player.global_position
 	
 	# Calculate the spawn position at random distance in the random direction
 	spawn_position.x += random_distance * cos(deg_to_rad(random_direction))
 	spawn_position.y += random_distance * sin(deg_to_rad(random_direction))
 	
-	
-	spawnAtLocation(spawn_position)
+	spawn_at_location(spawn_position)
 
-func spawnCluster(location:Vector2, size:int, distance: float):
-	for i in size:
+func spawn_cluster(location:Vector2, cluster_quantity:int, distance: float):
+	for i in cluster_quantity:
 		var random_direction = randi_range(0, 360)
 		var random_distance = randf_range(0,distance)
 		
@@ -68,11 +65,10 @@ func spawnCluster(location:Vector2, size:int, distance: float):
 		spawn_position.x = location.x + random_distance * cos(deg_to_rad(random_direction))
 		spawn_position.y = location.y + random_distance * sin(deg_to_rad(random_direction))
 		
-		spawnAtLocation(spawn_position)
-		print("hi")
+		spawn_at_location(spawn_position)
 	
 
-func spawnAtLocation(location:Vector2):
+func spawn_at_location(location:Vector2):
 	var entity: Node2D
 	
 	#if we're not full
