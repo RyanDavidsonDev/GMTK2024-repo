@@ -40,6 +40,9 @@ spawn_delay = 3.0
 
 [node name="Pellet" parent="." instance=ExtResource("8_mss73")]
 position = Vector2(66, 172)
+health_chance = 3.0
+heal_amount_min = 5.0
+heal_amount_max = 15.0
 
 [node name="FXManager" type="Node" parent="."]
 script = ExtResource("9_3s1h6")

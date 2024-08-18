@@ -1,6 +1,5 @@
-extends Area2D
-
 class_name Pellet
+extends Area2D
 
 var spawner: RadialSpawner
 
@@ -41,13 +40,11 @@ func _on_body_entered(body: Node2D) -> void:
 			body.heal(heal_amount)
 		hide()
 
-
 func _on_draw() -> void:
 	pool.remove_from_non_active(self, "pellets")
 	set_deferred("monitorable", true)
 	set_deferred("monitoring", true)
 	active = true
-
 
 func _on_hidden() -> void:
 	pool.add_to_non_active(self, "pellets")
@@ -62,4 +59,7 @@ func _on_hidden() -> void:
 
 func set_spawner(in_spawner: RadialSpawner):
 	spawner = in_spawner
+	
+func set_animation_speed_scale(anim_speed_scale: float):
+	animated_sprite.speed_scale = anim_speed_scale
 	
