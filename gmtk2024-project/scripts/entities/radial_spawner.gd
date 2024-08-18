@@ -15,7 +15,6 @@ var actives : Array[Node]
 var player : Player
 var pool: Pool
 
-var type: String
 var timer: Timer
 
 func _ready():
@@ -29,6 +28,7 @@ func _ready():
 	timer.start()
 	
 	pool = get_tree().get_first_node_in_group("pool")
+	
 	
 	for item in spawn_entities:
 		for i in max_amount:
@@ -56,17 +56,6 @@ func spawn():
 	
 	spawn_at_location(spawn_position)
 
-func spawn_cluster(location:Vector2, cluster_quantity:int, distance: float):
-	for i in cluster_quantity:
-		var random_direction = randi_range(0, 360)
-		var random_distance = randf_range(0,distance)
-		
-		var spawn_position: Vector2
-		spawn_position.x = location.x + random_distance * cos(deg_to_rad(random_direction))
-		spawn_position.y = location.y + random_distance * sin(deg_to_rad(random_direction))
-		
-		spawn_at_location(spawn_position)
-	
 
 func spawn_at_location(location:Vector2):
 	var entity: Node2D
@@ -74,16 +63,18 @@ func spawn_at_location(location:Vector2):
 	#if we're not full
 	if actives.size()  < max_amount:
 		entity = pool.get_non_active_node_by_type(pool_type)
-	else:
+	else: #if we are full, get the oldest entity and hide it for re-use
 		entity = actives.pop_front()
 		#entity = pool.get_oldest_active_node(pool_type)
 		if entity:
 			entity.hide()
+	print("spawning " + str(entity) + " at " +str(location))
 		
 
 	
 	#var entity_index = randi_range(0, spawn_entities.size()-1)
 	if(entity):
+		print("uwu")
 		entity.global_position = location
 		entity.show()
 		actives.push_back(entity)
