@@ -44,12 +44,12 @@ var curr_speed: float = 300
 @export var zoom_cap: float = 2
 
 
-#for size_cap 960 and floor 20 we will have 12 levels
-#every level to reach you must have (current_level+1)*size_per_level
 @export_group("level settings")
 @export var next_level_res_modifier: float = 1.4
+@export var overall_stat_modifier: float = 1.2
 @export var max_level: int = 24
 var resources_to_level_up: int = 80
+var resources_per_shoot: float = 5
 var current_level: int = 2
 var current_resources: float = 0
 
@@ -64,6 +64,9 @@ func _ready():
 	hitbox.damaged.connect(ReceiveDamage)
 	health.health_changed.connect(_on_health_changed)
 	move_speed = default_speed
+	
+	GameEvents.on_player_level_changed.connect(_on_player_level_changed)
+	
 	GameEvents.on_player_health_changed.emit()
 
 func _process(_delta):
@@ -74,8 +77,10 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("shoot"):
 		shoot.emit(firing_point.global_position, mouse_dir)
-		update_scales(size_dec)
-		
+		current_resources -= resources_per_shoot
+		print(current_resources)
+		update_current_level()
+
 func  _physics_process(_delta):
 	if dead:
 		return
@@ -102,27 +107,27 @@ func _on_hitbox_area_entered(_area: Area2D) -> void:
 	print("get hit")
 
 func update_current_level():
-	
 	if current_resources >= resources_to_level_up:
+		var previous_resources: float = current_resources
+		
+		current_resources -= resources_to_level_up
 		resources_to_level_up *= next_level_res_modifier
 		current_level += 1
 		
 		GameEvents.on_player_level_changed.emit(current_level)
-	
+		
+		print("Level changed: " + str(current_level))
+	elif current_resources < 0:
+		current_level -= 1
 
-func update_everything():
-	update_current_level()
-	
-	#update_scales(size_inc)
 
 func collect_coin(pellet_resources: float):
 	current_resources += pellet_resources
-	#update_current_level()
-	#
-	#update_scales(size_inc)
-	update_everything()
+	update_current_level()
 
-
+func _on_player_level_changed(lvl: int):
+	print("New level")
+	update_scales(size_inc)
 
 
 
