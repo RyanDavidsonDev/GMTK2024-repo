@@ -60,24 +60,23 @@ func spawn():
 func spawn_at_location(location:Vector2):
 	var entity: Node2D
 	
+	
 	#if we're not full
 	if actives.size()  < max_amount:
 		entity = pool.get_non_active_node_by_type(pool_type)
 	else: #if we are full, get the oldest entity and hide it for re-use
+		print("pool full, despawning oldest")
 		entity = actives.pop_front()
 		#entity = pool.get_oldest_active_node(pool_type)
 		if entity:
 			entity.hide()
-	print("spawning " + str(entity) + " at " +str(location))
-		
-
 	
 	#var entity_index = randi_range(0, spawn_entities.size()-1)
 	if(entity):
-		print("uwu")
 		entity.global_position = location
 		entity.show()
 		actives.push_back(entity)
+		print("spawning " + str(entity) + " at " +str(location))
 	else :
 		print("error: entity not valid")
 

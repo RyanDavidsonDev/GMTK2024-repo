@@ -24,7 +24,11 @@ func remove_from_non_active(node: Node2D, type: String):
 
 func get_non_active_node_by_type(type: String):
 	if type in types_na:
-		return get_tree().get_first_node_in_group(type)
+		var entity:Node2D = get_tree().get_first_node_in_group(type)
+		if entity:
+			remove_from_non_active(entity, type)
+			
+		return entity
 
 
 func get_num_active(type: String):

@@ -22,8 +22,8 @@ func spawn_cluster(location: Vector2):
 		spawn_position.x = location.x + random_distance * cos(deg_to_rad(random_direction))
 		spawn_position.y = location.y + random_distance * sin(deg_to_rad(random_direction))
 		
-		
-		spawn_at_location(spawn_position)
+		print("pellet")
+		super.spawn_at_location(spawn_position)
 	
 	print((""))
 	
