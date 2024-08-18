@@ -43,6 +43,17 @@ var curr_speed: float = 300
 @export var zoom_floor: float = 1
 @export var zoom_cap: float = 2
 
+
+#for size_cap 960 and floor 20 we will have 12 levels
+#every level to reach you must have (current_level+1)*size_per_level
+@export_group("level settings")
+@export var next_level_res_modifier: float = 1.4
+@export var max_level: int = 24
+var resources_to_level_up: int = 80
+var current_level: int = 2
+var current_resources: float = 0
+
+
 var move_dir:Vector2 = Vector2.ZERO
 var mouse_dir:Vector2 #used for physics calculations
 var look_dir:float #used for setting sprite direction
@@ -56,20 +67,12 @@ func _ready():
 	GameEvents.on_player_health_changed.emit()
 
 func _process(_delta):
-	#if Input.is_action_just_pressed("exit"):
-	#	print("quit game") # basic infrastructure from the tutorial I was using, not worrying about it now
-	
 	look_dir = global_position.direction_to(get_global_mouse_position()).angle() + PI/2.0
 	mouse_dir = get_global_mouse_position() - position
 	look_dir = mouse_dir.angle() + PI/2.0
 	global_rotation = look_dir
 	
 	if Input.is_action_just_pressed("shoot"):
-			
-		#var Bullet = Bullet.new(look_dir, global_transform)
-		#add_child(Bullet)
-		#Bullet.global_position = global_position
-		
 		shoot.emit(firing_point.global_position, mouse_dir)
 		update_scales(size_dec)
 		
@@ -98,8 +101,26 @@ func ReceiveDamage(attack: Attack):
 func _on_hitbox_area_entered(_area: Area2D) -> void:
 	print("get hit")
 
-func collect_coin():
-	update_scales(size_inc)
+func update_current_level():
+	
+	if current_resources >= resources_to_level_up:
+		resources_to_level_up *= next_level_res_modifier
+		current_level += 1
+		
+		GameEvents.on_player_level_changed.emit(current_level)
+	
+
+func update_everything():
+	update_current_level()
+	
+	#update_scales(size_inc)
+
+func collect_coin(pellet_resources: float):
+	current_resources += pellet_resources
+	#update_current_level()
+	#
+	#update_scales(size_inc)
+	update_everything()
 
 
 
