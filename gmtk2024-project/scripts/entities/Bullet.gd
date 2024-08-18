@@ -24,26 +24,23 @@ func _physics_process(delta):
 	pass
 	#print("location" + str(transform))
 
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	hide()
-	self.process_mode = PROCESS_MODE_DISABLED
 
 func _on_draw() -> void:
 	pool.remove_from_non_active(self, "bullets")
-	monitorable = true
-	monitoring = true
-	active = true
+	set_deferred("monitorable", true)
+	set_deferred("monitoring", true)
+	set_deferred("active", true)
+	set_deferred("process_mode", PROCESS_MODE_PAUSABLE)
 	timer.start()
-	self.process_mode = PROCESS_MODE_PAUSABLE
 
 func _on_hidden() -> void:
 	pool.add_to_non_active(self, "bullets")
-
-	monitorable = false
-	monitoring = false
-	active = false
-	self.process_mode = PROCESS_MODE_DISABLED
-
+	set_deferred("monitorable", false)
+	set_deferred("monitoring", false)
+	set_deferred("active", false)
+	set_deferred("process_mode", PROCESS_MODE_DISABLED)
 
 func _on_timer_timeout() -> void:
 	hide()

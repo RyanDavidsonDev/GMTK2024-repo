@@ -18,7 +18,7 @@ func enter():
 func on_timeout():
 	transitioned.emit(self, "wander")
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	try_chase()
 	
 func exit():

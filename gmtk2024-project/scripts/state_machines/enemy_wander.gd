@@ -20,7 +20,7 @@ func enter():
 	wander_direction = enemy.last_direction.rotated(deg_to_rad(randf_range(-45, 45)))
 	wander_timer.wait_time = randf_range(min_wander_time, max_wander_time)
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	enemy.velocity = wander_direction*wander_speed
 	enemy.move_and_slide()
 	

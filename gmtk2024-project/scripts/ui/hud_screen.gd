@@ -26,7 +26,7 @@ func _ready():
 	get_viewport().size_changed.connect(_on_viewport_size_changed)
 	_update_health_components()
 	
-func _process(delta:float):
+func _process(_delta:float):
 	
 	if target_player_health_current != player_health_current:
 		target_player_health_current = player_health_current
