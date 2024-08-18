@@ -39,9 +39,6 @@ var curr_speed: float = 300
 @export var barrel_hurtbox : Area2D
 @export var barrel_damage_self : float = 15.0
 
-var move_dir:Vector2 = Vector2.ZERO
-var mouse_dir:Vector2 #used for physics calculations
-var look_dir:float #used for setting sprite direction
 var dead : bool = false
 var barrel_self_attack := Attack.new()
 
@@ -71,7 +68,7 @@ func _update_move_animation():
 func  _physics_process(_delta):
 	if dead:
 		return
-	move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = move_dir * move_speed
 	move_and_slide()
 
@@ -84,9 +81,9 @@ func kill():
 	dead = true
 	GameEvents.on_player_died.emit()
 
-func _on_shoot(position: Vector2, direction: Vector2):
+func _on_shoot(pos: Vector2, dir: Vector2):
 	change_size(size_dec)
-	GameEvents.on_player_shoot.emit(position, direction)
+	GameEvents.on_player_shoot.emit(pos, dir)
 
 func _receive_damage(attack: Attack):
 	health.damage(attack.damage)
@@ -95,7 +92,7 @@ func _receive_damage(attack: Attack):
 	if health.current_health <= 0.0:
 		kill()
 
-func _on_barrel_hurtbox_dealt_damage(area: Area2D):
+func _on_barrel_hurtbox_dealt_damage(_area: Area2D):
 	_receive_damage(barrel_self_attack)
 	player_gun.recoil()
 
