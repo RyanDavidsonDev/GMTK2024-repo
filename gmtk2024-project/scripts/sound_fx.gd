@@ -3,17 +3,23 @@ extends Node
 @onready var sound_players = get_children()
 
 var sounds = {
-	"Click": [
-		#load("res://assets/sound/Click.wav")
+	"hit": [
+		load("res://assets-soundfx/hit 1.mp3"),
+		load("res://assets-soundfx/hit 2.mp3"),
+		load("res://assets-soundfx/hit 3.mp3"),
 	],
-	"Shoots": [
-		#load("res://assets/sound/Shoot_000.wav"),
-		#load("res://assets/sound/Shoot_001.wav"),
-		#load("res://assets/sound/Shoot_002.wav"),
-		#load("res://assets/sound/Shoot_003.wav"),
+	"ammo-pickup": [
+		load("res://assets-soundfx/pick up ammo.mp3"),
 	],
-	"PlayerDies": [
-		#load("res://assets/sound/PlayerDies.wav")
+	"shoot": [
+		load("res://assets-soundfx/bullet.mp3"),
+	],
+	"explosion": [
+		load("res://assets-soundfx/Tiny_Explosion.mp3"),
+		load("res://assets-soundfx/Explosion 2.mp3"),
+	],
+	"heal": [
+		load("res://assets-soundfx/Health_Collect.mp3"),
 	],
 }
 
