@@ -10,6 +10,7 @@ signal shoot
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collider_box: CollisionShape2D = $colliderBox
+@onready var camera: Camera2D = $Camera2D
 @onready var hitbox: Hitbox = $Hitbox
 
 @export_group("resizing")
@@ -37,6 +38,10 @@ var curr_speed: float = 300
 
 @export var speed_floor :float
 @export var speed_cap :float
+
+@export_subgroup("camera zoom range")
+@export var zoom_floor: float = 1
+@export var zoom_cap: float = 2
 
 var move_dir:Vector2 = Vector2.ZERO
 var mouse_dir:Vector2 #used for physics calculations
@@ -96,36 +101,51 @@ func _on_hitbox_area_entered(_area: Area2D) -> void:
 func collect_coin():
 	update_scales(size_inc)
 
-#func change_size(amount:float):
-	#current_size = clamp(current_size + amount, size_floor, size_cap)
-	#
-	#update_scales()
-	#GameEvents.on_player_health_changed.emit()
-	#print("your new size is " + str(current_size) + " your current scale is " + str(curr_scale))
-	#todo:
-	# health
-	# decrement value
+
+
+
 
 func update_health_scale(t: float):
 	var healthPercentage:float = inverse_lerp(0, health.max_health, health.current_health)
 	health.max_health = lerp(max_health_cap, max_health_floor, t)
 	health.current_health = lerp(0, health.max_health, healthPercentage)
-	move_speed = lerp(speed_cap, speed_floor, t)
 	
 	GameEvents.on_player_health_changed.emit()
+
+func update_speed(t: float):
+	move_speed = lerp(speed_cap, speed_floor, t)
 
 func update_animation_scale():
 	animated_sprite_2d.scale = Vector2(curr_scale, curr_scale);
 
 func update_size_scale(t: float):
-	curr_scale = lerp(scale_foor, scale_cap, t)
+	curr_scale = update_current_scale_value(t)
 	hitbox.scale = Vector2(curr_scale, curr_scale);
 	collider_box.scale = Vector2(curr_scale, curr_scale);
 
+func update_current_size_value(value: float):
+	return clamp(current_size + value, size_floor, size_cap)
+
+func update_current_scale_value(t: float):
+	return lerp(scale_foor, scale_cap, t)
+
+func update_camera_zoom(t: float):
+	var current_zoom = camera.get_zoom()
+	
+	if camera.get_zoom().x >= zoom_floor:
+		var new_zoom_value: float = lerp(zoom_cap, zoom_floor, update_current_scale_value(t)) * 2
+		camera.set_zoom(Vector2(new_zoom_value, new_zoom_value))
+	print(camera.get_zoom())
+	print( lerp(zoom_cap, zoom_floor, update_current_scale_value(t)) * 2 )
+	
+	#camera.zoom = Vector2(inverse_lerp(zoom_floor, zoom_cap, current_zoom.x), inverse_lerp(zoom_floor, zoom_cap, current_zoom.y))
+
 func update_scales(value: float):
 	var t:float = inverse_lerp(size_floor, size_cap, current_size)
-	current_size = clamp(current_size + value, size_floor, size_cap)
+	current_size = update_current_size_value(value)
 	
 	update_size_scale(t)
 	update_health_scale(t)
+	update_speed(t)
 	update_animation_scale()
+	#update_camera_zoom(t)

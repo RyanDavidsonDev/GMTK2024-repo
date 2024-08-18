@@ -70,7 +70,6 @@ func spawn_cluster(location:Vector2, cluster_quantity:int, distance: float):
 
 func spawn_at_location(location:Vector2):
 	var entity: Node2D
-	print("Pellet spawned at " + str(location))
 	#if we're not full
 	if actives.size()  < max_amount:
 		entity = pool.get_non_active_node_by_type(pool_type)
