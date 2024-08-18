@@ -7,7 +7,7 @@ var spawner: RadialSpawner
 var active: bool
 var certain_type: String
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @export_group("health")
 @export var health_chance: float = 3
@@ -24,10 +24,12 @@ func _ready() -> void:
 	
 	if random_value < health_chance:
 		certain_type = "health"
-		sprite_2d.modulate = Color.RED
+		animated_sprite.animation = "health"
 	else:
+		animated_sprite.animation = "ammo"
 		certain_type = "coin"
 	
+	animated_sprite.play(animated_sprite.animation)
 	active = true
 
 func _on_body_entered(body: Node2D) -> void:
