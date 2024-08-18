@@ -26,7 +26,7 @@ func heal(value: float) ->void:
 		print("warning: you're trying to heal with a non-positive value")
 	else :
 		current_health = clamp(current_health+value, 0, max_health)
-		health_changed.emit()
+		health_changed.emit(previous_health, current_health)
 
 func reset() -> void:
 	current_health = max_health

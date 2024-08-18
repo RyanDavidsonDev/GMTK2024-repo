@@ -31,7 +31,5 @@ func _on_player_shoot(pos: Vector2, dir:Vector2):
 	#print("spanwed")
 	bullet.setVars(pos, dir)
 	
-	pool.add_child(bullet)
-	
 	#add_to_group("bullets")
 	pass

@@ -49,7 +49,7 @@ func _ready():
 	move_speed = default_speed
 	GameEvents.on_player_health_changed.emit()
 
-func _process(delta):
+func _process(_delta):
 	#if Input.is_action_just_pressed("exit"):
 	#	print("quit game") # basic infrastructure from the tutorial I was using, not worrying about it now
 	
@@ -67,14 +67,14 @@ func _process(delta):
 		shoot.emit(position, mouse_dir)
 		change_size(size_dec)
 		
-func  _physics_process(delta):
+func  _physics_process(_delta):
 	if dead:
 		return
 	move_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = move_dir * move_speed
 	move_and_slide()
 
-func _on_health_changed():
+func _on_health_changed(_previous_health, _current_health):
 	GameEvents.on_player_health_changed.emit()
 
 func kill():
@@ -90,7 +90,7 @@ func ReceiveDamage(attack: Attack):
 		kill()
 
 
-func _on_hitbox_area_entered(area: Area2D) -> void:
+func _on_hitbox_area_entered(_area: Area2D) -> void:
 	print("get hit")
 
 func collect_coin():

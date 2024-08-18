@@ -7,7 +7,7 @@ extends Node
 @onready var enemy : Enemy = get_owner()
 
 var was_chasing = false
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	var is_chasing = state_machine.current_state.name == "Chase"
 	

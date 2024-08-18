@@ -5,10 +5,16 @@ extends Node2D
 
 var game_scene_instance : Node
 
+var trigger_pause_game := false
+
 func _ready():
 	screens.start_game.connect(_load_game)
 	screens.unload_game.connect(_unload_game)
 	GameEvents.on_player_died.connect(_end_game)
+
+func _process(_delta: float) -> void:
+	if trigger_pause_game:
+		game_scene_instance.process_mode = PROCESS_MODE_DISABLED
 
 func _load_game():
 	_unload_game()
@@ -21,5 +27,5 @@ func _unload_game():
 		game_scene_instance = null
 
 func _end_game():
-	game_scene_instance.process_mode = PROCESS_MODE_DISABLED
+	trigger_pause_game = true
 	screens.show_gameover_screen()

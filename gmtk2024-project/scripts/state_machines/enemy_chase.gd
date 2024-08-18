@@ -2,7 +2,7 @@ extends EnemyState
 
 @export var chase_speed := 75.0
 
-func physics_update(delta: float):
+func physics_update(_delta: float):
 	
 	var direction := target.global_position - enemy.global_position
 	
