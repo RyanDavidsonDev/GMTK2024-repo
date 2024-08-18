@@ -4,10 +4,11 @@ class_name Player
 
 signal shoot
 
+@onready var firing_point : Node2D = $FiringPoint
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @export var move_speed: float = 200
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collider_box: CollisionShape2D = $colliderBox
 @onready var hitbox: Hitbox = $Hitbox
 
@@ -64,7 +65,7 @@ func _process(_delta):
 		#add_child(Bullet)
 		#Bullet.global_position = global_position
 		
-		shoot.emit(position, mouse_dir)
+		shoot.emit(firing_point.global_position, mouse_dir)
 		change_size(size_dec)
 		
 func  _physics_process(_delta):
@@ -108,7 +109,7 @@ func change_size(amount:float):
 func update_scales():
 	var t:float = inverse_lerp(size_floor, size_cap, current_size)
 	curr_scale = lerp(scale_foor, scale_cap, t)
-	sprite_2d.scale = Vector2(curr_scale, curr_scale);
+	animated_sprite_2d.scale = Vector2(curr_scale, curr_scale);
 	hitbox.scale = Vector2(curr_scale, curr_scale);
 	collider_box.scale = Vector2(curr_scale, curr_scale);
 	var healthPercentage:float = inverse_lerp(0, health.max_health, health.current_health)

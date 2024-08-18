@@ -1,15 +1,58 @@
-[gd_scene load_steps=7 format=3 uid="uid://xgr1i7wcarxt"]
+[gd_scene load_steps=13 format=3 uid="uid://xgr1i7wcarxt"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_tqj0c"]
-[ext_resource type="Texture2D" uid="uid://d1o7bpan07m46" path="res://assets/PlaceholderPlayer.bmp" id="2_rj7hd"]
+[ext_resource type="Texture2D" uid="uid://cbi3412wowusg" path="res://assets/Gun-Sheet.png" id="2_nfmoy"]
 [ext_resource type="Script" path="res://scripts/combat/hitbox.gd" id="3_1vlg2"]
 [ext_resource type="Script" path="res://scripts/combat/health.gd" id="4_qsoap"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dcwly"]
-radius = 34.0147
+[sub_resource type="AtlasTexture" id="AtlasTexture_60wse"]
+atlas = ExtResource("2_nfmoy")
+region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_q171v"]
-radius = 34.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbetc"]
+atlas = ExtResource("2_nfmoy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71m1v"]
+atlas = ExtResource("2_nfmoy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlhl5"]
+atlas = ExtResource("2_nfmoy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nihhe"]
+atlas = ExtResource("2_nfmoy")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o8fqy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60wse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbetc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71m1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlhl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nihhe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sywc8"]
+size = Vector2(20, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3pyao"]
+size = Vector2(24, 10)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health") groups=["player"]]
 collision_mask = 3
@@ -24,8 +67,10 @@ max_health_cap = 10.0
 speed_floor = 50.0
 speed_cap = 200.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_rj7hd")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_o8fqy")
+autoplay = "default"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 3
@@ -34,15 +79,20 @@ collision_mask = 3
 script = ExtResource("3_1vlg2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CircleShape2D_dcwly")
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_sywc8")
 
 [node name="colliderBox" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_q171v")
+position = Vector2(-1, -1)
+shape = SubResource("RectangleShape2D_3pyao")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_qsoap")
 max_health = 100
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="FiringPoint" type="Node2D" parent="."]
+position = Vector2(0, -12)
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
