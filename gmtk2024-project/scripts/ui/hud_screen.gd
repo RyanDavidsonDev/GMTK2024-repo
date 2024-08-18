@@ -1,7 +1,10 @@
 extends BaseScreen
 
+@export_group("health bar", "health_")
 @export var health_bar : TextureProgressBar
-@export var health_label : Label
+@export var health_bar_label : Label
+@export var health_danger_color : Color
+@export var health_normal_color : Color
 
 var change_animation_speed = 10.0
 
@@ -18,9 +21,15 @@ var max_health_bar_window_size = 0.0
 var target_player_health_current : float = 0
 var target_player_health_max : float = 0
 
+var health_bar_color : Color
+var target_health_bar_color : Color
+
 func _ready():
 	super._ready()
 	GameEvents.on_player_health_changed.connect(_update_player_health)
+	
+	target_health_bar_color = health_normal_color;
+	
 	_set_player()
 	_update_player_health()
 	
@@ -42,6 +51,12 @@ func _process(_delta:float):
 		if is_zero_approx(int(target_player_health_max) - int(player_health_max)):
 			target_player_health_max = player_health_max
 		_update_health_components()
+		
+	if !is_same(target_health_bar_color, health_bar_color):
+		health_bar_color = health_bar_color.lerp(target_health_bar_color, _delta*change_animation_speed)
+		if health_bar_color.is_equal_approx(target_health_bar_color):
+			health_bar_color = target_health_bar_color
+			_update_health_components()
 
 func _update_health_components():
 	
@@ -61,7 +76,9 @@ func _update_health_components():
 	
 	#print(" ---- current health" + str(player_health_current))
 	#health_label.text = str(snapped(player_health_current, .01)) + " / " + str(int(ceil(player_health_max)))
-	health_label.text = "%.2f / %.2f" % [player_health_current, player_health_max]
+	health_bar_label.text = "%.2f / %.2f" % [player_health_current, player_health_max]
+	
+	health_bar.tint_progress = health_bar_color
 
 func _update_player_health():
 	if player == null:
@@ -73,13 +90,18 @@ func _update_player_health():
 
 	target_player_health_max = player.health.max_health
 	target_player_health_current = player.health.current_health
-
+	
+	if target_player_health_current <= 9.9:
+		target_health_bar_color = health_danger_color
+	else:
+		target_health_bar_color = health_normal_color
+	
 func _set_player():
 	player = get_tree().get_first_node_in_group("player")
 	return player != null
 
 func _on_viewport_size_changed():
 	viewport_size = get_viewport_rect().size
-	min_health_bar_window_size = 100.0 #viewport_size.x * 0.2
+	min_health_bar_window_size = 120.0
 	max_health_bar_window_size = viewport_size.x * 0.5
 	_update_player_health()
