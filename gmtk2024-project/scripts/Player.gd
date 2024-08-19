@@ -36,6 +36,13 @@ var curr_speed: float = 300
 @export var speed_floor :float
 @export var speed_cap :float
 
+@export_subgroup("bullets")
+@export var bullet_dmg_floor: float = 10
+@export var bullet_dmg_cap: float =  30
+@export var bullet_size_floor: float = .5
+@export var bullet_size_cap: float = 2
+
+
 @export_group("barrel damage", "barrel_")
 @export var barrel_hurtbox : Area2D
 @export var barrel_damage_self : float = 15.0

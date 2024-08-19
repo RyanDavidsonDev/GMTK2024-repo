@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cwexxvwhbber" path="res://assets/bullet.png" id="2_hlxh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y58xq"]
-size = Vector2(8, 14)
+size = Vector2(12.1958, 11.2567)
 
 [sub_resource type="GDScript" id="GDScript_xlyar"]
 script/source = "extends Node
@@ -24,9 +24,11 @@ collision_mask = 6
 script = ExtResource("1_0h4w3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.655962, 0.710689)
 shape = SubResource("RectangleShape2D_y58xq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.66, 0.66)
 texture = ExtResource("2_hlxh3")
 
 [node name="HurtBox" type="Node" parent="."]
