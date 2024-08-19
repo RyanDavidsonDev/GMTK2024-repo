@@ -6,6 +6,7 @@ class_name Bullet
 @export var direction: Vector2
 
 @onready var timer: Timer = $Timer
+@onready var hurt_box: Node = $HurtBox
 
 var pool: Pool
 
@@ -14,9 +15,11 @@ var active: bool
 func _ready() -> void:
 	pool = get_tree().get_first_node_in_group("pool")
 
-func setVars(pos: Vector2, dir:Vector2):
+func setVars(pos: Vector2, dir:Vector2, scale:float, damage):
 	global_position = pos
 	direction = dir.normalized()
+	hurt_box.damage = damage
+	self.scale = Vector2(scale, scale)
 	global_rotation = dir.angle() + PI/2
 
 func _physics_process(delta):

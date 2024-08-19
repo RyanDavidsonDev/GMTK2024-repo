@@ -27,6 +27,7 @@ func _shooting():
 		if(!is_equal_approx(player.current_size, player.size_floor)):
 			print("size" + str(player.current_size) + "other size" + str(player.size_floor))
 			SoundFx.play("shoot")
+			var curr_scale :float = player.curr_scale
 			shoot.emit(firing_point.global_position, mouse_direction)
 			recoil()
 		else :

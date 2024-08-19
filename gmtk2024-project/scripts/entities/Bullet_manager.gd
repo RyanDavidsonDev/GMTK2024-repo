@@ -19,12 +19,14 @@ func _ready():
 	
 	GameEvents.on_player_shoot.connect(_on_player_shoot)
 
-func _on_player_shoot(pos: Vector2, dir:Vector2):
+func _on_player_shoot(pos: Vector2, dir:Vector2, scale:float, damage:float):
 	var bullet: Bullet = pool.get_non_active_node_by_type("bullets")
 	bullet.show()
 	
 	#print("spanwed")
-	bullet.setVars(pos, dir)
+	print("scale is " + str(scale))
+
+	bullet.setVars(pos, dir, scale, damage)
 	
 	#add_to_group("bullets")
 	pass
