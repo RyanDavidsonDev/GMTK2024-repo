@@ -58,3 +58,9 @@ func _on_hidden() -> void:
 	#hitbox.monitoring = false
 	#active = false
 	#self.process_mode = PROCESS_MODE_DISABLED
+
+
+func _on_attacked_player(area: Area2D) -> void:
+	if area is Hitbox:
+		print("attacking player, dying but not dropping pellets")
+		hide();

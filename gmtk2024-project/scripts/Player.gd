@@ -50,7 +50,7 @@ func _ready():
 	GameEvents.on_player_health_changed.emit()
 	player_gun.shoot.connect(_on_shoot)
 	barrel_self_attack.damage = barrel_damage_self
-	barrel_hurtbox.area_entered.connect(_on_barrel_hurtbox_dealt_damage)
+	#barrel_hurtbox.area_entered.connect(_on_barrel_hurtbox_dealt_damage)
 
 func _process(_delta):
 	_update_move_animation()
@@ -87,6 +87,7 @@ func _on_shoot(pos: Vector2, dir: Vector2):
 
 func _receive_damage(attack: Attack):
 	health.damage(attack.damage)
+	print("player got hit")
 	SoundFx.play("hit")
 	GameEvents.on_player_health_changed.emit()
 	if health.current_health <= 0.0:

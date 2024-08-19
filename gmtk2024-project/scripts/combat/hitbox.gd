@@ -4,6 +4,7 @@ extends Area2D
 signal damaged(value: Attack)
 
 func damage(attack: Attack):
+	#hitbox receives
 	damaged.emit(attack)
 
 func _on_body_entered(_body: Node2D) -> void:
