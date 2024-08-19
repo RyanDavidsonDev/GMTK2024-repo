@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy8tqkw114p31"]
+
+[ext_resource type="Script" path="res://scripts/music.gd" id="1_lrnhh"]
+[ext_resource type="AudioStream" uid="uid://c6bds7lm6tr0" path="res://assets-music/ds var 1.mp3" id="2_2bsyh"]
+[ext_resource type="AudioStream" uid="uid://daguyqnwrqjeg" path="res://assets-music/ds var 2.mp3" id="3_s5kol"]
+[ext_resource type="AudioStream" uid="uid://c66eh64lyvp08" path="res://assets-music/ds var 3.mp3" id="4_3ywvg"]
+
+[node name="Music" type="Node"]
+script = ExtResource("1_lrnhh")
+
+[node name="MusicLayer_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2bsyh")
+autoplay = true
+
+[node name="MusicLayer_2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_s5kol")
+autoplay = true
+
+[node name="MusicLayer_3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3ywvg")
+autoplay = true

@@ -15,6 +15,8 @@ health_bar = NodePath("HealthBarContainer/HealthBar")
 health_bar_label = NodePath("HealthBarContainer/HealthLabel")
 health_danger_color = Color(1, 0, 0, 1)
 health_normal_color = Color(0, 0.733333, 0.309804, 1)
+health_medium_color = Color(0, 0.697088, 0.704002, 1)
+health_large_color = Color(0.715669, 0.462178, 1, 1)
 
 [node name="HealthBarContainer" type="Control" parent="."]
 layout_mode = 1

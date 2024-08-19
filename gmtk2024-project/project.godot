@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SoundFx="*res://scenes/sound_fx.tscn"
 ButtonEvents="*res://scripts/ui/button_events.gd"
 GameEvents="*res://scripts/game_events.gd"
+Music="*res://scenes/music.tscn"
 
 [global_group]
 
