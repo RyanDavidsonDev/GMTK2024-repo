@@ -24,8 +24,9 @@ func _continue_game():
 	game_scene_instance.process_mode = PROCESS_MODE_PAUSABLE
 
 func _pause_game():
-	game_scene_instance.process_mode = PROCESS_MODE_DISABLED
-	screens.show_gameover_screen()
+	game_scene_instance.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	GameEvents.on_game_paused.emit()
+	screens.show_pause_screen()
 
 func _load_game():
 	_unload_game()
@@ -42,5 +43,7 @@ func _end_game():
 	screens.show_gameover_screen()
 
 func _input(event: InputEvent) -> void:
+	#add toggle for if already paused
+	#pause music
 	if Input.is_action_just_pressed("pause"):
 		_pause_game()

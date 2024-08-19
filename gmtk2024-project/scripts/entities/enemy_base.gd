@@ -27,6 +27,10 @@ func _ready():
 	active = true
 	hitbox.damaged.connect(_receive_damage)
 	health.health_changed.connect(_on_health_changed)
+	GameEvents.on_game_paused.connect(pause_func)
+
+func pause_func():
+	process_mode = PROCESS_MODE_DISABLED
 	
 func _receive_damage(attack : Attack):
 	health.damage(attack.damage)
