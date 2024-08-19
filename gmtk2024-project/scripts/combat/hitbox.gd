@@ -1,11 +1,11 @@
 class_name Hitbox
 extends Area2D
 
-signal damaged(value: Attack)
+signal damaged(value: Attack, origin : Hurtbox)
 
-func damage(attack: Attack):
+func damage(attack: Attack, origin : Hurtbox):
 	#hitbox receives
-	damaged.emit(attack)
+	damaged.emit(attack, origin)
 
 func _on_body_entered(_body: Node2D) -> void:
 	print("player touched enemy")

@@ -25,7 +25,9 @@ func _ready():
 	hitbox.damaged.connect(_receive_damage)
 	health.health_changed.connect(_on_health_changed)
 	
-func _receive_damage(attack : Attack):
+func _receive_damage(attack : Attack, origin: Hurtbox):
+	origin.damage_dealt.emit(min(health.current_health, attack.damage))
+	print("damage dealt emitted " + min(health.current_health, attack.damage))
 	health.damage(attack.damage)
 	SoundFx.play("hit")
 
