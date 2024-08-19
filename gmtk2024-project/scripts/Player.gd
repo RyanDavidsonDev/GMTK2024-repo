@@ -12,7 +12,6 @@ extends CharacterBody2D
 @export_group("resizing")
 @export var size_inc: float = 10
 @export var size_dec: float = -10
-@export var gun_coll_size_dec: float = -10
 
 @export_subgroup("size range")
 @export var current_size: float  = 100
@@ -39,6 +38,8 @@ var curr_speed: float = 300
 @export_group("barrel damage", "barrel_")
 @export var barrel_hurtbox : Area2D
 @export var barrel_damage_self : float = 15.0
+@export var gun_coll_size_dec: float = -10
+
 
 var dead : bool = false
 var barrel_self_attack := Attack.new()

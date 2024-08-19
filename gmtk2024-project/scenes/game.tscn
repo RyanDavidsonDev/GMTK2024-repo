@@ -21,8 +21,8 @@ move_speed = 200.0
 [node name="EnemySpawner" parent="." instance=ExtResource("5_25gr3")]
 script = ExtResource("4_ntmgt")
 timer_min = 1.0
-timer_max = 7.0
-spawn_num_min = 5.0
+timer_max = 5.0
+spawn_num_min = 8.0
 spawn_num_max = 10.0
 
 [node name="BulletManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_q5lfh")]
