@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://xgr1i7wcarxt"]
+[gd_scene load_steps=32 format=3 uid="uid://xgr1i7wcarxt"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_tqj0c"]
 [ext_resource type="Texture2D" uid="uid://cbi3412wowusg" path="res://assets/Gun-Sheet.png" id="2_nfmoy"]
@@ -147,8 +147,12 @@ radius = 11.0114
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ys06y"]
 
+[sub_resource type="Curve" id="Curve_d4r0n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dmon"]
-radius = 191.065
+radius = 100.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_gun", "health") groups=["player"]]
 collision_mask = 3
@@ -216,6 +220,7 @@ collision_layer = 0
 collision_mask = 16
 script = ExtResource("9_w52pn")
 move_to_target = NodePath("..")
+attraction_curve = SubResource("Curve_d4r0n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AmmoActivator"]
 shape = SubResource("CircleShape2D_7dmon")
