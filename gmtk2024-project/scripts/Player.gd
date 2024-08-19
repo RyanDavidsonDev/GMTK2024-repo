@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export_group("resizing")
 @export var size_inc: float = 10
 @export var size_dec: float = -10
+@export var evaluation_curve :Curve
 
 @export_subgroup("size range")
 @export var current_size: float  = 100
@@ -20,7 +21,7 @@ extends CharacterBody2D
 
 @export_subgroup("scale range")
 var curr_scale: float = 1
-@export var scale_foor: float = .1
+@export var scale_floor: float = .1
 @export var scale_cap: float = 10
 
 @export_subgroup("health range")
@@ -114,7 +115,10 @@ func change_size(amount:float):
 
 func update_scales():
 	var t:float = inverse_lerp(size_floor, size_cap, current_size)
-	curr_scale = lerp(scale_foor, scale_cap, t)
+	#curr_scale = evaluation_curve.sample_baked(t) * (scale_cap - scale_floor ) + scale_floor
+	curr_scale = evaluate_curve(evaluation_curve, t, scale_floor, scale_cap)
+	 #(scale_floor, scale_cap, t)
+	#curr_scale = lerp(scale_floor, scale_cap, t)
 	player_gun.scale = Vector2(curr_scale, curr_scale) * 0.8;
 	player_body_sprite.scale = Vector2(curr_scale, curr_scale);
 	hitbox.scale = Vector2(curr_scale, curr_scale);
@@ -123,9 +127,17 @@ func update_scales():
 	var healthPercentage:float = inverse_lerp(0, health.max_health, health.current_health)
 	health.max_health = lerp(max_health_cap, max_health_floor, t)
 	health.current_health = lerp(0, health.max_health, healthPercentage)
-	move_speed = lerp(speed_cap, speed_floor, t)
+	#move_speed = lerp(speed_cap, speed_floor, t)
+	move_speed = evaluate_curve(evaluation_curve, t, speed_cap, speed_floor)
 
 
 func _on_gun_hitbox_area_entered(area: Area2D) -> void:
 	change_size(gun_coll_size_dec)
 	pass # Replace with function body.
+
+func evaluate_curve(curve: Curve, t:float, floor :float, cap: float) -> float:
+	var sample :float  = curve.sample_baked(t)
+	var range : float = cap - floor
+	var result: float = sample * range + floor
+	print("curve eval: " +str(sample))
+	return result

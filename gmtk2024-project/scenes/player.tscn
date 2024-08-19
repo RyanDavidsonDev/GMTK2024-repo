@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://xgr1i7wcarxt"]
+[gd_scene load_steps=31 format=3 uid="uid://xgr1i7wcarxt"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_tqj0c"]
 [ext_resource type="Texture2D" uid="uid://cbi3412wowusg" path="res://assets/Gun-Sheet.png" id="2_nfmoy"]
@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://bt1wtmmej8o6c" path="res://assets/cloud_walking.png" id="4_8w46k"]
 [ext_resource type="Script" path="res://scripts/combat/health.gd" id="4_qsoap"]
 [ext_resource type="Script" path="res://scripts/ammo_activator.gd" id="9_w52pn"]
+
+[sub_resource type="Curve" id="Curve_xb5y3"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_60wse"]
 atlas = ExtResource("2_nfmoy")
@@ -151,6 +155,7 @@ collision_mask = 3
 script = ExtResource("1_tqj0c")
 move_speed = 50.0
 player_gun = NodePath("Gun")
+evaluation_curve = SubResource("Curve_xb5y3")
 current_size = 32.0
 size_floor = 16
 size_cap = 960
