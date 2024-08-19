@@ -21,12 +21,13 @@ func _process(_delta: float) -> void:
 			game_scene_instance.process_mode = PROCESS_MODE_DISABLED
 
 func _continue_game():
-	game_scene_instance.process_mode = PROCESS_MODE_PAUSABLE
+	#game_scene_instance.process_mode = PROCESS_MODE_PAUSABLE
+	SceneStateManager.set_scene_state(game_scene_instance, "resumed")
 
-func _pause_game():
-	game_scene_instance.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
-	GameEvents.on_game_paused.emit()
-	screens.show_pause_screen()
+#func _pause_game():
+	#game_scene_instance.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	#GameEvents.on_game_paused.emit()
+	#screens.show_pause_screen()
 
 func _load_game():
 	_unload_game()
@@ -45,5 +46,10 @@ func _end_game():
 func _input(event: InputEvent) -> void:
 	#add toggle for if already paused
 	#pause music
-	if Input.is_action_just_pressed("pause"):
-		_pause_game()
+	if Input.is_action_just_pressed("pause") and SceneStateManager.get_scene_state(game_scene_instance) != "paused":
+		SceneStateManager.set_scene_state(game_scene_instance, "paused")
+		screens.show_pause_screen()
+		print(SceneStateManager.get_scene_state_raw(game_scene_instance))
+		print(SceneStateManager.get_scene_state(game_scene_instance))
+		GameEvents.on_game_paused.emit()
+		#_pause_game()
