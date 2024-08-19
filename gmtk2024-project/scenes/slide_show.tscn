@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://ymf5mdjjkwhu"]
+
+[ext_resource type="Script" path="res://scripts/slide-show.gd" id="1_vuwth"]
+
+[node name="SlideShow" type="CanvasLayer" node_paths=PackedStringArray("current_slide", "next_slide")]
+script = ExtResource("1_vuwth")
+current_slide = NodePath("MarginContainer/Control/CurrentSlide")
+next_slide = NodePath("MarginContainer/Control/NextSlide")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="CurrentSlide" type="TextureRect" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+
+[node name="NextSlide" type="TextureRect" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
