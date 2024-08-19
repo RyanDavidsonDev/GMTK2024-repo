@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var move_to_target: Node2D
+@export var health_follows := false
 
 var ammo_tracked : Dictionary = {}
 var attract_speed : float = 50.0
@@ -21,6 +22,8 @@ func _process(delta):
 
 func _on_area_entered(area: Area2D):
 	if area is Pellet:
+		if area.certain_type == "health" && !health_follows:
+			return # ammo health does not follow target
 		area.set_animation_speed_scale(3.0)
 		ammo_tracked.get_or_add(area)
 	
