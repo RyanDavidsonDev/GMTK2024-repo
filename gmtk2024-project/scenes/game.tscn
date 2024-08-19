@@ -32,7 +32,7 @@ player = NodePath("../Player")
 max_amount = 100
 
 [node name="PelletSpawner" parent="." instance=ExtResource("4_1wfr2")]
-distance = 15
+distance = 10.0
 spawn_min_distance = 282
 spawn_delay = 3.0
 

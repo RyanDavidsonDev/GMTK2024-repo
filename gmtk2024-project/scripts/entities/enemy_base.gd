@@ -13,9 +13,6 @@ signal DropPellets(location:Vector2)
 @export var hitbox : Hitbox
 @export var health : Health
 
-@export_group("pellet drops")
-@export var num_of_pellets: int = 3
-@export var distance : float = 5
 
 var active: bool
 

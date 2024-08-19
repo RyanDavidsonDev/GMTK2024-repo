@@ -21,6 +21,9 @@ var sounds = {
 	"heal": [
 		load("res://assets-soundfx/Health_Collect.mp3"),
 	],
+	"hit_barrel": [
+		load("res://assets-soundfx/Barrel_hit.mp3"),
+	],
 }
 
 func play(sound_name):

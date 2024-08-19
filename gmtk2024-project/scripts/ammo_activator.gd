@@ -2,7 +2,7 @@ extends Area2D
 
 @export var move_to_target: Node2D
 @export var health_follows := false
-@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var collision_shape_2d: CollisionShape2D = $AmmoActivatorCollider
 
 @export var attraction_curve :Curve 
 
@@ -32,7 +32,6 @@ func _process(delta):
 			#var strength : float =  lerp(circle_shape.radius, 0.0, magnetVector.length())
 			var pct : float =  inverse_lerp(0.0, circle_shape.radius, magnetVector.length())
 			var strength : float =  attraction_curve.sample_baked(pct)
-			print("strength " + str(strength))
 			move_speed =  move_speed* (1-strength)
 		ammo.global_position = ammo.global_position.move_toward(
 			move_to_target.global_position,
