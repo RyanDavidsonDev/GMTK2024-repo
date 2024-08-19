@@ -144,9 +144,10 @@ func update_scales():
 
 
 func _on_gun_hitbox_area_entered(area: Area2D) -> void:
-	change_size(gun_coll_size_dec)
-	SoundFx.play("hit_barrel")
-	pass # Replace with function body.
+	if(area != hitbox):
+		print("gun hitbox area entered")
+		change_size(gun_coll_size_dec)
+		SoundFx.play("hit_barrel")
 
 func evaluate_curve(curve: Curve, t:float, floor :float, cap: float) -> float:
 	var sample :float  = curve.sample_baked(t)
