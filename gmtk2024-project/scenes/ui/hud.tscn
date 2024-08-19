@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bf7ov2c3a8waj"]
 
 [ext_resource type="Script" path="res://scripts/ui/hud_screen.gd" id="1_nl7sq"]
-[ext_resource type="PackedScene" uid="uid://dam2hv21i1yxa" path="res://scenes/ui/progress_bar.tscn" id="2_jfq0r"]
+[ext_resource type="PackedScene" uid="uid://btf6oh15h1x2w" path="res://scenes/ui/progress_bar.tscn" id="2_jfq0r"]
 
 [node name="HUD" type="Control" node_paths=PackedStringArray("health_bar", "health_bar_label") groups=["hud"]]
 layout_mode = 3

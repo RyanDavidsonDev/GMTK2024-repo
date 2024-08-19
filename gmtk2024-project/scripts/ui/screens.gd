@@ -2,10 +2,12 @@ extends Node
 
 @onready var main_screen = $MainMenu
 @onready var gameover_screen = $GameOver
+@onready var pause_screen = $PauseMenu
 @onready var hud_screen = null # = $HUD
 
 signal start_game
 signal unload_game
+signal continue_game
 
 var current_screen = null
 
@@ -37,6 +39,12 @@ func _button_pressed(btn : ScreenButton) -> void:
 			_change_screen(null)
 			await(get_tree().create_timer(.65).timeout)
 			_change_screen(main_screen)
+		"ContinueGame":
+			_change_screen(null)
+			await(get_tree().create_timer(.65).timeout)
+			continue_game.emit()
+			await(get_tree().create_timer(.65).timeout)
+			_show_hud()
 		_:
 			print("button '", btn.name, "' press unhandled")
 
@@ -54,6 +62,9 @@ func _change_screen(new_screen):
 
 func show_gameover_screen():
 	_change_screen(gameover_screen)
+
+func show_pause_screen():
+	_change_screen(pause_screen)
 
 func _show_hud():
 	if hud_screen == null:
