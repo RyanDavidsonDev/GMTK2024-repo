@@ -67,7 +67,7 @@ func _process(_delta):
 	if Input.is_action_just_released("scroll_up"):
 		change_zoom(zoom_change_value)
 		print(camera.get_zoom())
-	if Input.is_action_just_released("scroll_down"):
+	if Input.is_action_just_released("scroll_down") and camera.get_zoom().x > zoom_min:
 		change_zoom(-zoom_change_value)
 		print(camera.get_zoom())
 
