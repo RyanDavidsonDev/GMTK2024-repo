@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://xgr1i7wcarxt"]
+[gd_scene load_steps=30 format=3 uid="uid://xgr1i7wcarxt"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_tqj0c"]
 [ext_resource type="Texture2D" uid="uid://cbi3412wowusg" path="res://assets/Gun-Sheet.png" id="2_nfmoy"]
@@ -51,6 +51,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_syd1c"]
+size = Vector2(20, 12)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtjm6"]
 atlas = ExtResource("3_nvasu")
@@ -143,7 +146,7 @@ radius = 11.0114
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dmon"]
 radius = 191.065
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_gun", "health", "barrel_hurtbox") groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_gun", "health") groups=["player"]]
 collision_mask = 3
 script = ExtResource("1_tqj0c")
 move_speed = 50.0
@@ -156,7 +159,6 @@ max_health_floor = 500.0
 max_health_cap = 10.0
 speed_floor = 50.0
 speed_cap = 200.0
-barrel_hurtbox = NodePath("")
 
 [node name="Gun" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("firing_point")]
 z_index = 90
@@ -169,6 +171,13 @@ firing_point = NodePath("FiringPoint")
 [node name="FiringPoint" type="Node2D" parent="Gun"]
 position = Vector2(32, 0.00011584)
 rotation = 1.5708
+
+[node name="Hitbox" type="Area2D" parent="Gun"]
+script = ExtResource("3_1vlg2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gun/Hitbox"]
+position = Vector2(25, -1)
+shape = SubResource("RectangleShape2D_syd1c")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
 z_index = 100
@@ -206,4 +215,5 @@ move_to_target = NodePath("..")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AmmoActivator"]
 shape = SubResource("CircleShape2D_7dmon")
 
+[connection signal="area_entered" from="Gun/Hitbox" to="." method="_on_gun_hitbox_area_entered"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export_group("resizing")
 @export var size_inc: float = 10
 @export var size_dec: float = -10
+@export var gun_coll_size_dec: float = -10
 
 @export_subgroup("size range")
 @export var current_size: float  = 100
@@ -122,3 +123,8 @@ func update_scales():
 	health.max_health = lerp(max_health_cap, max_health_floor, t)
 	health.current_health = lerp(0, health.max_health, healthPercentage)
 	move_speed = lerp(speed_cap, speed_floor, t)
+
+
+func _on_gun_hitbox_area_entered(area: Area2D) -> void:
+	change_size(gun_coll_size_dec)
+	pass # Replace with function body.
