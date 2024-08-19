@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dloy6a5tp6635"]
+[gd_scene load_steps=11 format=3 uid="uid://dloy6a5tp6635"]
 
 [ext_resource type="PackedScene" uid="uid://dqo7o5kcfc1qb" path="res://scenes/Entities/pool.tscn" id="1_qhny2"]
 [ext_resource type="PackedScene" uid="uid://xgr1i7wcarxt" path="res://scenes/player.tscn" id="1_x80ch"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dpgclxc6hvcmm" path="res://scenes/Entities/enemy_spawner.tscn" id="5_25gr3"]
 [ext_resource type="PackedScene" uid="uid://bf7ov2c3a8waj" path="res://scenes/ui/hud.tscn" id="7_yk863"]
 [ext_resource type="Script" path="res://scripts/fx_manager.gd" id="9_3s1h6"]
+[ext_resource type="PackedScene" uid="uid://du6yi6rxcrpjj" path="res://scenes/background.tscn" id="10_mmkw3"]
 
 [node name="Game" type="Node2D"]
 
@@ -43,3 +44,5 @@ spawn_delay = 3.0
 
 [node name="FXManager" type="Node" parent="."]
 script = ExtResource("9_3s1h6")
+
+[node name="background" parent="." instance=ExtResource("10_mmkw3")]
