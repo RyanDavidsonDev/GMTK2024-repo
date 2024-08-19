@@ -10,7 +10,6 @@ signal unload_game
 var current_screen = null
 
 func _ready():
-	_change_screen(main_screen)
 	ButtonEvents.on_btn_pressed.connect(_button_pressed)
 
 func _button_pressed(btn : ScreenButton) -> void:
@@ -61,3 +60,6 @@ func _show_hud():
 		
 	if hud_screen:
 		_change_screen(hud_screen)
+
+func show_main_screen():
+	_change_screen(main_screen)
