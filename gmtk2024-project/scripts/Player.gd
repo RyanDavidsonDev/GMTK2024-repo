@@ -112,7 +112,9 @@ func kill():
 
 func _on_shoot(pos: Vector2, dir: Vector2):
 	change_size(-size_inc)
-	var damage: float = lerp(bullet_dmg_floor, bullet_dmg_cap, inverse_lerp(size_floor, size_cap, current_size))
+	#var damage: float = lerp(bullet_dmg_floor, bullet_dmg_cap, inverse_lerp(size_floor, size_cap, current_size))
+	var damage: float = evaluate_curve(evaluation_curve,inverse_lerp(size_floor, size_cap, current_size), bullet_dmg_floor, bullet_dmg_cap, )
+	
 	GameEvents.on_player_shoot.emit(pos, dir,curr_scale, damage)
 
 func _receive_damage(attack: Attack, origin : Hurtbox):

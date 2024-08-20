@@ -6,7 +6,7 @@ class_name Bullet
 @export var direction: Vector2
 
 @onready var timer: Timer = $Timer
-@onready var hurt_box: Node = $Hurtbox
+@onready var hurt_box: Hurtbox = $Hurtbox
 var damage_health: float
 var pool: Pool
 
@@ -14,6 +14,7 @@ var active: bool
 
 func _ready() -> void:
 	pool = get_tree().get_first_node_in_group("pool")
+	hurt_box.damage_dealt.connect(deal_damage)
 
 func setVars(pos: Vector2, dir:Vector2, scale:float, damage):
 	global_position = pos
@@ -30,12 +31,13 @@ func _physics_process(delta):
 	#print("location" + str(transform))
 
 func _on_area_entered(_area: Area2D) -> void:
-	hide()
+	pass
+	#hide()
 
 func deal_damage(amount: float) ->void:
-	print("bulet deal damage")
 	damage_health = max( damage_health - amount , 0)
 	hurt_box.damage = damage_health
+	print("bullet dealt" + str(amount) + " damage, still has " + str(damage_health) + " remaining")
 	if(damage_health <= 0):
 		hide()
 
