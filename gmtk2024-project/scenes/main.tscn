@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwbvf4ipbc7s3"]
+[gd_scene load_steps=15 format=3 uid="uid://dwbvf4ipbc7s3"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ptnb8"]
 [ext_resource type="PackedScene" uid="uid://dgawxqotwfdow" path="res://scenes/ui/screens.tscn" id="2_bfrk4"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bgycc63nr8iy5" path="res://assets/story-slides/Splash5.png" id="8_mjpwx"]
 [ext_resource type="Texture2D" uid="uid://dweaehei8l68t" path="res://assets/story-slides/Splash6.png" id="9_n36cq"]
 [ext_resource type="Texture2D" uid="uid://du2ta0njeko1v" path="res://assets/story-slides/Splash7.png" id="10_n62vc"]
+[ext_resource type="Texture2D" uid="uid://dw76g703mb18u" path="res://assets/story-slides/Splash8.png" id="12_hwyk8"]
+[ext_resource type="Texture2D" uid="uid://bweaoycd5m6kt" path="res://assets/story-slides/Splash9.png" id="13_s03wd"]
+[ext_resource type="Texture2D" uid="uid://dqqox5fh3pxgh" path="res://assets/story-slides/Splash10.png" id="14_fv0mm"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("intro_story")]
 script = ExtResource("1_ptnb8")
@@ -19,4 +22,4 @@ intro_story = NodePath("IntroStory")
 [node name="Screens" parent="." instance=ExtResource("2_bfrk4")]
 
 [node name="IntroStory" parent="." instance=ExtResource("3_dd6ml")]
-slides = Array[Texture]([ExtResource("4_c55vj"), ExtResource("5_74kei"), ExtResource("5_75gde"), ExtResource("6_wo1hm"), ExtResource("7_05ltv"), ExtResource("8_mjpwx"), ExtResource("9_n36cq"), ExtResource("10_n62vc")])
+slides = Array[Texture]([ExtResource("4_c55vj"), ExtResource("5_74kei"), ExtResource("5_75gde"), ExtResource("6_wo1hm"), ExtResource("7_05ltv"), ExtResource("8_mjpwx"), ExtResource("9_n36cq"), ExtResource("10_n62vc"), ExtResource("12_hwyk8"), ExtResource("13_s03wd"), ExtResource("14_fv0mm")])
