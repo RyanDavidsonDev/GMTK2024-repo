@@ -14,7 +14,6 @@ extends CharacterBody2D
 
 @export_group("resizing")
 @export var size_inc: float = 10
-@export var size_dec: float = -10
 @export var evaluation_curve :Curve
 
 @export_subgroup("size range")
@@ -49,7 +48,7 @@ var curr_speed: float = 300
 @export_group("barrel damage", "barrel_")
 @export var barrel_hurtbox : Area2D
 @export var barrel_damage_self : float = 15.0
-@export var gun_coll_size_dec: float = -10
+#@export var gun_coll_size_dec: float = -10
 
 @export_group("camera")
 
@@ -60,6 +59,8 @@ var curr_speed: float = 300
 
 var dead : bool = false
 var barrel_self_attack := Attack.new()
+
+signal size_changed
 
 func _ready():
 	update_scales()
@@ -110,7 +111,7 @@ func kill():
 	GameEvents.on_player_died.emit()
 
 func _on_shoot(pos: Vector2, dir: Vector2):
-	change_size(size_dec)
+	change_size(-size_inc)
 	var damage: float = lerp(bullet_dmg_floor, bullet_dmg_cap, inverse_lerp(size_floor, size_cap, current_size))
 	GameEvents.on_player_shoot.emit(pos, dir,curr_scale, damage)
 
@@ -160,12 +161,17 @@ func update_scales():
 	health.current_health = lerp(0, health.max_health, healthPercentage)
 	#move_speed = lerp(speed_cap, speed_floor, t)
 	move_speed = evaluate_curve(evaluation_curve, t, speed_cap, speed_floor)
+	
+	var num_of_health_units_max = (size_cap - size_floor )/size_inc
+	var num_of_health_units_curr = (current_size - size_floor )/size_inc
+	print("health units max " + str(num_of_health_units_max) + " curr " +str(num_of_health_units_curr))
+	GameEvents.on_player_size_changed.emit(num_of_health_units_curr, num_of_health_units_max)
 
 
 func _on_gun_hitbox_area_entered(area: Area2D) -> void:
 	if(area != hitbox):
 		print("gun hitbox area entered")
-		change_size(gun_coll_size_dec)
+		change_size(-size_inc)
 		SoundFx.play("hit_barrel")
 
 func evaluate_curve(curve: Curve, t:float, floor :float, cap: float) -> float:
