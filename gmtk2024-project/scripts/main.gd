@@ -4,10 +4,15 @@ extends Node2D
 @onready var screens = $Screens
 @onready var game_scene = load("res://scenes/game.tscn")
 
+
 var game_scene_instance : Node
 
-var is_game_paused := true
+var is_game_paused := false
 var trigger_pause_game := false
+
+var max_size_units
+var curr_size_units
+var highest_size_units_reached = 1
 
 func _ready():
 	screens.start_game.connect(_load_game)
@@ -17,6 +22,7 @@ func _ready():
 	GameEvents.on_player_died.connect(_end_game)
 	intro_story.on_slide_reached_the_end.connect(_show_main_screen)
 	intro_story.start_slide_show()
+	GameEvents.on_player_size_changed.connect(update_health_units)
 
 func _process(_delta: float) -> void:
 	if trigger_pause_game:
@@ -51,8 +57,16 @@ func _show_main_screen():
 
 func _pause_game():
 	screens.show_pause_menu()
+	is_game_paused = true
 	get_tree().paused = true
 
 func _resume_game():
 	screens.show_hud()
+	is_game_paused = false
 	get_tree().paused = false
+	
+func update_health_units(curr, max):
+	curr_size_units = curr
+	max_size_units = max
+	highest_size_units_reached = max(curr_size_units, highest_size_units_reached)
+	pass

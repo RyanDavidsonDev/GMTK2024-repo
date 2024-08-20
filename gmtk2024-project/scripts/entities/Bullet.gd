@@ -6,8 +6,8 @@ class_name Bullet
 @export var direction: Vector2
 
 @onready var timer: Timer = $Timer
-@onready var hurt_box: Node = $HurtBox
-
+@onready var hurt_box: Node = $Hurtbox
+var damage_health: float
 var pool: Pool
 
 var active: bool
@@ -19,6 +19,8 @@ func setVars(pos: Vector2, dir:Vector2, scale:float, damage):
 	global_position = pos
 	direction = dir.normalized()
 	hurt_box.damage = damage
+	
+	damage_health = damage
 	self.scale = Vector2(scale, scale)
 	global_rotation = dir.angle() + PI/2
 
@@ -29,6 +31,13 @@ func _physics_process(delta):
 
 func _on_area_entered(_area: Area2D) -> void:
 	hide()
+
+func deal_damage(amount: float) ->void:
+	print("bulet deal damage")
+	damage_health = max( damage_health - amount , 0)
+	hurt_box.damage = damage_health
+	if(damage_health <= 0):
+		hide()
 
 func _on_draw() -> void:
 	pool.remove_from_non_active(self, "bullets")

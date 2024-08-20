@@ -1,8 +1,9 @@
 extends RadialSpawner
 
-@export var cluster_quantity :int = 3
-@export var distance : int = 5
-
+@export_group("pellet drops")
+@export var min_num_of_pellets: int = 2
+@export var max_num_of_pellets: int = 5
+@export var distance : float = 10
 func _ready():
 	super._ready()
 	print("pellet spawner")
@@ -13,6 +14,8 @@ func spawn_cluster(location: Vector2):
 	# or through some value from the enemy
 	
 	print("")
+	
+	var cluster_quantity: int = randi_range(min_num_of_pellets, max_num_of_pellets)
 	
 	for i in cluster_quantity:
 		var random_direction = randi_range(0, 360)

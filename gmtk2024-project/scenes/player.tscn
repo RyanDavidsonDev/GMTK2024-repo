@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://xgr1i7wcarxt"]
+[gd_scene load_steps=32 format=3 uid="uid://xgr1i7wcarxt"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_tqj0c"]
 [ext_resource type="Texture2D" uid="uid://cbi3412wowusg" path="res://assets/Gun-Sheet.png" id="2_nfmoy"]
@@ -56,8 +56,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_syd1c"]
-size = Vector2(20, 12)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f20fp"]
+radius = 5.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dtjm6"]
 atlas = ExtResource("3_nvasu")
@@ -147,14 +147,19 @@ radius = 11.0114
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ys06y"]
 
+[sub_resource type="Curve" id="Curve_d4r0n"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_7dmon"]
-radius = 191.065
+radius = 100.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("player_gun", "health") groups=["player"]]
 collision_mask = 3
 script = ExtResource("1_tqj0c")
 move_speed = 50.0
 player_gun = NodePath("Gun")
+size_inc = 8.0
 evaluation_curve = SubResource("Curve_xb5y3")
 current_size = 32.0
 size_floor = 16
@@ -181,8 +186,9 @@ rotation = 1.5708
 script = ExtResource("3_1vlg2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gun/Hitbox"]
-position = Vector2(25, -1)
-shape = SubResource("RectangleShape2D_syd1c")
+position = Vector2(20, -1)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_f20fp")
 
 [node name="Body" type="AnimatedSprite2D" parent="."]
 z_index = 100
@@ -212,12 +218,14 @@ max_health = 100
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="AmmoActivator" type="Area2D" parent="." node_paths=PackedStringArray("move_to_target")]
+scale = Vector2(1.00888, 1)
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("9_w52pn")
 move_to_target = NodePath("..")
+attraction_curve = SubResource("Curve_d4r0n")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AmmoActivator"]
+[node name="AmmoActivatorCollider" type="CollisionShape2D" parent="AmmoActivator"]
 shape = SubResource("CircleShape2D_7dmon")
 
 [connection signal="area_entered" from="Gun/Hitbox" to="." method="_on_gun_hitbox_area_entered"]

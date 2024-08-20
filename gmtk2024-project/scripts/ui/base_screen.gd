@@ -12,7 +12,7 @@ func appear():
 	visible = true
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, fade_property_path, 1.0, fade_duration)
-	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)	
 	return tween
 	
 func disapper():
