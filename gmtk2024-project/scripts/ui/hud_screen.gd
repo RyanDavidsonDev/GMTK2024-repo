@@ -25,7 +25,7 @@ var health_current_value_tween : Tween
 var health_max_value_tween : Tween
 var health_bar_label_tween : Tween
 var health_bar_progress_color : Tween
-var anim_duration = 0.75 # in seconds
+var anim_duration = 0.5 # in seconds
 
 func _ready():
 	super._ready()

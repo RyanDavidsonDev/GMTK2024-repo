@@ -26,6 +26,10 @@ var curr_scale: float = 1
 @export var scale_floor: float = .1
 @export var scale_cap: float = 10
 
+@export_subgroup("ammo radius range")
+@export var ammo_radius_floor: float = 100
+@export var ammo_radius_cap: float = 500
+
 @export_subgroup("health range")
 @export var health :Health 
 @export var max_health_floor :float
@@ -157,6 +161,9 @@ func update_scales():
 	hitbox.scale = new_scale
 	collider_box.scale = new_scale
 	ammo_activator_collider.scale = Vector2(max(curr_scale, 1.0), max(curr_scale, 1.0))
+	#if ammo_activator_collider.shape is CircleShape2D:
+		#var circle = ammo_activator_collider.shape as CircleShape2D
+		#circle.radius = lerp(ammo_radius_floor, ammo_radius_cap, t)
 	
 	var healthPercentage:float = inverse_lerp(0, health.max_health, health.current_health)
 	health.max_health = lerp(max_health_cap, max_health_floor, t)
