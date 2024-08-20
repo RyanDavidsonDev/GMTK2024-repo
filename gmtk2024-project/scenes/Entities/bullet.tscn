@@ -2,21 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/entities/Bullet.gd" id="1_0h4w3"]
 [ext_resource type="Texture2D" uid="uid://cwexxvwhbber" path="res://assets/bullet.png" id="2_hlxh3"]
+[ext_resource type="Script" path="res://scripts/combat/hurtbox.gd" id="3_qpt7g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y58xq"]
 size = Vector2(12.1958, 11.2567)
-
-[sub_resource type="GDScript" id="GDScript_xlyar"]
-script/source = "extends Node
-
-@export var damage : float = 10.0
-
-func _on_area_entered(area: Area2D) -> void:
-	if area is Hitbox:
-		var attack = Attack.new()
-		attack.damage = damage
-		area.damage(attack)
-"
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 8
@@ -31,15 +20,17 @@ shape = SubResource("RectangleShape2D_y58xq")
 scale = Vector2(0.66, 0.66)
 texture = ExtResource("2_hlxh3")
 
-[node name="HurtBox" type="Node" parent="."]
-script = SubResource("GDScript_xlyar")
-damage = 20.0
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("3_qpt7g")
+
+[node name="Hurtbox2" type="Area2D" parent="."]
+script = ExtResource("3_qpt7g")
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_entered" from="." to="HurtBox" method="_on_area_entered"]
+[connection signal="area_entered" from="." to="Hurtbox" method="_on_area_entered"]
 [connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="hidden" from="." to="." method="_on_hidden"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

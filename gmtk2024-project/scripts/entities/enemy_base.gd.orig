@@ -24,10 +24,15 @@ func _ready():
 	active = true
 	hitbox.damaged.connect(_receive_damage)
 	health.health_changed.connect(_on_health_changed)
+<<<<<<< HEAD
 
+func _receive_damage(attack : Attack):
+=======
+	
 func _receive_damage(attack : Attack, origin: Hurtbox):
 	print("emitting" + str(min(health.current_health, attack.damage)))
 	origin.damage_dealt.emit(min(health.current_health, attack.damage))
+>>>>>>> bulletoverflowt2
 	health.damage(attack.damage)
 	SoundFx.play("hit")
 

@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var player_body_sprite: AnimatedSprite2D = $Body
 @onready var collider_box: CollisionShape2D = $colliderBox
 @onready var hitbox: Hitbox = $Hitbox
+@onready var ammo_activator_collider: CollisionShape2D = $AmmoActivator/AmmoActivatorCollider
+
 
 @export_group("resizing")
 @export var size_inc: float = 10
@@ -96,7 +98,7 @@ func _on_shoot(pos: Vector2, dir: Vector2):
 	var damage: float = lerp(bullet_dmg_floor, bullet_dmg_cap, inverse_lerp(size_floor, size_cap, current_size))
 	GameEvents.on_player_shoot.emit(pos, dir,curr_scale, damage)
 
-func _receive_damage(attack: Attack):
+func _receive_damage(attack: Attack, origin : Hurtbox):
 	health.damage(attack.damage)
 	print("player got hit")
 	SoundFx.play("hit")
@@ -105,7 +107,7 @@ func _receive_damage(attack: Attack):
 		kill()
 
 func _on_barrel_hurtbox_dealt_damage(_area: Area2D):
-	_receive_damage(barrel_self_attack)
+	_receive_damage(barrel_self_attack, _area as Hurtbox)
 	player_gun.recoil()
 
 func collect_coin():
@@ -127,10 +129,12 @@ func update_scales():
 	curr_scale = evaluate_curve(evaluation_curve, t, scale_floor, scale_cap)
 	 #(scale_floor, scale_cap, t)
 	#curr_scale = lerp(scale_floor, scale_cap, t)
-	player_gun.scale = Vector2(curr_scale, curr_scale) * 0.8;
-	player_body_sprite.scale = Vector2(curr_scale, curr_scale);
-	hitbox.scale = Vector2(curr_scale, curr_scale);
-	collider_box.scale = Vector2(curr_scale, curr_scale);
+	var new_scale: Vector2 = Vector2(curr_scale, curr_scale)
+	player_gun.scale = new_scale * 0.8;
+	player_body_sprite.scale = new_scale
+	hitbox.scale = new_scale
+	collider_box.scale = new_scale
+	ammo_activator_collider.scale = Vector2(max(curr_scale, 1.0), max(curr_scale, 1.0))
 	
 	var healthPercentage:float = inverse_lerp(0, health.max_health, health.current_health)
 	health.max_health = lerp(max_health_cap, max_health_floor, t)
@@ -140,8 +144,10 @@ func update_scales():
 
 
 func _on_gun_hitbox_area_entered(area: Area2D) -> void:
-	change_size(gun_coll_size_dec)
-	pass # Replace with function body.
+	if(area != hitbox):
+		print("gun hitbox area entered")
+		change_size(gun_coll_size_dec)
+		SoundFx.play("hit_barrel")
 
 func evaluate_curve(curve: Curve, t:float, floor :float, cap: float) -> float:
 	var sample :float  = curve.sample_baked(t)

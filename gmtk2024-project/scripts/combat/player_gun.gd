@@ -38,7 +38,6 @@ func _shooting():
 			recoil()
 		else :
 			if (player.current_size - player.size_dec < player.size_floor):
-				print("too small little baby man")
 				return
 			else :
 				player.current_size = player.size_floor
