@@ -65,7 +65,7 @@ func spawn_at_location(location:Vector2) ->  Node2D:
 	if actives.size()  < max_amount:
 		entity = pool.get_non_active_node_by_type(pool_type)
 	else: #if we are full, get the oldest entity and hide it for re-use
-		print("pool full, despawning oldest")
+		print( pool_type + " pool full, despawning oldest")
 		entity = actives.pop_front()
 		#entity = pool.get_oldest_active_node(pool_type)
 		if entity:
@@ -76,6 +76,8 @@ func spawn_at_location(location:Vector2) ->  Node2D:
 		entity.global_position = location
 		entity.show()
 		actives.push_back(entity)
+		
+		entity.hidden.connect(func(): remove_from_actives(entity))
 		
 		print("spawning " + str(entity) + " at " +str(location))
 		return entity
