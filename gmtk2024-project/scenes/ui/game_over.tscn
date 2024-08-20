@@ -1,20 +1,40 @@
-[gd_scene load_steps=7 format=3 uid="uid://burvt5f57sfxb"]
+[gd_scene load_steps=12 format=3 uid="uid://burvt5f57sfxb"]
 
-[ext_resource type="Script" path="res://scripts/ui/base_screen.gd" id="1_idp5c"]
+[ext_resource type="Script" path="res://scripts/ui/game_over_screen.gd" id="1_6nel8"]
 [ext_resource type="PackedScene" uid="uid://dfflwyvgequl8" path="res://scenes/ui/screen_button.tscn" id="2_glve2"]
 [ext_resource type="Texture2D" uid="uid://30ln5ekqs16k" path="res://assets/Retry_Off_Grphx.png" id="3_mu8nr"]
 [ext_resource type="Texture2D" uid="uid://dq6h6d2hltk4i" path="res://assets/Retry_On_Grphx.png" id="4_hx2kf"]
 [ext_resource type="Texture2D" uid="uid://1hmcti5gm84a" path="res://assets/Menu_Off_Grphx.png" id="5_q4d4x"]
 [ext_resource type="Texture2D" uid="uid://bakdyv7ij1mum" path="res://assets/Menu_On_Grphx.png" id="6_cnha5"]
+[ext_resource type="Texture2D" uid="uid://dgq7xvg2a8nfb" path="res://assets/ScoreWindow.png" id="7_v2p56"]
+[ext_resource type="FontFile" uid="uid://2uscnkt2onrk" path="res://assets-font/MurrayWriting-Regular.ttf" id="8_p8rsw"]
 
-[node name="GameOver" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_yadwp"]
+font = ExtResource("8_p8rsw")
+font_size = 60
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nkjjx"]
+font = ExtResource("8_p8rsw")
+font_size = 28
+font_color = Color(0.572052, 4.86121e-06, 0.375889, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xau3g"]
+font = ExtResource("8_p8rsw")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[node name="GameOver" type="Control" node_paths=PackedStringArray("max_size_units", "curr_size_units", "highest_size_units")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_idp5c")
+script = ExtResource("1_6nel8")
+max_size_units = NodePath("MarginContainer/Control/Control/MaxSizeUnits_Score")
+curr_size_units = NodePath("MarginContainer/Control/Control/CurrSizeUnits_Score")
+highest_size_units = NodePath("MarginContainer/Control/Control/HighestSizeUnitsReached_Score")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -25,26 +45,185 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.686275)
 
-[node name="Center" type="Control" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 140
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+texture = ExtResource("7_v2p56")
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -389.0
+offset_top = -170.0
+offset_right = 389.0
+offset_bottom = 212.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Title" type="Label" parent="MarginContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -277.0
+offset_top = 14.0
+offset_right = 320.0
+offset_bottom = 73.0
+grow_horizontal = 2
+text = "error_404_nanobots"
+label_settings = SubResource("LabelSettings_yadwp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubTitle" type="Label" parent="MarginContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -299.0
+offset_top = 66.0
+offset_right = 298.0
+offset_bottom = 125.0
+grow_horizontal = 2
+text = "escape_sequence_initiated"
+label_settings = SubResource("LabelSettings_nkjjx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaxSizeUnitsLabel" type="Label" parent="MarginContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -230.0
+offset_top = 147.0
+offset_right = -7.0
+offset_bottom = 194.0
+grow_horizontal = 2
+text = "max_size_units"
+label_settings = SubResource("LabelSettings_xau3g")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MaxSizeUnits_Score" type="Label" parent="MarginContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 26.0
+offset_top = 148.0
+offset_right = 356.0
+offset_bottom = 195.0
+grow_horizontal = 2
+text = "0000000"
+label_settings = SubResource("LabelSettings_xau3g")
+vertical_alignment = 1
+
+[node name="CurrSizeUnitsLabel" type="Label" parent="MarginContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -227.0
+offset_top = 222.0
+offset_right = -4.0
+offset_bottom = 269.0
+grow_horizontal = 2
+text = "curr_size_units"
+label_settings = SubResource("LabelSettings_xau3g")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrSizeUnits_Score" type="Label" parent="MarginContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 24.0
+offset_top = 221.0
+offset_right = 354.0
+offset_bottom = 268.0
+grow_horizontal = 2
+text = "0000000"
+label_settings = SubResource("LabelSettings_xau3g")
+vertical_alignment = 1
+
+[node name="HighestSizeUnitsReachedLabel" type="Label" parent="MarginContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -391.0
+offset_top = 299.0
+offset_right = -3.0
+offset_bottom = 346.0
+grow_horizontal = 2
+text = "highest_size_units_reached"
+label_settings = SubResource("LabelSettings_xau3g")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HighestSizeUnitsReached_Score" type="Label" parent="MarginContainer/Control/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 25.0
+offset_top = 299.0
+offset_right = 355.0
+offset_bottom = 346.0
+grow_horizontal = 2
+text = "0000000"
+label_settings = SubResource("LabelSettings_xau3g")
+vertical_alignment = 1
+
+[node name="Center" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
 [node name="RetryGame" parent="Center" instance=ExtResource("2_glve2")]
+z_index = 50
 layout_mode = 1
 offset_left = -463.5
-offset_top = -87.0
+offset_top = -124.0
 offset_right = 149.5
-offset_bottom = 87.0
+offset_bottom = 50.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("3_mu8nr")
 texture_pressed = ExtResource("3_mu8nr")
@@ -55,9 +234,12 @@ visible = false
 text = "RETRY"
 
 [node name="MainMenu" parent="Center" instance=ExtResource("2_glve2")]
+z_index = 50
 layout_mode = 1
-offset_left = 47.0
-offset_right = 447.0
+offset_left = -41.0
+offset_top = -119.0
+offset_right = 535.0
+offset_bottom = 31.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("5_q4d4x")
 texture_pressed = ExtResource("5_q4d4x")

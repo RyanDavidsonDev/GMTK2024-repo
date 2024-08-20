@@ -1,9 +1,9 @@
 extends Node
 
 @onready var main_screen = $MainMenu
-@onready var gameover_screen = $GameOver
+@export var gameover_screen : GameOverScreen
 @onready var pause_screen = $PauseMenu
-@onready var hud_screen = null # = $HUD
+@onready var hud_screen = null
 
 signal start_game
 signal unload_game
@@ -71,6 +71,7 @@ func _resume_if_paused():
 
 func show_gameover_screen():
 	_change_screen(gameover_screen)
+	gameover_screen.set_score("404","405","406")
 	
 func show_pause_menu():
 	_change_screen(pause_screen)
