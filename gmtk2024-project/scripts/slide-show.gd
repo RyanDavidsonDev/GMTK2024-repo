@@ -1,5 +1,5 @@
 class_name SlideShow
-extends Node
+extends CanvasLayer
 
 @export var fade_duration := 0.5
 @export var current_slide : TextureRect
@@ -16,6 +16,7 @@ var modulate_alpha_property = "modulate:a"
 
 var can_change_slides: = false
 func _ready():
+	visible = false
 	current_slide.mouse_default_cursor_shape = Control.CURSOR_ARROW
 	current_slide.modulate.a = slide_hidden
 	next_slide.modulate.a = slide_hidden
@@ -64,6 +65,7 @@ func _complete_slide_show():
 	on_slide_reached_the_end.emit()
 	
 func start_slide_show():
+	visible = true
 	slide_index = 0
 	current_slide.texture = slides[slide_index]
 	var tween = get_tree().create_tween()

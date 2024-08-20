@@ -9,6 +9,7 @@ signal start_game
 signal unload_game
 signal pause_game
 signal resume_game
+signal quit_game
 
 var current_screen = null
 
@@ -26,7 +27,7 @@ func _button_pressed(btn : ScreenButton) -> void:
 			await(get_tree().create_timer(.65).timeout)
 			show_hud()
 		"QuitGame":
-			get_tree().quit()
+			quit_game.emit()
 		"RetryGame":
 			_resume_if_paused()
 			unload_game.emit()
@@ -85,4 +86,7 @@ func show_hud():
 
 func show_main_screen():
 	_change_screen(main_screen)
+	
+func hide_all():
+	_change_screen(null)
 	

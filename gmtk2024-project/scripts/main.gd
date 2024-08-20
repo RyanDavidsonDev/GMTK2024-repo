@@ -1,9 +1,9 @@
 extends Node2D
 
 @export var intro_story : SlideShow
+@export var quit_story : SlideShow
 @onready var screens = $Screens
 @onready var game_scene = load("res://scenes/game.tscn")
-
 
 var game_scene_instance : Node
 
@@ -19,6 +19,7 @@ func _ready():
 	screens.unload_game.connect(_unload_game)
 	screens.pause_game.connect(_pause_game)
 	screens.resume_game.connect(_resume_game)
+	screens.quit_game.connect(_quit_game)
 	GameEvents.on_player_died.connect(_end_game)
 	intro_story.on_slide_reached_the_end.connect(_show_main_screen)
 	intro_story.start_slide_show()
@@ -72,3 +73,11 @@ func update_health_units(curr, max):
 	curr_size_units = curr
 	max_size_units = max
 	highest_size_units_reached = max(curr_size_units, highest_size_units_reached)
+
+func _quit_game():
+	screens.hide_all()
+	quit_story.start_slide_show()
+	quit_story.on_slide_reached_the_end.connect(_actually_quit)
+
+func _actually_quit():
+	get_tree().quit()
