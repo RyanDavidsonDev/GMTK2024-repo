@@ -33,11 +33,16 @@ func _ready():
 	layer2.volume_db = volume_off
 	layer3.volume_db = volume_off
 	
+	GameEvents.on_game_restarted.connect(_on_game_restarted)
 	GameEvents.on_player_health_changed.connect(_on_player_health_changed)
 
 func _set_player():
 	player = get_tree().get_first_node_in_group("player")
 	return player != null
+
+func _on_game_restarted():
+	for layer in [layer1, layer2, layer3]:
+		layer.play(0)
 
 func _on_player_health_changed():
 	if player == null:

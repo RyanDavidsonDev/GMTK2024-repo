@@ -34,6 +34,7 @@ func _button_pressed(btn : ScreenButton) -> void:
 			_change_screen(null)
 			await(get_tree().create_timer(.65).timeout)
 			start_game.emit()
+			GameEvents.on_game_restarted.emit()
 			await(get_tree().create_timer(.65).timeout)
 			show_hud()
 		"MainMenu":
