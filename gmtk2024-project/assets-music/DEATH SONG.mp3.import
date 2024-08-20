@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dy2bpcltq5hgc"
+path="res://.godot/imported/DEATH SONG.mp3-f231c6b800c0807557f52018cbfbc31b.mp3str"
+
+[deps]
+
+source_file="res://assets-music/DEATH SONG.mp3"
+dest_files=["res://.godot/imported/DEATH SONG.mp3-f231c6b800c0807557f52018cbfbc31b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

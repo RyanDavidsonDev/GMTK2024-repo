@@ -3,6 +3,7 @@ extends Node
 @onready var layer1 : AudioStreamPlayer = $MusicLayer_1
 @onready var layer2 : AudioStreamPlayer = $MusicLayer_2
 @onready var layer3 : AudioStreamPlayer = $MusicLayer_3
+@onready var death_music: AudioStreamPlayer = $DeathMusic
 
 var volume_off = -50.0
 var volume_on = 0.0
@@ -35,6 +36,12 @@ func _ready():
 	
 	GameEvents.on_game_restarted.connect(_on_game_restarted)
 	GameEvents.on_player_health_changed.connect(_on_player_health_changed)
+	GameEvents.on_player_died.connect(play_death_music)
+
+func play_death_music():
+	for layer in [layer1, layer2, layer3]:
+		layer.stop()
+	death_music.play()
 
 func _set_player():
 	player = get_tree().get_first_node_in_group("player")
