@@ -45,6 +45,9 @@ func _button_pressed(btn : ScreenButton) -> void:
 			continue_game.emit()
 			await(get_tree().create_timer(.65).timeout)
 			_show_hud()
+		"PauseGame":
+			show_pause_screen()
+			get_tree().paused = true
 		_:
 			print("button '", btn.name, "' press unhandled")
 

@@ -8,6 +8,7 @@ font_size = 81
 font_color = Color(0, 0, 0, 1)
 
 [node name="ActionName" type="TextureButton"]
+process_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

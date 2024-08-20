@@ -8,3 +8,4 @@ signal on_enemy_explode(location:Vector2)
 signal on_music_level_changed
 signal on_game_paused
 signal on_game_resumed
+signal on_pause_button_hovered_state_changed(is_hovered:bool)

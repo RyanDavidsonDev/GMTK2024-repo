@@ -23,6 +23,7 @@ func _process(_delta: float) -> void:
 func _continue_game():
 	#game_scene_instance.process_mode = PROCESS_MODE_PAUSABLE
 	SceneStateManager.set_scene_state(game_scene_instance, "resumed")
+	get_tree().paused = false
 
 #func _pause_game():
 	#game_scene_instance.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
