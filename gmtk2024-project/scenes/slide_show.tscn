@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ymf5mdjjkwhu"]
+[gd_scene load_steps=3 format=3 uid="uid://ymf5mdjjkwhu"]
 
 [ext_resource type="Script" path="res://scripts/slide-show.gd" id="1_vuwth"]
+[ext_resource type="Texture2D" uid="uid://q3mipve3hels" path="res://assets/story-slides/Splash1.png" id="2_d6nby"]
 
 [node name="SlideShow" type="CanvasLayer" node_paths=PackedStringArray("current_slide", "next_slide")]
 script = ExtResource("1_vuwth")
@@ -31,6 +32,7 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+texture = ExtResource("2_d6nby")
 
 [node name="NextSlide" type="TextureRect" parent="MarginContainer/Control"]
 layout_mode = 1
@@ -42,3 +44,17 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
+
+[node name="Button" type="Button" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.02
+anchor_bottom = 0.012
+offset_left = 500.0
+offset_top = 429.0
+offset_right = 691.44
+offset_bottom = 468.32
+action_mode = 0
+flat = true
+
+[connection signal="button_down" from="MarginContainer/Control/Button" to="." method="_go_to_previous_slide"]
