@@ -98,7 +98,7 @@ func _on_shoot(pos: Vector2, dir: Vector2):
 	var damage: float = lerp(bullet_dmg_floor, bullet_dmg_cap, inverse_lerp(size_floor, size_cap, current_size))
 	GameEvents.on_player_shoot.emit(pos, dir,curr_scale, damage)
 
-func _receive_damage(attack: Attack):
+func _receive_damage(attack: Attack, origin : Hurtbox):
 	health.damage(attack.damage)
 	print("player got hit")
 	SoundFx.play("hit")
@@ -107,7 +107,7 @@ func _receive_damage(attack: Attack):
 		kill()
 
 func _on_barrel_hurtbox_dealt_damage(_area: Area2D):
-	_receive_damage(barrel_self_attack)
+	_receive_damage(barrel_self_attack, _area as Hurtbox)
 	player_gun.recoil()
 
 func collect_coin():
