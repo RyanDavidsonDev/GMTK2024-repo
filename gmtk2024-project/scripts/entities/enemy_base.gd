@@ -12,7 +12,10 @@ signal DropPellets(location:Vector2)
 
 @export_group("Combat")
 @export var hitbox : Hitbox
+@export var health_min : int = 5
+@export var health_max : int = 15
 @export var health : Health
+
 
 var dying : bool
 
@@ -46,6 +49,9 @@ func _on_health_changed(previous_health: float, current_health: float) -> void:
 		#self.process_mode = PROCESS_MODE_DISABLED
 
 func _on_draw() -> void:
+	
+	health.current_health = randi_range(health_min, health_max)
+	
 	animated_sprite.play("Chomper_walk")
 
 	$HitBox/CollisionShape2D.set_deferred("disabled", false)
@@ -79,35 +85,6 @@ func kill():
 	dying = true
 	animated_sprite.play("Explode")
 	animated_sprite.animation_finished.connect(hide)
-	#hitbox.process_mode = Node.PROCESS_MODE_DISABLED
-	#hurtbox.process_mode = Node.PROCESS_MODE_DISABLED
-	
-	
-	#hitbox.process_mode = Node.PROCESS_MODE_PAUSABLE
-	#hurtbox.process_mode = Node.PROCESS_MODE_PAUSABLE
-	#movement_collision.process_mode = Node.PROCESS_MODE_PAUSABLE
-	#$HitBox/CollisionShape2D.disabled = true
-	#$HurtBox/CollisionShape2D.disabled = true
-	#$MovementCollision.disabled = true
 	$HitBox/CollisionShape2D.set_deferred("disabled", true)
 	$HurtBox/CollisionShape2D.set_deferred("disabled", true)
 	$MovementCollision.set_deferred("disabled", true)
-	
-	#hitbox.monitorable = true
-	#hitbox.monitoring = true
-	#hurtbox.monitorable = true
-	#hurtbox.monitoring = true
-	#
-	#set_deferred("movement_collision.disabled", "true")
-	#set_deferred("movement_collision.process_mode", "false")
-	#set_deferred("hitbox.monitoring", "false")
-	#set_deferred("hitbox.monitorable", "false")
-	#set_deferred("hurtbox.monitoring", "false")
-	#set_deferred("hurtbox.monitorable", "false")
-	
-	#movement_collision.disabled = true
-	 #= Node.PROCESS_MODE_DISABLED
-	 #= false;
-	 #= false;
-	 #= false;
-	 #= false;

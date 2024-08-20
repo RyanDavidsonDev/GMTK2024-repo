@@ -57,7 +57,7 @@ func spawn():
 	spawn_at_location(spawn_position)
 
 
-func spawn_at_location(location:Vector2):
+func spawn_at_location(location:Vector2) ->  Node2D:
 	var entity: Node2D
 	
 	
@@ -76,9 +76,12 @@ func spawn_at_location(location:Vector2):
 		entity.global_position = location
 		entity.show()
 		actives.push_back(entity)
+		
 		print("spawning " + str(entity) + " at " +str(location))
+		return entity
 	else :
 		print("error: entity not valid")
+		return null
 
 func _timer_timeout():
 	#if pool.get_non_active_node_by_type(pool_type):

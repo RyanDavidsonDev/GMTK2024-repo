@@ -57,4 +57,17 @@ offset_bottom = 468.32
 action_mode = 0
 flat = true
 
+[node name="Button2" type="Button" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.02
+anchor_bottom = 0.012
+offset_left = 818.0
+offset_top = 2.0
+offset_right = 849.64
+offset_bottom = 41.24
+action_mode = 0
+flat = true
+
 [connection signal="button_down" from="MarginContainer/Control/Button" to="." method="_go_to_previous_slide"]
+[connection signal="button_down" from="MarginContainer/Control/Button2" to="." method="_complete_slide_show"]

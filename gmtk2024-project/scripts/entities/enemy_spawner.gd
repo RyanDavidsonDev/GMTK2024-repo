@@ -33,6 +33,7 @@ func spawn():
 	spawn_position.x += random_distance * cos(deg_to_rad(random_direction))
 	spawn_position.y += random_distance * sin(deg_to_rad(random_direction))
 	
+	
 	spawn_at_location(spawn_position)
 
 
