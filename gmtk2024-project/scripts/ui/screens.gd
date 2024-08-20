@@ -69,9 +69,9 @@ func _resume_if_paused():
 	if get_tree().paused:
 				get_tree().paused = false
 
-func show_gameover_screen():
+func show_gameover_screen(max_size, curr_size, highest_size):
 	_change_screen(gameover_screen)
-	gameover_screen.set_score("404","405","406")
+	gameover_screen.set_score(str(max_size),str(curr_size),str(highest_size))
 	
 func show_pause_menu():
 	_change_screen(pause_screen)

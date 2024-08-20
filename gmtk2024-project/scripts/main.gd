@@ -49,7 +49,10 @@ func _unload_game():
 
 func _end_game():
 	trigger_pause_game = true
-	screens.show_gameover_screen()
+	screens.show_gameover_screen(
+		max_size_units,
+		curr_size_units,
+		highest_size_units_reached)
 	
 func _show_main_screen():
 	intro_story.queue_free()
@@ -69,4 +72,3 @@ func update_health_units(curr, max):
 	curr_size_units = curr
 	max_size_units = max
 	highest_size_units_reached = max(curr_size_units, highest_size_units_reached)
-	pass
