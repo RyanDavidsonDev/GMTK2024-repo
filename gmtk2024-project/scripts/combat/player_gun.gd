@@ -37,7 +37,7 @@ func _shooting():
 			shoot.emit(firing_point.global_position, mouse_direction)
 			recoil()
 		else :
-			if (player.current_size - player.size_dec < player.size_floor):
+			if (player.current_size + player.size_inc < player.size_floor):
 				print("too small little baby man")
 				return
 			else :

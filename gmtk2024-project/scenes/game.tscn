@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dpgclxc6hvcmm" path="res://scenes/Entities/enemy_spawner.tscn" id="5_25gr3"]
 [ext_resource type="PackedScene" uid="uid://bf7ov2c3a8waj" path="res://scenes/ui/hud.tscn" id="7_yk863"]
 [ext_resource type="Script" path="res://scripts/fx_manager.gd" id="9_3s1h6"]
-[ext_resource type="PackedScene" path="res://scenes/background.tscn" id="10_mmkw3"]
+[ext_resource type="PackedScene" uid="uid://du6yi6rxcrpjj" path="res://scenes/background.tscn" id="10_mmkw3"]
 
 [node name="Game" type="Node2D"]
 
