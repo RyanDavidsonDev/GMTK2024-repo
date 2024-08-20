@@ -8,9 +8,12 @@ extends CharacterBody2D
 @onready var player_body_sprite: AnimatedSprite2D = $Body
 @onready var collider_box: CollisionShape2D = $colliderBox
 @onready var hitbox: Hitbox = $Hitbox
+<<<<<<< HEAD
 @onready var ammo_activator_collider: CollisionShape2D = $AmmoActivator/AmmoActivatorCollider
-@onready var camera: Camera2D = $Camera2D
 
+=======
+@onready var camera: Camera2D = $Camera2D
+>>>>>>> backgroundRevisit
 
 @export_group("resizing")
 @export var size_inc: float = 10

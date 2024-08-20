@@ -18,3 +18,4 @@ signal on_music_level_changed
 
 @warning_ignore("unused_signal")
 signal on_supress_player_shoot(increment:int)
+signal zoom_updatedd
