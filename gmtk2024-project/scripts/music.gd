@@ -6,7 +6,7 @@ extends Node
 
 var volume_off = -50.0
 var volume_on = 0.0
-var volume_change_speed = 5.0
+var toggle_track_duration = 1.25 # in seconds
 
 var player : Player
 var player_health_floor
@@ -19,7 +19,11 @@ var _music_level : int = 0
 var SMALL_LEVEL := 0
 var MEDIUM_LEVEL := 1
 var LARGE_LEVEL := 2 
-	
+
+var layer1_tween : Tween
+var layer2_tween : Tween
+var layer3_tween : Tween
+
 func _ready():
 	layer1_target_volume = volume_on
 	layer1.volume_db = volume_on
@@ -30,22 +34,6 @@ func _ready():
 	layer3.volume_db = volume_off
 	
 	GameEvents.on_player_health_changed.connect(_on_player_health_changed)
-
-func _process(delta: float):
-	var speed = delta*volume_change_speed
-	_move_volume_towards_target(speed, layer1, layer1_target_volume)
-	_move_volume_towards_target(speed, layer2, layer2_target_volume)
-	_move_volume_towards_target(speed, layer3, layer3_target_volume)
-
-func _move_volume_towards_target(
-	move_speed: float,
-	stream : AudioStreamPlayer,
-	volume_target: float):
-	
-	if !is_equal_approx(stream.volume_db, volume_target):
-		stream.volume_db = lerp(stream.volume_db, volume_target, move_speed)
-		if is_equal_approx(stream.volume_db, volume_target):
-			stream.volume_db = volume_target
 
 func _set_player():
 	player = get_tree().get_first_node_in_group("player")
@@ -78,7 +66,40 @@ func _on_player_health_changed():
 		
 	if new_music_level != _music_level:
 		_music_level = new_music_level
+		layer2_tween = _animate(
+			layer2_tween,
+			layer2,
+			"volume_db",
+			layer2_target_volume)
+			
+		layer3_tween = _animate(
+			layer3_tween,
+			layer3,
+			"volume_db",
+			layer3_target_volume)
+			
 		GameEvents.on_music_level_changed.emit()
-		
+
+func _animate(
+	tween: Tween,
+	object: Object,
+	property: NodePath,
+	final_val: Variant) -> Tween:
+	
+	if tween and (tween.is_valid() or tween.is_running()):
+		tween.kill()
+		tween = null
+	
+	tween = get_tree().create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	
+	tween.tween_property(
+		object,
+		property,
+		final_val,
+		toggle_track_duration)
+
+	return tween
+
 func get_level():
 	return _music_level
