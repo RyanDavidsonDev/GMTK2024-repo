@@ -26,7 +26,7 @@ timer_max = 5.0
 spawn_num_min = 1.0
 spawn_num_max_floor = 2.0
 spawn_num_max_cap = 8.0
-max_amount = 150
+max_amount = 125
 
 [node name="BulletManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_q5lfh")]
 bullet_scene = ExtResource("3_bgrg5")

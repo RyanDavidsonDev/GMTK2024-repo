@@ -26,7 +26,7 @@ func _on_player_shoot(pos: Vector2, dir:Vector2, scale:float, damage:float):
 	#print("spanwed")
 	print("scale is " + str(scale))
 
-	bullet.setVars(pos, dir, scale, damage)
+	bullet.setVars(pos, dir, max(.7,scale), damage)
 	
 	#add_to_group("bullets")
 	pass
