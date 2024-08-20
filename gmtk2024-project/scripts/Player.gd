@@ -72,14 +72,14 @@ func _ready():
 func _process(_delta):
 	_update_move_animation()
 	
-	if Input.is_action_just_released("scroll_up"):
-		change_zoom(zoom_change_value)
-		print(camera.get_zoom())
-		#GameEvents.zoom_updated.emit()
-	if Input.is_action_just_released("scroll_down") and camera.get_zoom().x > zoom_min:
-		change_zoom(-zoom_change_value)
-		#GameEvents.zoom_updated.emit()
-		print(camera.get_zoom())
+	#if Input.is_action_just_released("scroll_up"):
+		#change_zoom(zoom_change_value)
+		#print(camera.get_zoom())
+		##GameEvents.zoom_updated.emit()
+	#if Input.is_action_just_released("scroll_down") and camera.get_zoom().x > zoom_min:
+		#change_zoom(-zoom_change_value)
+		##GameEvents.zoom_updated.emit()
+		#print(camera.get_zoom())
 
 func _update_move_animation():
 	var is_moving = velocity.length_squared() > 0
