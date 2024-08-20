@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var player_body_sprite: AnimatedSprite2D = $Body
 @onready var collider_box: CollisionShape2D = $colliderBox
 @onready var hitbox: Hitbox = $Hitbox
+@onready var camera: Camera2D = $Camera2D
 
 @export_group("resizing")
 @export var size_inc: float = 10
@@ -48,6 +49,12 @@ var curr_speed: float = 300
 @export var barrel_damage_self : float = 15.0
 @export var gun_coll_size_dec: float = -10
 
+@export_group("camera")
+
+@export_subgroup("zooming")
+@export var zoom_change_value: float = .1
+@export var zoom_max: float = 4
+@export var zoom_min: float = 0.4
 
 var dead : bool = false
 var barrel_self_attack := Attack.new()
@@ -64,6 +71,13 @@ func _ready():
 
 func _process(_delta):
 	_update_move_animation()
+	
+	if Input.is_action_just_released("scroll_up"):
+		change_zoom(zoom_change_value)
+		print(camera.get_zoom())
+	if Input.is_action_just_released("scroll_down") and camera.get_zoom().x > zoom_min:
+		change_zoom(-zoom_change_value)
+		print(camera.get_zoom())
 
 func _update_move_animation():
 	var is_moving = velocity.length_squared() > 0
@@ -107,6 +121,9 @@ func _receive_damage(attack: Attack):
 func _on_barrel_hurtbox_dealt_damage(_area: Area2D):
 	_receive_damage(barrel_self_attack)
 	player_gun.recoil()
+
+func change_zoom(value: float):
+	camera.set_zoom(camera.get_zoom() + Vector2(value, value))
 
 func collect_coin():
 	change_size(size_inc)
