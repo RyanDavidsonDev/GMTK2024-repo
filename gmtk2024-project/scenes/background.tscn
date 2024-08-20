@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://du6yi6rxcrpjj"]
 
-[ext_resource type="Script" path="res://scenes/parallax_layer.gd" id="1_2f2d1"]
+[ext_resource type="Script" path="res://scripts/parallax_layer.gd" id="1_2f2d1"]
 [ext_resource type="Texture2D" uid="uid://baqa2mpjl23ie" path="res://assets/Floor_Tile_V3.png" id="1_8nuew"]
 [ext_resource type="Shader" path="res://shadesrs/background.gdshader" id="2_uham5"]
 
