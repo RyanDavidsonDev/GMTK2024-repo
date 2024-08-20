@@ -2,6 +2,7 @@ class_name Enemy
 extends CharacterBody2D
 
 signal DropPellets(location:Vector2)
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite
 
 @export_group("Movement")
 @export var detection_radius : float = 500.0
@@ -13,6 +14,7 @@ signal DropPellets(location:Vector2)
 @export var hitbox : Hitbox
 @export var health : Health
 
+var dying : bool
 
 var active: bool
 
@@ -38,12 +40,19 @@ func _on_health_changed(previous_health: float, current_health: float) -> void:
 	if current_health <= 0.0 and previous_health != current_health:
 		health.reset()
 		GameEvents.on_enemy_explode.emit(global_position)
-		hide()
+		kill()
 	#else:
 		#print("warning, pellet spawner broke")
 		#self.process_mode = PROCESS_MODE_DISABLED
 
 func _on_draw() -> void:
+	animated_sprite.play("Chomper_walk")
+
+	$HitBox/CollisionShape2D.set_deferred("disabled", false)
+	$HurtBox/CollisionShape2D.set_deferred("disabled", false)
+	$MovementCollision.set_deferred("disabled", false)
+	dying = false
+	
 	pool.remove_from_non_active(self, "enemies")
 	hitbox.monitorable = true
 	hitbox.monitoring = true
@@ -62,4 +71,43 @@ func _on_hidden() -> void:
 func _on_attacked_player(area: Area2D) -> void:
 	if area is Hitbox:
 		print("attacking player, dying but not dropping pellets")
-		hide();
+		kill();
+
+
+
+func kill():
+	dying = true
+	animated_sprite.play("Explode")
+	animated_sprite.animation_finished.connect(hide)
+	#hitbox.process_mode = Node.PROCESS_MODE_DISABLED
+	#hurtbox.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	
+	#hitbox.process_mode = Node.PROCESS_MODE_PAUSABLE
+	#hurtbox.process_mode = Node.PROCESS_MODE_PAUSABLE
+	#movement_collision.process_mode = Node.PROCESS_MODE_PAUSABLE
+	#$HitBox/CollisionShape2D.disabled = true
+	#$HurtBox/CollisionShape2D.disabled = true
+	#$MovementCollision.disabled = true
+	$HitBox/CollisionShape2D.set_deferred("disabled", true)
+	$HurtBox/CollisionShape2D.set_deferred("disabled", true)
+	$MovementCollision.set_deferred("disabled", true)
+	
+	#hitbox.monitorable = true
+	#hitbox.monitoring = true
+	#hurtbox.monitorable = true
+	#hurtbox.monitoring = true
+	#
+	#set_deferred("movement_collision.disabled", "true")
+	#set_deferred("movement_collision.process_mode", "false")
+	#set_deferred("hitbox.monitoring", "false")
+	#set_deferred("hitbox.monitorable", "false")
+	#set_deferred("hurtbox.monitoring", "false")
+	#set_deferred("hurtbox.monitorable", "false")
+	
+	#movement_collision.disabled = true
+	 #= Node.PROCESS_MODE_DISABLED
+	 #= false;
+	 #= false;
+	 #= false;
+	 #= false;

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c34ho5b38tjqb"]
+
+[ext_resource type="Script" path="res://scripts/entities/explosion.gd" id="1_hjgck"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_67i50"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"Explode",
+"speed": 5.0
+}]
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_hjgck")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_67i50")
+animation = &"Explode"
+autoplay = "Explode"

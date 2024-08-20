@@ -17,6 +17,9 @@ func physics_update(_delta: float):
 	
 	enemy.velocity = enemy.last_direction * chase_speed
 	
+	if(enemy.dying):
+		enemy.velocity = Vector2.ZERO
+	
 	if distance <= enemy.follow_radius:
 		enemy.velocity = Vector2.ZERO
 	
