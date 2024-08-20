@@ -22,6 +22,11 @@ ButtonEvents="*res://scripts/ui/button_events.gd"
 GameEvents="*res://scripts/game_events.gd"
 Music="*res://scenes/music.tscn"
 
+[display]
+
+window/size/viewport_width=1028
+window/size/viewport_height=640
+
 [global_group]
 
 player=""
