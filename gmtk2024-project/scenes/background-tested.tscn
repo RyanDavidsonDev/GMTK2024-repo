@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://3flncmmr3xgo"]
+
+[ext_resource type="Script" path="res://scripts/procedural_generation.gd" id="1_jpka8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r517g"]
+noise_type = 0
+frequency = 0.0155
+
+[node name="Procedural_generation" type="TileMap"]
+format = 2
+script = ExtResource("1_jpka8")
+noise = SubResource("FastNoiseLite_r517g")
