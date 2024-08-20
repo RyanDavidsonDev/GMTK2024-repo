@@ -169,6 +169,7 @@ max_health_floor = 500.0
 max_health_cap = 10.0
 speed_floor = 50.0
 speed_cap = 200.0
+bullet_dmg_cap = 50.0
 
 [node name="Gun" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("firing_point")]
 z_index = 90

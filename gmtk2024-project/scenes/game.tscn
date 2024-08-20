@@ -23,8 +23,10 @@ move_speed = 200.0
 script = ExtResource("4_ntmgt")
 timer_min = 1.0
 timer_max = 5.0
-spawn_num_min = 8.0
-spawn_num_max = 10.0
+spawn_num_min = 1.0
+spawn_num_max_floor = 2.0
+spawn_num_max_cap = 8.0
+max_amount = 150
 
 [node name="BulletManager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_q5lfh")]
 bullet_scene = ExtResource("3_bgrg5")
@@ -34,6 +36,7 @@ max_amount = 100
 [node name="PelletSpawner" parent="." instance=ExtResource("4_1wfr2")]
 spawn_min_distance = 282
 spawn_delay = 3.0
+max_amount = 200
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 
