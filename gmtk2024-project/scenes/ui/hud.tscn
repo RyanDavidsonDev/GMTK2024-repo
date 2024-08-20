@@ -15,14 +15,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nl7sq")
-health_bar = NodePath("HealthBarContainer/HealthBar")
-health_bar_label = NodePath("HealthBarContainer/HealthLabel")
+health_bar = NodePath("BottomContainer/HealthBar")
+health_bar_label = NodePath("BottomContainer/HealthLabel")
 health_danger_color = Color(1, 0, 0, 1)
 health_normal_color = Color(0, 0.733333, 0.309804, 1)
 health_medium_color = Color(0, 0.697088, 0.704002, 1)
 health_large_color = Color(0.715669, 0.462178, 1, 1)
 
-[node name="HealthBarContainer" type="Control" parent="."]
+[node name="BottomContainer" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -33,44 +33,17 @@ offset_right = 40.0
 offset_bottom = -48.0
 grow_vertical = 0
 
-[node name="HealthBar" parent="HealthBarContainer" instance=ExtResource("2_jfq0r")]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 632.0
-offset_bottom = 0.0
-grow_vertical = 0
-max_value = 1.0
-step = 0.01
-value = 1.0
-
-[node name="HealthLabel" type="Label" parent="HealthBarContainer"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = -32.0
-offset_right = 605.0
-offset_bottom = -9.0
-text = "10 / 1000"
-
-[node name="TopLeft" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PauseGame" parent="TopLeft" instance=ExtResource("3_28sms")]
+[node name="PauseGame" parent="BottomContainer" instance=ExtResource("3_28sms")]
 layout_mode = 1
 anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 40.0
-offset_top = 20.0
-offset_right = 156.0
-offset_bottom = 51.0
+offset_left = 1.0
+offset_top = -43.0
+offset_right = 117.0
+offset_bottom = -12.0
 grow_horizontal = 1
 grow_vertical = 1
 scale = Vector2(0.8, 0.8)
@@ -80,11 +53,32 @@ texture_pressed = ExtResource("4_ge7yn")
 texture_hover = ExtResource("5_gkdwp")
 script = ExtResource("6_7fnsf")
 
-[node name="Label" parent="TopLeft/PauseGame" index="0"]
+[node name="Label" parent="BottomContainer/PauseGame" index="0"]
 visible = false
 text = "RETRY"
 
-[connection signal="mouse_entered" from="TopLeft/PauseGame" to="TopLeft/PauseGame" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="TopLeft/PauseGame" to="TopLeft/PauseGame" method="_on_mouse_exited"]
+[node name="HealthBar" parent="BottomContainer" instance=ExtResource("2_jfq0r")]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -15.0
+offset_right = 632.0
+offset_bottom = 25.0
+grow_vertical = 0
+max_value = 1.0
+step = 0.01
+value = 1.0
 
-[editable path="TopLeft/PauseGame"]
+[node name="HealthLabel" type="Label" parent="BottomContainer"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -7.0
+offset_right = 605.0
+offset_bottom = 16.0
+text = "10 / 1000"
+
+[connection signal="mouse_entered" from="BottomContainer/PauseGame" to="BottomContainer/PauseGame" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BottomContainer/PauseGame" to="BottomContainer/PauseGame" method="_on_mouse_exited"]
+
+[editable path="BottomContainer/PauseGame"]
