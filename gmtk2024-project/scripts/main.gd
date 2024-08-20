@@ -4,9 +4,10 @@ extends Node2D
 @onready var screens = $Screens
 @onready var game_scene = load("res://scenes/game.tscn")
 
+
 var game_scene_instance : Node
 
-var is_game_paused := true
+var is_game_paused := false
 var trigger_pause_game := false
 
 func _ready():
@@ -51,8 +52,10 @@ func _show_main_screen():
 
 func _pause_game():
 	screens.show_pause_menu()
+	is_game_paused = true
 	get_tree().paused = true
 
 func _resume_game():
 	screens.show_hud()
+	is_game_paused = false
 	get_tree().paused = false
