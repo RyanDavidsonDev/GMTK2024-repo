@@ -13,8 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://du2ta0njeko1v" path="res://assets/story-slides/Splash7.png" id="10_n62vc"]
 [ext_resource type="Texture2D" uid="uid://dw76g703mb18u" path="res://assets/story-slides/Splash8.png" id="12_hwyk8"]
 [ext_resource type="Texture2D" uid="uid://bweaoycd5m6kt" path="res://assets/story-slides/Splash9.png" id="13_s03wd"]
-[ext_resource type="Texture2D" uid="uid://dqqox5fh3pxgh" path="res://assets/story-slides/Splash10.png" id="14_fv0mm"]
-[ext_resource type="Texture2D" uid="uid://bpchq8vxrjrmq" path="res://assets/quit-slides/Quit1.png" id="15_kyiap"]
+[ext_resource type="Texture2D" uid="uid://cgvxtludwv86v" path="res://assets/story-slides/Splash10v2.png" id="14_if2e2"]
+[ext_resource type="Texture2D" uid="uid://brcg47idjeetf" path="res://assets/quit-slides/CreditsV3.png" id="15_ucwls"]
 [ext_resource type="Texture2D" uid="uid://cys4cuymu8uls" path="res://assets/quit-slides/Quit2.png" id="16_7uesa"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("intro_story", "quit_story")]
@@ -25,7 +25,7 @@ quit_story = NodePath("QuitStory")
 [node name="Screens" parent="." instance=ExtResource("2_bfrk4")]
 
 [node name="IntroStory" parent="." instance=ExtResource("3_dd6ml")]
-slides = Array[Texture]([ExtResource("4_c55vj"), ExtResource("5_74kei"), ExtResource("5_75gde"), ExtResource("6_wo1hm"), ExtResource("7_05ltv"), ExtResource("8_mjpwx"), ExtResource("9_n36cq"), ExtResource("10_n62vc"), ExtResource("12_hwyk8"), ExtResource("13_s03wd"), ExtResource("14_fv0mm")])
+slides = Array[Texture]([ExtResource("4_c55vj"), ExtResource("5_74kei"), ExtResource("5_75gde"), ExtResource("6_wo1hm"), ExtResource("7_05ltv"), ExtResource("8_mjpwx"), ExtResource("9_n36cq"), ExtResource("10_n62vc"), ExtResource("12_hwyk8"), ExtResource("13_s03wd"), ExtResource("14_if2e2")])
 
 [node name="QuitStory" parent="." instance=ExtResource("3_dd6ml")]
-slides = Array[Texture]([ExtResource("15_kyiap"), ExtResource("16_7uesa")])
+slides = Array[Texture]([ExtResource("15_ucwls"), ExtResource("16_7uesa")])
