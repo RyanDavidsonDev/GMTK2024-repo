@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw4p2spb01gv4"]
+[gd_scene load_steps=9 format=3 uid="uid://bbnwva1drcw8n"]
 
 [ext_resource type="Script" path="res://scripts/ui/base_screen.gd" id="1_rfoel"]
 [ext_resource type="PackedScene" uid="uid://dfflwyvgequl8" path="res://scenes/ui/screen_button.tscn" id="2_xrr0e"]
@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://dq6h6d2hltk4i" path="res://assets/Retry_On_Grphx.png" id="4_iu4e7"]
 [ext_resource type="Texture2D" uid="uid://1hmcti5gm84a" path="res://assets/Menu_Off_Grphx.png" id="5_yqeva"]
 [ext_resource type="Texture2D" uid="uid://bakdyv7ij1mum" path="res://assets/Menu_On_Grphx.png" id="6_icpp4"]
-[ext_resource type="Texture2D" path="res://assets/Resume_Off_Grphx.png" id="7_t2a6q"]
-[ext_resource type="Texture2D" path="res://assets/Resume_On_Grphx.png" id="8_rxv8f"]
+[ext_resource type="Texture2D" uid="uid://r26y4tuymper" path="res://assets/Resume_Off_Grphx.png" id="7_t2a6q"]
+[ext_resource type="Texture2D" uid="uid://dfoqhpc5ytc6j" path="res://assets/Resume_On_Grphx.png" id="8_rxv8f"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
