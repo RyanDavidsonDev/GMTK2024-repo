@@ -39,6 +39,11 @@ var curr_scale: float = 1
 var curr_speed: float = 300
 @export var default_speed:float = 200
 
+@export_subgroup("zoom range")
+var curr_base_zoom:float
+@export var zoom_floor:float =  .6
+@export var zoom_cap:float =  1.8
+
 @export var speed_floor :float
 @export var speed_cap :float
 
@@ -150,6 +155,7 @@ func change_size(amount:float):
 	GameEvents.on_player_health_changed.emit()
 
 func update_scales():
+	print("uwu")
 	var t:float = inverse_lerp(size_floor, size_cap, current_size)
 	#curr_scale = evaluation_curve.sample_baked(t) * (scale_cap - scale_floor ) + scale_floor
 	curr_scale = evaluate_curve(evaluation_curve, t, scale_floor, scale_cap)
@@ -175,6 +181,8 @@ func update_scales():
 	var num_of_health_units_curr = (current_size - size_floor )/size_inc
 	print("health units max " + str(num_of_health_units_max) + " curr " +str(num_of_health_units_curr))
 	GameEvents.on_player_size_changed.emit(num_of_health_units_curr, num_of_health_units_max)
+	var camera_zoom =  lerp(zoom_cap, zoom_floor, camera.get_zoom().x * curr_scale)
+	camera.set_zoom(Vector2(camera_zoom, camera_zoom))
 
 
 func _on_gun_hitbox_area_entered(area: Area2D) -> void:

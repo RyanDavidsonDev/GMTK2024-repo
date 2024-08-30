@@ -18,6 +18,7 @@
 [node name="Player" parent="." instance=ExtResource("1_x80ch")]
 position = Vector2(368, 180)
 move_speed = 200.0
+zoom_cap = 1.5
 
 [node name="EnemySpawner" parent="." instance=ExtResource("5_25gr3")]
 script = ExtResource("4_ntmgt")
